@@ -1,4 +1,16 @@
-# 01-C#-Hastane_Otomasyon_Projesi
+
+
+>_Büyük fikirler büyük başarılar getirmez, küçük başarılar büyük başarıları inşa eder._
+
+
+
+## İçindekiler (Contents)
+1. [C# Hastane Otomasyon Projesi](#project1)
+2. [C# Pansiyon Kayıt Otomasyon Projesi](#project2)
+
+
+
+# 01- C# Hastane Otomasyon Projesi <a name="project1"></a>
 ### Başlangıç
 [![Berkan Nihat Yıldız](https://i.hizliresim.com/p3x5eo3.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ### Hasta Girişi
@@ -27,3 +39,5 @@
 [![image](https://user-images.githubusercontent.com/95151751/224477567-6c20776a-6fe5-45b4-9561-3935a2984568.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ### Randevu Listesi
 [![image](https://user-images.githubusercontent.com/95151751/224477587-85deecaa-e7d1-441b-8e76-1ca60de25edf.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+# 02- C# Pansiyon Kayıt Otomasyon Projesi <a name="project2"></a>
