@@ -1,0 +1,16 @@
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\bin\Debug\02-Pansiyon_Kayit_Projesi.exe.config
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\bin\Debug\02-Pansiyon_Kayit_Projesi.exe
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\bin\Debug\02-Pansiyon_Kayit_Projesi.pdb
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\02-Pansiyon_Kayit_Projesi.csproj.AssemblyReference.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\_02_Pansiyon_Kayit_Projesi.frmAdminGiris.resources
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\_02_Pansiyon_Kayit_Projesi.Properties.Resources.resources
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\02-Pansiyon_Kayit_Projesi.csproj.GenerateResource.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\02-Pansiyon_Kayit_Projesi.csproj.CoreCompileInputs.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\02-Pansiyon_Kayit_Projesi.exe
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\02-Pansiyon_Kayit_Projesi.pdb
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\_02_Pansiyon_Kayit_Projesi.frmYeniMusteri.resources
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\_02_Pansiyon_Kayit_Projesi.frmAnaForm.resources
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\_02_Pansiyon_Kayit_Projesi.frmOdalar.resources
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\_02_Pansiyon_Kayit_Projesi.frmMusteriler.resources
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\_02_Pansiyon_Kayit_Projesi.frmGelirGider.resources
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\02-Pansiyon_Kayit_Projesi\obj\Debug\_02_Pansiyon_Kayit_Projesi.frmStoklar.resources
