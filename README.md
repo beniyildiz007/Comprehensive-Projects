@@ -7,6 +7,8 @@
 ## İçindekiler (Contents)
 1. [C# Hastane Otomasyon Projesi](#project1)
 2. [C# Pansiyon Kayıt Otomasyon Projesi](#project2)
+3. [C# Öğrenci Yurdu Kayıt Otomasyon Projesi](#project3)
+
 
 
 
@@ -343,3 +345,30 @@ namespace _02_Hastane_Proejesi
 [![image](https://user-images.githubusercontent.com/95151751/224477587-85deecaa-e7d1-441b-8e76-1ca60de25edf.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
 # 02- C# Pansiyon Kayıt Otomasyon Projesi <a name="project2"></a>
+
+### Admin Girişi
+[![image](https://user-images.githubusercontent.com/95151751/226797637-0837d15b-96a0-46a4-802c-c9966f1ddb25.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Anasayfa
+[![image](https://user-images.githubusercontent.com/95151751/226797769-eb020630-bb10-4a05-9cea-630a55da49de.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Yeni Müşteri
+[![image](https://user-images.githubusercontent.com/95151751/226797918-e19587be-d530-490b-b5b2-eed6dcca82c7.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Odalar
+[![image](https://user-images.githubusercontent.com/95151751/226797995-75d4034c-fdbc-4f45-92ff-98424eb4457d.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Müşteriler
+[![image](https://user-images.githubusercontent.com/95151751/226798080-8804c5c5-4d1b-4fbc-9f65-fcab07e14004.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Gelir-Gider Formu
+[![image](https://user-images.githubusercontent.com/95151751/226798145-e39137b5-cbb8-4201-a350-8b8b213204d4.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Stoklar
+[![image](https://user-images.githubusercontent.com/95151751/226798207-bae777f7-02dc-410f-8a44-ee5cc5003f36.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Hakkımızda
+[![image](https://user-images.githubusercontent.com/95151751/226798259-c71ab6c5-c136-430d-ac86-ca394e779cba.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+
+# 03- C# Öğrenci Yurdu Kayıt Otomasyon Projesi <a name="project3"></a>
