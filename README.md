@@ -372,3 +372,57 @@ namespace _02_Hastane_Proejesi
 
 
 # 03- C# Öğrenci Yurdu Kayıt Otomasyon Projesi <a name="project3"></a>
+
+### Admin Girişi
+[![image](https://user-images.githubusercontent.com/95151751/226799085-35696fc5-2141-4d02-ac39-4ef44e198571.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Anasayfa
+[![image](https://user-images.githubusercontent.com/95151751/226799122-3bdffbeb-b544-4f44-ba07-999c6bacdbcf.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Öğrenci Kayıt
+[![image](https://user-images.githubusercontent.com/95151751/226799232-86e4777e-b650-4b8e-9fd7-95af913ce015.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Öğrenci Listesi
+[![image](https://user-images.githubusercontent.com/95151751/226799281-b36f264f-e8f8-4894-b7ee-4015c12b76a5.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Öğrenci Bilgileri Düzenle
+[![image](https://user-images.githubusercontent.com/95151751/226799411-7531874b-84a4-4f2b-bce1-1e28f93087a7.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Bölümler
+[![image](https://user-images.githubusercontent.com/95151751/226799468-efddc08a-ea8e-434b-8d05-cfefb281abbd.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Ödemeler
+[![image](https://user-images.githubusercontent.com/95151751/226799588-66e49e73-cd21-42ec-8e8d-65d0cc1cbe5f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Gider Ekle
+[![image](https://user-images.githubusercontent.com/95151751/226799665-4a958e4d-182b-4f64-bea4-9da765e0b583.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Gider Listesi
+[![image](https://user-images.githubusercontent.com/95151751/226799711-6266178b-ecd0-47bc-a70b-f672b355d5f5.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Giderleri Güncelle
+[![image](https://user-images.githubusercontent.com/95151751/226799765-234cffa1-c13d-4285-b74c-e2e9ec8caa4e.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Gelir İstatistikleri
+[![image](https://user-images.githubusercontent.com/95151751/226799822-9346dae0-3819-44c2-b410-ed0027fae62d.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Yönetici İşlemleri
+[![image](https://user-images.githubusercontent.com/95151751/226800008-1a148e1c-96bd-4c0d-9c0f-e7aa01d6829a.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Personel İşlemleri
+[![image](https://user-images.githubusercontent.com/95151751/226800049-d1e34149-8a35-4d75-8228-8c89f5a1a2db.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Not Oluştur
+[![image](https://user-images.githubusercontent.com/95151751/226800087-58029af7-f61e-4062-a0b0-e249bdef3e39.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Not Kaydet (saveFileDialog)
+[![image](https://user-images.githubusercontent.com/95151751/226800191-a9c7c66a-159f-4469-b73b-639823deb78f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Erişim Kolaylığı (calc.exe && mspaint.exe)
+[![image](https://user-images.githubusercontent.com/95151751/226800258-96241647-1430-4ec1-94ae-f7d660350ea6.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Erişim Kolaylığı (Radyolar)
+[![image](https://user-images.githubusercontent.com/95151751/226800318-deb108e4-7408-4b3f-a5ba-51b3f22b5973.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+
+### Erişim Kolaylığı (Hakkımızda)
+[![image](https://user-images.githubusercontent.com/95151751/226800413-b0da36c4-fdab-429f-9393-571f51099be4.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
