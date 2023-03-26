@@ -508,6 +508,39 @@ namespace _02_Hastane_Proejesi
 ```
 ### Duyurular
 [![image](https://user-images.githubusercontent.com/95151751/224477381-cdc78352-aa15-44b9-9c4e-b38f555002ae.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+
+namespace _02_Hastane_Proejesi
+{
+    public partial class FrmDuyurular : Form
+    {
+        public FrmDuyurular()
+        {
+            InitializeComponent();
+        }
+
+        sqlBaglantisi bgl = new sqlBaglantisi();
+
+        private void FrmDuyurular_Load(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from Tbl_Duyurular", bgl.baglanti());
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+        }
+    }
+}
+```
 ### Sekreter Girişi
 [![image](https://user-images.githubusercontent.com/95151751/224477430-1e559b05-f109-42b2-b50f-da8a16509105.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ### Sekreter Detay Paneli
