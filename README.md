@@ -2607,108 +2607,2262 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 ### Admin Girişi
 [![image](https://user-images.githubusercontent.com/95151751/228115446-8e420c36-1ba4-4532-b68f-0145ad9e6046.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmAdmin : Form
+    {
+        public frmAdmin()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+        private void simpleButton1_MouseHover(object sender, EventArgs e)
+        {
+            btnGiris.BackColor = Color.Yellow;
+        }
+
+        private void simpleButton1_MouseLeave(object sender, EventArgs e)
+        {
+            btnGiris.BackColor = Color.White;
+        }
+
+        
+        private void btnGiris_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("select * from TBLADMIN where KULLANICIAD=@p1 and SIFRE=@p2", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtKullaniciAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtSifre.Text);
+            SqlDataReader dr = komut.ExecuteReader();
+            if (dr.Read())
+            {
+                frmAnaForm fr = new frmAnaForm();
+                fr.kullanici = txtKullaniciAd.Text;
+                fr.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Hatalı Kullanıcı Adı ya da Şifre!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            bgl.baglanti().Close();
+
+        }
+
+        private void frmAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
+```
+### Ana Form
+[![image](https://user-images.githubusercontent.com/95151751/228115554-10fc1990-f44b-4ed9-bf1f-9ceb1370c70f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmAnaForm : Form
+    {
+        public frmAnaForm()
+        {
+            InitializeComponent();
+        }
+
+        frmUrunler fr;
+        private void btnUrunler_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr == null || fr.IsDisposed)
+            {
+                fr = new frmUrunler();
+                fr.MdiParent = this;
+                fr.Show();
+            }
+        }
+
+
+        frmMusteriler fr2;
+        private void btnMusteriler_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr2 == null || fr2.IsDisposed)
+            {
+                fr2 = new frmMusteriler();
+                fr2.MdiParent = this;
+                fr2.Show();
+            }
+        }
+
+        frmFirmalar fr3;
+        private void btnFirmalar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr3 == null || fr3.IsDisposed)
+            {
+                fr3 = new frmFirmalar();
+                fr3.MdiParent = this;
+                fr3.Show();
+            }
+        }
+
+
+        frmPersonel fr4;
+        private void btnPersoneller_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr4 == null || fr4.IsDisposed)
+            {
+                fr4 = new frmPersonel();
+                fr4.MdiParent = this;
+                fr4.Show();
+            }
+        }
+
+
+        frmRehber fr5;
+        private void btnRehber_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr5 == null || fr5.IsDisposed)
+            {
+                fr5 = new frmRehber();
+                fr5.MdiParent = this;
+                fr5.Show();
+            }
+        }
+
+
+        frmGiderler fr6;
+        private void btnGiderler_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr6 == null || fr6.IsDisposed)
+            {
+                fr6 = new frmGiderler();
+                fr6.MdiParent = this;
+                fr6.Show();
+            }
+        }
+
+        frmBankalar fr7;
+        private void btnBankalar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr7 == null || fr7.IsDisposed)
+            {
+                fr7 = new frmBankalar();
+                fr7.MdiParent = this;
+                fr7.Show();
+            }
+
+        }
+
+        frmFaturalar fr8;
+        private void btnFaturalar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr8 == null || fr8.IsDisposed)
+            {
+                fr8 = new frmFaturalar();
+                fr8.MdiParent = this;
+                fr8.Show();
+            }
+
+        }
+
+
+        frmNotlar fr9;
+        private void btnNotlar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr9 == null || fr9.IsDisposed)
+            {
+                fr9 = new frmNotlar();
+                fr9.MdiParent = this;
+                fr9.Show();
+            }
+
+        }
+
+        frmHareketler fr10;
+        private void btnHareketler_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if(fr10==null || fr10.IsDisposed)
+            {
+                fr10 = new frmHareketler();
+                fr10.MdiParent = this;
+                fr10.Show();
+            }
+        }
+
+
+        frmStoklar fr11;
+        private void btnStoklar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr11 == null || fr11.IsDisposed)
+            {
+                fr11 = new frmStoklar();
+                fr11.MdiParent = this;
+                fr11.Show();
+            }
+        }
+
+        frmAyarlar fr12;
+        private void btnAyarlar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr12 == null || fr12.IsDisposed)
+            {
+                fr12 = new frmAyarlar();
+                fr12.Show();
+            }
+        }
+
+
+        public string kullanici;
+        frmKasa fr13;
+        private void btnKasa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr13 == null || fr13.IsDisposed)
+            {
+                fr13 = new frmKasa();
+                fr13.ad = kullanici;
+                fr13.MdiParent = this;
+                fr13.Show();
+            }
+
+        }
+
+        frmAnaSayfa fr14;
+        private void btnAnasayfa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (fr14 == null || fr14.IsDisposed)
+            {
+                fr14 = new frmAnaSayfa();
+                fr14.MdiParent = this;
+                fr14.Show();
+            }
+
+        }
+
+        private void frmAnaForm_Load(object sender, EventArgs e)
+        {
+            if (fr14 == null || fr14.IsDisposed)
+            {
+                fr14 = new frmAnaSayfa();
+                fr14.MdiParent = this;
+                fr14.Show();
+            }
+        }
+    }
+}
 ```
 ### Anasayfa
 [![image](https://user-images.githubusercontent.com/95151751/228115554-10fc1990-f44b-4ed9-bf1f-9ceb1370c70f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmAnaSayfa : Form
+    {
+        public frmAnaSayfa()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void stoklar()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select URUNAD,sum(ADET) as 'Adet' from TBLURUNLER" +
+                " group by URUNAD having sum(ADET)<=20 order by sum(ADET)", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+
+        void ajanda()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select top 10 TARIH,SAAT,BASLIK from TBLNOTLAR order by ID desc", bgl.baglanti());
+            da.Fill(dt);
+            gridControl2.DataSource = dt;
+        }
+
+
+        void FirmaHareketleri()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("execute FirmaHareketler", bgl.baglanti());
+            da.Fill(dt);
+            gridControl3.DataSource = dt;
+        }
+
+
+
+        void fihrist()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select AD,TELEFON1 from TBLFIRMALAR", bgl.baglanti());
+            da.Fill(dt);
+            gridControl4.DataSource = dt;
+        }
+
+
+        private void frmAnaSayfa_Load(object sender, EventArgs e)
+        {
+            stoklar();
+            ajanda();
+            FirmaHareketleri();
+            fihrist();
+
+            webBrowser1.Navigate("http://www.tcmb.gov.tr/kurlar/today.xml");
+        }
+    }
+}
 ```
 ### Ürünler
 [![image](https://user-images.githubusercontent.com/95151751/228115663-199e6596-9f2c-4b8e-a094-7e2be75d460c.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmUrunler : Form
+    {
+        public frmUrunler()
+        {
+            InitializeComponent();
+        }
+
+        private void groupControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void listele()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLURUNLER", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+
+        void temizle()
+        {
+            txtAd.Text = "";
+            txtAlisFiyat.Text = "";
+            txtID.Text = "";
+            txtMarka.Text = "";
+            txtModel.Text = "";
+            txtSatisFiyat.Text = "";
+            mskYil.Text = "";
+            nudAdet.Text = "";
+            rchDetay.Text = "";
+            txtAd.Focus();
+
+        }
+
+        private void frmUrunler_Load(object sender, EventArgs e)
+        {
+            listele();
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            //Verileri Kaydetme
+            SqlCommand komut = new SqlCommand("insert into TBLURUNLER (URUNAD,MARKA,MODEL,YIL,ADET,ALISFIYAT,SATISFIYAT,DETAY) values (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtMarka.Text);
+            komut.Parameters.AddWithValue("@p3", txtModel.Text);
+            komut.Parameters.AddWithValue("@p4", mskYil.Text);
+            komut.Parameters.AddWithValue("@p5", int.Parse((nudAdet.Value).ToString()));
+            komut.Parameters.AddWithValue("@p6", decimal.Parse(txtAlisFiyat.Text));
+            komut.Parameters.AddWithValue("@p7", decimal.Parse(txtSatisFiyat.Text));
+            komut.Parameters.AddWithValue("@p8", rchDetay.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Ürün sisteme eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+            temizle();
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLURUNLER where ID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Ürün silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            listele();
+            temizle();
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            txtID.Text = dr["ID"].ToString();
+            txtAd.Text = dr["URUNAD"].ToString();
+            txtMarka.Text = dr["MARKA"].ToString();
+            txtModel.Text = dr["MODEL"].ToString();
+            mskYil.Text = dr["YIL"].ToString();
+            nudAdet.Value = decimal.Parse(dr["ADET"].ToString());
+            txtAlisFiyat.Text = dr["ALISFIYAT"].ToString();
+            txtSatisFiyat.Text = dr["SATISFIYAT"].ToString();
+            rchDetay.Text = dr["DETAY"].ToString();
+
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLURUNLER set URUNAD=@p1, MARKA=@p2, MODEL=@p3, YIL=@p4,ADET=@p5,ALISFIYAT=@p6,SATISFIYAT=@p7,DETAY=@p8 where ID=@p9", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtMarka.Text);
+            komut.Parameters.AddWithValue("@p3", txtModel.Text);
+            komut.Parameters.AddWithValue("@p4", mskYil.Text);
+            komut.Parameters.AddWithValue("@p5", int.Parse((nudAdet.Value).ToString()));
+            komut.Parameters.AddWithValue("@p6", decimal.Parse(txtAlisFiyat.Text));
+            komut.Parameters.AddWithValue("@p7", decimal.Parse(txtSatisFiyat.Text));
+            komut.Parameters.AddWithValue("@p8", rchDetay.Text);
+            komut.Parameters.AddWithValue("@p9", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Ürün bilgileri güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            listele();
+            temizle();
+
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            temizle();
+        }
+    }
+}
 ```
 ### Stoklar
 [![image](https://user-images.githubusercontent.com/95151751/228115719-b305022b-8212-4b72-8af7-fe4306fa377b.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmStoklar : Form
+    {
+        public frmStoklar()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+        private void frmStoklar_Load(object sender, EventArgs e)
+        {
+
+            SqlDataAdapter da = new SqlDataAdapter("select URUNAD,Sum(ADET) as 'Miktar' from TBLURUNLER group by URUNAD", bgl.baglanti());
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+
+
+            //Chart Üzerinde Stok Miktarı Listeleme
+            SqlCommand komut = new SqlCommand("select URUNAD,sum(ADET) as 'Miktar' from TBLURUNLER group by URUNAD", bgl.baglanti());
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                chartControl1.Series["Series 1"].Points.AddPoint(Convert.ToString(dr[0]), Convert.ToInt32(dr[1].ToString()));
+            }
+            bgl.baglanti().Close();
+        }
+    }
+}
 ```
 ### Müşteriler
 [![image](https://user-images.githubusercontent.com/95151751/228115774-5b0554bc-395a-41f8-8f24-5313d9d51e6f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmMusteriler : Form
+    {
+        public frmMusteriler()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+        void listele()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLMUSTERILER", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+        void sehirlistesi()
+        {
+            SqlCommand komut = new SqlCommand("select SEHIR from TBLILLER", bgl.baglanti());
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbIL.Items.Add(dr[0]);
+            }
+            bgl.baglanti().Close();
+        }
+
+
+        void temizle()
+        {
+            txtAd.Text = "";
+            txtID.Text = "";
+            txtMail.Text = "";
+            txtSoyad.Text = "";
+            txtVergi.Text = "";
+            mskTC.Text = "";
+            mskTel1.Text = "";
+            mskTel2.Text = "";
+            cmbIL.Text = "";
+            cmbILCE.Text = "";
+            rchAdres.Text = "";
+            txtAd.Focus();
+        }
+
+        private void frmMusteriler_Load(object sender, EventArgs e)
+        {
+            listele();
+            sehirlistesi();
+            temizle();
+        }
+
+        private void cmbIL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbILCE.Items.Clear();
+            SqlCommand komut = new SqlCommand("select ILCE from TBLILCELER where SEHIR=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", cmbIL.SelectedIndex+1);
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbILCE.Items.Add(dr[0]);
+            }
+            bgl.baglanti().Close();
+
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("insert into TBLMUSTERILER (AD,SOYAD,TELEFON,TELEFON2,TC,MAIL,IL,ILCE,ADRES,VERGIDAIRE) values (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10)", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtSoyad.Text);
+            komut.Parameters.AddWithValue("@p3", mskTel1.Text);
+            komut.Parameters.AddWithValue("@p4", mskTel2.Text);
+            komut.Parameters.AddWithValue("@p5", mskTC.Text);
+            komut.Parameters.AddWithValue("@p6", txtMail.Text);
+            komut.Parameters.AddWithValue("@p7", cmbIL.Text);
+            komut.Parameters.AddWithValue("@p8", cmbILCE.Text);
+            komut.Parameters.AddWithValue("@p9", rchAdres.Text);
+            komut.Parameters.AddWithValue("@p10", txtVergi.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Müşteri sisteme eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+            temizle();
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            if (dr != null)
+            {
+                txtID.Text = dr["ID"].ToString();
+                txtAd.Text = dr["AD"].ToString();
+                txtSoyad.Text = dr["SOYAD"].ToString();
+                mskTel1.Text = dr["TELEFON"].ToString();
+                mskTel2.Text = dr["TELEFON2"].ToString();
+                mskTC.Text = dr["TC"].ToString();
+                txtMail.Text = dr["MAIL"].ToString();
+                cmbIL.Text = dr["IL"].ToString();
+                cmbILCE.Text = dr["ILCE"].ToString();
+                txtVergi.Text = dr["VERGIDAIRE"].ToString();
+                rchAdres.Text = dr["ADRES"].ToString();
+            }
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLMUSTERILER where ID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Müşteri Silindi!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            listele();
+            temizle();
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLMUSTERILER set AD=@p1,SOYAD=@p2,TELEFON=@p3,TELEFON2=@p4,TC=@p5,MAIL=@p6,IL=@p7,ILCE=@p8,VERGIDAIRE=@p9,ADRES=@p10 where ID=@p11", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtSoyad.Text);
+            komut.Parameters.AddWithValue("@p3", mskTel1.Text);
+            komut.Parameters.AddWithValue("@p4", mskTel2.Text);
+            komut.Parameters.AddWithValue("@p5", mskTC.Text);
+            komut.Parameters.AddWithValue("@p6", txtMail.Text);
+            komut.Parameters.AddWithValue("@p7", cmbIL.Text);
+            komut.Parameters.AddWithValue("@p8", cmbILCE.Text);
+            komut.Parameters.AddWithValue("@p9", rchAdres.Text);
+            komut.Parameters.AddWithValue("@p10", txtVergi.Text);
+            komut.Parameters.AddWithValue("@p11", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Müşteri bilgileri güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+            temizle();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            temizle();
+        }
+    }
+}
 ```
 ### Firmalar
 [![image](https://user-images.githubusercontent.com/95151751/228115857-24d1bd2b-6fab-4a45-91fe-081d2375672d.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
-```c#
 
-```
 [![image](https://user-images.githubusercontent.com/95151751/228115951-b2a1f246-5840-4e6b-941b-2d50bfa2cac5.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
-```c#
 
-```
 [![image](https://user-images.githubusercontent.com/95151751/228115977-11841d42-bfa9-4f86-b875-cc01ec3ed94f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmFirmalar : Form
+    {
+        public frmFirmalar()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+        void listele()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLFIRMALAR", bgl.baglanti());
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+        void temizle()
+        {
+            txtAd.Text = "";
+            txtID.Text = "";
+            txtKod1.Text = "";
+            txtKod2.Text = "";
+            txtKod3.Text = "";
+            txtMail.Text = "";
+            txtSektor.Text = "";
+            txtVergiDairesi.Text = "";
+            txtYetkiliAdSoyad.Text = "";
+            txtYetkiliGorev.Text = "";
+            mskFax.Text = "";
+            mskTel1.Text = "";
+            mskTel2.Text = "";
+            mskTel3.Text = "";
+            mskTC.Text = "";
+            rchAdres.Text = "";
+            cmbIL.Text = "";
+            cmbILCE.Text = "";
+            txtAd.Focus();
+        }
+
+        void sehirlistesi()
+        {
+            SqlCommand komut = new SqlCommand("select SEHIR from TBLILLER", bgl.baglanti());
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbIL.Items.Add(dr[0]);
+            }
+            bgl.baglanti().Close();
+        }
+
+        void carikodaciklamalar()
+        {
+            SqlCommand komut = new SqlCommand("select FIRMAKOD1 from TBLKODLAR", bgl.baglanti());
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                rchKod1.Text = dr[0].ToString();
+            }
+            bgl.baglanti().Close();
+        }
+
+
+        private void frmFirmalar_Load(object sender, EventArgs e)
+        {
+            listele();
+            temizle();
+            sehirlistesi();
+            carikodaciklamalar();
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            if (dr != null)
+            {
+                txtID.Text = dr["ID"].ToString();
+                txtAd.Text = dr["AD"].ToString();
+                txtYetkiliGorev.Text = dr["YETKILISTATU"].ToString();
+                txtYetkiliAdSoyad.Text = dr["YETKILIADSOYAD"].ToString();
+                mskTC.Text = dr["YETKILITC"].ToString();
+                txtSektor.Text = dr["SEKTOR"].ToString();
+                mskTel1.Text = dr["TELEFON1"].ToString();
+                mskTel2.Text = dr["TELEFON2"].ToString();
+                mskTel3.Text = dr["TELEFON3"].ToString();
+                txtMail.Text = dr["MAIL"].ToString();
+                mskFax.Text = dr["FAX"].ToString();
+                cmbIL.Text = dr["IL"].ToString();
+                cmbILCE.Text = dr["ILCE"].ToString();
+                txtVergiDairesi.Text = dr["VERGIDAIRE"].ToString();
+                rchAdres.Text = dr["ADRES"].ToString();
+                txtKod1.Text = dr["OZELKOD1"].ToString();
+                txtKod2.Text = dr["OZELKOD2"].ToString();
+                txtKod3.Text = dr["OZELKOD3"].ToString();
+            }
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("insert into TBLFIRMALAR (AD,YETKILISTATU,YETKILIADSOYAD,YETKILITC,SEKTOR,TELEFON1,TELEFON2,TELEFON3,MAIL,FAX,IL,ILCE,VERGIDAIRE,ADRES,OZELKOD1,OZELKOD2,OZELKOD3) values (@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10,@p11,@p12,@p13,@p14,@p15,@p16,@p17)", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtYetkiliGorev.Text);
+            komut.Parameters.AddWithValue("@p3", txtYetkiliAdSoyad.Text);
+            komut.Parameters.AddWithValue("@p4", mskTC.Text);
+            komut.Parameters.AddWithValue("@p5", txtSektor.Text);
+            komut.Parameters.AddWithValue("@p6", mskTel1.Text);
+            komut.Parameters.AddWithValue("@p7", mskTel2.Text);
+            komut.Parameters.AddWithValue("@p8", mskTel3.Text);
+            komut.Parameters.AddWithValue("@p9", txtMail.Text);
+            komut.Parameters.AddWithValue("@p10", mskFax.Text);
+            komut.Parameters.AddWithValue("@p11", cmbIL.Text);
+            komut.Parameters.AddWithValue("@p12", cmbILCE.Text);
+            komut.Parameters.AddWithValue("@p13", txtVergiDairesi.Text);
+            komut.Parameters.AddWithValue("@p14", rchAdres.Text);
+            komut.Parameters.AddWithValue("@p15", txtKod1.Text);
+            komut.Parameters.AddWithValue("@p16", txtKod2.Text);
+            komut.Parameters.AddWithValue("@p17", txtKod3.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Firma Sisteme Kaydedildi", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+            temizle();
+        }
+
+        private void cmbIL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbILCE.Items.Clear();
+            SqlCommand komut = new SqlCommand("select ILCE from TBLILCELER where SEHIR=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", cmbIL.SelectedIndex + 1);
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbILCE.Items.Add(dr[0]);
+            }
+            bgl.baglanti().Close();
+
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLFIRMALAR where ID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            listele();
+            MessageBox.Show("Firma Listeden Silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            temizle();
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLFIRMALAR set AD=@p1,YETKILISTATU=@p2,YETKILIADSOYAD=@p3,YETKILITC=@p4," +
+                "SEKTOR=@p5,TELEFON1=@p6,TELEFON2=@p7,TELEFON3=@p8,MAIL=@p9,FAX=@p10,IL=@p11,ILCE=@p12,VERGIDAIRE=@p13,ADRES=@p14," +
+                "OZELKOD1=@p15,OZELKOD2=@p16,OZELKOD3=@p17 where ID=@p18", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtYetkiliGorev.Text);
+            komut.Parameters.AddWithValue("@p3", txtYetkiliAdSoyad.Text);
+            komut.Parameters.AddWithValue("@p4", mskTC.Text);
+            komut.Parameters.AddWithValue("@p5", txtSektor.Text);
+            komut.Parameters.AddWithValue("@p6", mskTel1.Text);
+            komut.Parameters.AddWithValue("@p7", mskTel2.Text);
+            komut.Parameters.AddWithValue("@p8", mskTel3.Text);
+            komut.Parameters.AddWithValue("@p9", txtMail.Text);
+            komut.Parameters.AddWithValue("@p10", mskFax.Text);
+            komut.Parameters.AddWithValue("@p11", cmbIL.Text);
+            komut.Parameters.AddWithValue("@p12", cmbILCE.Text);
+            komut.Parameters.AddWithValue("@p13", txtVergiDairesi.Text);
+            komut.Parameters.AddWithValue("@p14", rchAdres.Text);
+            komut.Parameters.AddWithValue("@p15", txtKod1.Text);
+            komut.Parameters.AddWithValue("@p16", txtKod2.Text);
+            komut.Parameters.AddWithValue("@p17", txtKod3.Text);
+            komut.Parameters.AddWithValue("@p18", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            listele();
+            temizle();
+            MessageBox.Show("Firma Bilgileri Güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnTemizel_Click(object sender, EventArgs e)
+        {
+            temizle();
+        }
+    }
+}
 ```
 ### Personeller
 [![image](https://user-images.githubusercontent.com/95151751/228116019-25dfe47f-733a-4676-accc-b68d39c25c89.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmPersonel : Form
+    {
+        public frmPersonel()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+        void listele()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLPERSONELLER", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+
+        void sehirlistesi()
+        {
+            SqlCommand komut = new SqlCommand("select SEHIR from TBLILLER", bgl.baglanti());
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbIL.Items.Add(dr[0]);
+            }
+            bgl.baglanti().Close();
+        }
+
+
+
+        private void frmPersonel_Load(object sender, EventArgs e)
+        {
+            listele();
+            sehirlistesi();
+            temizle();
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("insert into TBLPERSONELLER " +
+                "(AD,SOYAD,TELEFON,TC,MAIL,IL,ILCE,ADRES,GOREV) values " +
+                "(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtSoyad.Text);
+            komut.Parameters.AddWithValue("@p3", mskTel1.Text);
+            komut.Parameters.AddWithValue("@p4", mskTC.Text);
+            komut.Parameters.AddWithValue("@p5", txtMail.Text);
+            komut.Parameters.AddWithValue("@p6", cmbIL.Text);
+            komut.Parameters.AddWithValue("@p7", cmbILCE.Text);
+            komut.Parameters.AddWithValue("@p8", rchAdres.Text);
+            komut.Parameters.AddWithValue("@p9", txtGorev.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            listele();
+            temizle();
+            MessageBox.Show("Personel Bilgileri Kaydedildi", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        void temizle()
+        {
+            txtAd.Text = "";
+            txtID.Text = "";
+            txtMail.Text = "";
+            txtSoyad.Text = "";
+            cmbIL.Text = "";
+            cmbILCE.Text = "";
+            rchAdres.Text = "";
+            txtGorev.Text = "";
+            mskTel1.Text = "";
+            mskTC.Text = "";
+            txtAd.Focus();
+        }
+
+
+        private void cmbIL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbILCE.Items.Clear();
+            SqlCommand komut = new SqlCommand("select ILCE from TBLILCELER where SEHIR=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", cmbIL.SelectedIndex + 1);
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbILCE.Items.Add(dr[0]);
+            }
+            bgl.baglanti().Close();
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+
+            if (dr != null)
+            {
+                txtID.Text = dr["ID"].ToString();
+                txtAd.Text = dr["AD"].ToString();
+                txtSoyad.Text = dr["SOYAD"].ToString();
+                mskTel1.Text = dr["TELEFON"].ToString();
+                mskTC.Text = dr["TC"].ToString();
+                txtMail.Text = dr["MAIL"].ToString();
+                cmbIL.Text = dr["IL"].ToString();
+                cmbILCE.Text = dr["ILCE"].ToString();
+                rchAdres.Text = dr["ADRES"].ToString();
+                txtGorev.Text = dr["GOREV"].ToString();
+            }
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            temizle();
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLPERSONELLER where ID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            listele();
+            temizle();
+            MessageBox.Show("Personel Listeden Silindi", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.None);
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLPERSONELLER set AD=@p1,SOYAD=@p2,TELEFON=@p3,TC=@p4,MAIL=@p5,IL=@p6,ILCE=@p7,ADRES=@p8,GOREV=@p9 where ID=@p10", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p10", txtID.Text);
+            komut.Parameters.AddWithValue("@p1", txtAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtSoyad.Text);
+            komut.Parameters.AddWithValue("@p3", mskTel1.Text);
+            komut.Parameters.AddWithValue("@p4", mskTC.Text);
+            komut.Parameters.AddWithValue("@p5", txtMail.Text);
+            komut.Parameters.AddWithValue("@p6", cmbIL.Text);
+            komut.Parameters.AddWithValue("@p7", cmbILCE.Text);
+            komut.Parameters.AddWithValue("@p8", rchAdres.Text);
+            komut.Parameters.AddWithValue("@p9", txtGorev.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Personel Bilgileri Güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+            temizle();
+        }
+    }
+}
 ```
 ### Giderler
 [![image](https://user-images.githubusercontent.com/95151751/228116065-488ed382-73e2-4969-ab9a-aa80e165fbc1.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmGiderler : Form
+    {
+        public frmGiderler()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void listele()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLGIDERLER", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+
+        void temizle()
+        {
+            txtDogalgaz.Text = "";
+            txtID.Text = "";
+            txtEkstra.Text = "";
+            txtElektrik.Text = "";
+            txtInternet.Text = "";
+            txtMaaslar.Text = "";
+            txtSu.Text = "";
+            cmbAY.Text = "";
+            cmbYIL.Text = "";
+            txtNotlar.Text = "";
+        }
+
+        private void frmGiderler_Load(object sender, EventArgs e)
+        {
+            listele();
+            temizle();
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("insert into TBLGIDERLER " +
+                "(AY,YIL,ELEKTRIK,SU,DOGALGAZ,INTERNET,MAASLAR,EKSTRA,NOTLAR) values " +
+                "(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9)", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", cmbAY.Text);
+            komut.Parameters.AddWithValue("@p2", cmbYIL.Text);
+            komut.Parameters.AddWithValue("@p3", decimal.Parse(txtElektrik.Text));
+            komut.Parameters.AddWithValue("@p4", decimal.Parse(txtSu.Text));
+            komut.Parameters.AddWithValue("@p5", decimal.Parse(txtDogalgaz.Text));
+            komut.Parameters.AddWithValue("@p6", decimal.Parse(txtInternet.Text));
+            komut.Parameters.AddWithValue("@p7", decimal.Parse(txtMaaslar.Text));
+            komut.Parameters.AddWithValue("@p8", decimal.Parse(txtEkstra.Text));
+            komut.Parameters.AddWithValue("@p9", txtNotlar.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Giderler Tabloya Eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+            //temizle();
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            if (dr != null)
+            {
+                txtID.Text = dr["ID"].ToString();
+                cmbAY.Text = dr["AY"].ToString();
+                cmbYIL.Text = dr["YIL"].ToString();
+                txtElektrik.Text = dr["ELEKTRIK"].ToString();
+                txtSu.Text = dr["SU"].ToString();
+                txtDogalgaz.Text = dr["DOGALGAZ"].ToString();
+                txtInternet.Text = dr["INTERNET"].ToString();
+                txtMaaslar.Text = dr["MAASLAR"].ToString();
+                txtEkstra.Text = dr["EKSTRA"].ToString();
+                txtNotlar.Text = dr["NOTLAR"].ToString();
+            }
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            temizle();
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLGIDERLER where ID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            listele();
+            MessageBox.Show("Seçili Gider Listeden Silindi", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            temizle();
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLGIDERLER set AY=@p1, YIL=@p2,ELEKTRIK=@p3,SU=@p4,DOGALGAZ=@p5,INTERNET=@p6,MAASLAR=@p7,EKSTRA=@p8,NOTLAR=@p9 where ID=@p10", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", cmbAY.Text);
+            komut.Parameters.AddWithValue("@p2", cmbYIL.Text);
+            komut.Parameters.AddWithValue("@p3", decimal.Parse(txtElektrik.Text));
+            komut.Parameters.AddWithValue("@p4", decimal.Parse(txtSu.Text));
+            komut.Parameters.AddWithValue("@p5", decimal.Parse(txtDogalgaz.Text));
+            komut.Parameters.AddWithValue("@p6", decimal.Parse(txtInternet.Text));
+            komut.Parameters.AddWithValue("@p7", decimal.Parse(txtMaaslar.Text));
+            komut.Parameters.AddWithValue("@p8", decimal.Parse(txtEkstra.Text));
+            komut.Parameters.AddWithValue("@p9", txtNotlar.Text);
+            komut.Parameters.AddWithValue("@p10", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Giderler Bilgisi Güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+            temizle();
+
+        }
+    }
+}
 ```
 ### Kasa
 [![image](https://user-images.githubusercontent.com/95151751/228116170-997c5914-5ac6-45e6-9026-2855e8997886.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using DevExpress.Charts;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmKasa : Form
+    {
+        public frmKasa()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void musteriHareket()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("execute MusteriHareketler", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+        void firmaHareket()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("execute FirmaHareketler", bgl.baglanti());
+            da.Fill(dt);
+            gridControl3.DataSource = dt;
+        }
+
+        public string ad;
+
+        private void frmKasa_Load(object sender, EventArgs e)
+        {
+
+            lblAktifKullanici.Text = ad;
+
+            musteriHareket();
+            firmaHareket();
+
+
+            //Toplam Tutarı Hesaplama
+            SqlCommand komut = new SqlCommand("select sum(TUTAR) from TBLFATURADETAY", bgl.baglanti());
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                lblToplamTutar.Text = dr[0] + " ₺";
+            }
+            bgl.baglanti().Close();
+
+
+
+            //Son ayın faturaları
+            SqlCommand komut2 = new SqlCommand("select (ELEKTRIK+SU+DOGALGAZ) from TBLGIDERLER order by ID asc", bgl.baglanti());
+            SqlDataReader dr2 = komut2.ExecuteReader();
+            while (dr2.Read())
+            {
+                lblOdemeler.Text = dr2[0] + " ₺";
+            }
+            bgl.baglanti().Close();
+
+
+
+            //Son ayın personel maaşları
+            SqlCommand komut3 = new SqlCommand("select maaslar from TBLGIDERLER order by ID asc", bgl.baglanti());
+            SqlDataReader dr3 = komut3.ExecuteReader();
+            while (dr3.Read())
+            {
+                lblPersonelMaaslari.Text = dr3[0] + " ₺";
+            }
+            bgl.baglanti().Close();
+
+
+
+            //Toplam müşteri sayısı
+            SqlCommand komut4 = new SqlCommand("select count(*) from TBLMUSTERILER", bgl.baglanti());
+            SqlDataReader dr4 = komut4.ExecuteReader();
+            while (dr4.Read())
+            {
+                lblMusteriSayisi.Text = dr4[0].ToString();
+            }
+            bgl.baglanti().Close();
+
+
+
+            //Toplam firma sayısı
+            SqlCommand komut5 = new SqlCommand("select count(*) from TBLFIRMALAR", bgl.baglanti());
+            SqlDataReader dr5 = komut5.ExecuteReader();
+            while (dr5.Read())
+            {
+                lblFirmaSayisi.Text = dr5[0].ToString();
+            }
+            bgl.baglanti().Close();
+
+
+
+            //Toplam firma şehir sayısı
+            SqlCommand komut6 = new SqlCommand("select count(distinct(IL)) from TBLFIRMALAR", bgl.baglanti());
+            SqlDataReader dr6 = komut6.ExecuteReader();
+            while (dr6.Read())
+            {
+                lblFirmaSehir.Text = dr6[0].ToString();
+            }
+            bgl.baglanti().Close();
+
+
+
+            //Toplam müşteri şehir sayısı
+            SqlCommand komut7 = new SqlCommand("select count(*) from TBLMUSTERILER", bgl.baglanti());
+            SqlDataReader dr7 = komut7.ExecuteReader();
+            while (dr7.Read())
+            {
+                lblMusteriSehir.Text = dr7[0].ToString();
+            }
+            bgl.baglanti().Close();
+
+
+
+            //Toplam personel sayısı
+            SqlCommand komut8 = new SqlCommand("select count(*) from TBLPERSONELLER", bgl.baglanti());
+            SqlDataReader dr8 = komut8.ExecuteReader();
+            while (dr8.Read())
+            {
+                lblPersonelSayisi.Text = dr8[0].ToString();
+            }
+            bgl.baglanti().Close();
+
+
+
+            //Toplam ürün sayısı
+            SqlCommand komut9 = new SqlCommand("select sum(ADET) from TBLURUNLER", bgl.baglanti());
+            SqlDataReader dr9 = komut9.ExecuteReader();
+            while (dr9.Read())
+            {
+                lblStokSayisi.Text = dr9[0].ToString();
+            }
+            bgl.baglanti().Close();
+
+
+
+            //1. Chart Control'e Elektrik Faturası son 4 ay ekleme
+            SqlCommand komut10 = new SqlCommand("select top 4 AY,ELEKTRIK from TBLGIDERLER order by ID desc", bgl.baglanti());
+            SqlDataReader dr10 = komut10.ExecuteReader();
+            while (dr10.Read())
+            {
+                chartControl1.Series["Aylar"].Points.Add(new DevExpress.XtraCharts.SeriesPoint(dr10[0], dr10[1]));
+            }
+            bgl.baglanti().Close();
+
+
+
+            //2. Chart Control'e Su Faturası son 4 ay ekleme
+            SqlCommand komut11 = new SqlCommand("select top 4 AY,SU from TBLGIDERLER order by ID desc", bgl.baglanti());
+            SqlDataReader dr11 = komut11.ExecuteReader();
+            while (dr11.Read())
+            {
+                chartControl1.Series["Aylar"].Points.Add(new DevExpress.XtraCharts.SeriesPoint(dr11[0], dr11[1]));
+            }
+            bgl.baglanti().Close();
+
+
+        }
+    }
+}
 ```
 ### Notlar
 [![image](https://user-images.githubusercontent.com/95151751/228116215-6cbc0b72-a2fc-4a65-974b-743da08542f0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmNotlar : Form
+    {
+        public frmNotlar()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void listele()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLNOTLAR", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+        
+        void temizle()
+        {
+            txtBaslik.Text = "";
+            txtHitap.Text = "";
+            txtID.Text = "";
+            txtOlusturan.Text = "";
+            txtDetay.Text = "";
+            mskSaat.Text = "";
+            mskTarih.Text = "";
+            mskTarih.Focus();
+        }
+
+        private void frmNotlar_Load(object sender, EventArgs e)
+        {
+            listele();
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("insert into TBLNOTLAR (TARIH,SAAT,BASLIK,DETAY,OLUSTURAN,HITAP) " +
+                "values (@p1,@p2,@p3,@p4,@p5,@p6)", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", mskTarih.Text);
+            komut.Parameters.AddWithValue("@p2", mskSaat.Text);
+            komut.Parameters.AddWithValue("@p3", txtBaslik.Text);
+            komut.Parameters.AddWithValue("@p4", txtDetay.Text);
+            komut.Parameters.AddWithValue("@p5", txtOlusturan.Text);
+            komut.Parameters.AddWithValue("@p6", txtHitap.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            listele();
+            MessageBox.Show("Not Bilgisi Sisteme Eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+
+            if (dr != null)
+            {
+                txtID.Text = dr["ID"].ToString();
+                txtBaslik.Text = dr["BASLIK"].ToString();
+                txtDetay.Text = dr["DETAY"].ToString();
+                txtOlusturan.Text = dr["OLUSTURAN"].ToString();
+                txtHitap.Text = dr["HITAP"].ToString();
+                mskTarih.Text = dr["TARIH"].ToString();
+                mskSaat.Text = dr["SAAT"].ToString();
+            }
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            temizle();
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLNOTLAR where ID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Not Sistemden Silindi!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            listele();
+            temizle();
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLNOTLAR set " +
+                "TARIH=@p1,SAAT=@p2,BASLIK=@p3,DETAY=@p4,OLUSTURAN=@p5,HITAP=@p6 where ID=@p7", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", mskTarih.Text);
+            komut.Parameters.AddWithValue("@p2", mskSaat.Text);
+            komut.Parameters.AddWithValue("@p3", txtBaslik.Text);
+            komut.Parameters.AddWithValue("@p4", txtDetay.Text);
+            komut.Parameters.AddWithValue("@p5", txtOlusturan.Text);
+            komut.Parameters.AddWithValue("@p6", txtHitap.Text);
+            komut.Parameters.AddWithValue("@p7", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            listele();
+            MessageBox.Show("Not Bilgisi Güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            frmNotDetay fr = new frmNotDetay();
+
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+
+            if (dr != null)
+            {
+                fr.metin = dr["DETAY"].ToString();
+            }
+            fr.Show();
+        }
+    }
+}
 ```
 ### Not Detay
 [![image](https://user-images.githubusercontent.com/95151751/228116309-988c8057-28b7-40ec-a786-5444ae9ca0c0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmNotDetay : Form
+    {
+        public frmNotDetay()
+        {
+            InitializeComponent();
+        }
+
+        public string metin;
+
+        private void frmNotDetay_Load(object sender, EventArgs e)
+        {
+            richTextBox1.Text = metin;
+        }
+    }
+}
 ```
 ### Bankalar
 [![image](https://user-images.githubusercontent.com/95151751/228116373-3b871930-49c0-41b5-9292-6a1b9e1d3a53.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmBankalar : Form
+    {
+        public frmBankalar()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void listele()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("execute BankaBilgileri", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+
+        void sehirlistesi()
+        {
+            SqlCommand komut = new SqlCommand("select SEHIR from TBLILLER", bgl.baglanti());
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbIL.Items.Add(dr[0]);
+            }
+            bgl.baglanti().Close();
+        }
+
+
+        void firmalistesi()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select ID,AD from TBLFIRMALAR", bgl.baglanti());
+            da.Fill(dt);
+            lkpFirmalar.Properties.ValueMember = "ID";
+            lkpFirmalar.Properties.DisplayMember = "AD";
+            lkpFirmalar.Properties.DataSource = dt;
+        }
+
+
+        void temizle()
+        {
+            txtBankaAdi.Text = "";
+            mskHesapNo.Text = "";
+            txtHesapTuru.Text = "";
+            mskIBAN.Text = "";
+            txtID.Text = "";
+            txtSube.Text = "";
+            txtYetkili.Text = "";
+            mskTarih.Text = "";
+            mskTEL.Text = "";
+            lkpFirmalar.Text = "";
+            txtBankaAdi.Focus();
+        }
+
+
+        private void frmBankalar_Load(object sender, EventArgs e)
+        {
+            listele();
+            sehirlistesi();
+            firmalistesi();
+            temizle();
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("insert into TBLBANKALAR (BANKAADI," +
+                "IL,ILCE,SUBE,IBAN,HESAPNO,YETKILI,TELEFON,TARIH,HESAPTURU,FIRMAID) values " +
+                "(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9,@p10,@p11)", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtBankaAdi.Text);
+            komut.Parameters.AddWithValue("@p2", cmbIL.Text);
+            komut.Parameters.AddWithValue("@p3", cmbILCE.Text);
+            komut.Parameters.AddWithValue("@p4", txtSube.Text);
+            komut.Parameters.AddWithValue("@p5", mskIBAN.Text);
+            komut.Parameters.AddWithValue("@p6", mskHesapNo.Text);
+            komut.Parameters.AddWithValue("@p7", txtYetkili.Text);
+            komut.Parameters.AddWithValue("@p8", mskTEL.Text);
+            komut.Parameters.AddWithValue("@p9", mskTarih.Text);
+            komut.Parameters.AddWithValue("@p10", txtHesapTuru.Text);
+            komut.Parameters.AddWithValue("@p11", lkpFirmalar.EditValue);
+            komut.ExecuteNonQuery();
+            listele();
+            bgl.baglanti().Close();
+            MessageBox.Show("Banka Bilgisi Sisteme Kaydedildi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void cmbIL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbILCE.Items.Clear();
+            SqlCommand komut = new SqlCommand("select ILCE from TBLILCELER where SEHIR=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", cmbIL.SelectedIndex + 1);
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                cmbILCE.Items.Add(dr[0]);
+            }
+            bgl.baglanti().Close();
+
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            if (dr != null)
+            {
+                txtID.Text = dr["ID"].ToString();
+                txtBankaAdi.Text = dr["BANKAADI"].ToString();
+                cmbIL.Text = dr["IL"].ToString();
+                cmbILCE.Text = dr["ILCE"].ToString();
+                txtSube.Text = dr["SUBE"].ToString();
+                mskIBAN.Text = dr["IBAN"].ToString();
+                mskHesapNo.Text = dr["HESAPNO"].ToString();
+                txtYetkili.Text = dr["YETKILI"].ToString();
+                mskTEL.Text = dr["TELEFON"].ToString();
+                mskTarih.Text = dr["TARIH"].ToString();
+                txtHesapTuru.Text = dr["HESAPTURU"].ToString();
+                lkpFirmalar.Text = dr["AD"].ToString();
+            }
+
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            temizle();
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLBANKALAR where ID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            temizle();
+            MessageBox.Show("Banka Bilgisi Sistemden Silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            listele();
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLBANKALAR set BANKAADI=@p1,IL=@p2,ILCE=@p3," +
+                "SUBE=@p4,IBAN=@p5,HESAPNO=@p6,YETKILI=@p7,TELEFON=@p8,TARIH=@p9,HESAPTURU=@p10,FIRMAID=@p11 where ID=@p12", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtBankaAdi.Text);
+            komut.Parameters.AddWithValue("@p2", cmbIL.Text);
+            komut.Parameters.AddWithValue("@p3", cmbILCE.Text);
+            komut.Parameters.AddWithValue("@p4", txtSube.Text);
+            komut.Parameters.AddWithValue("@p5", mskIBAN.Text);
+            komut.Parameters.AddWithValue("@p6", mskHesapNo.Text);
+            komut.Parameters.AddWithValue("@p7", txtYetkili.Text);
+            komut.Parameters.AddWithValue("@p8", mskTEL.Text);
+            komut.Parameters.AddWithValue("@p9", mskTarih.Text);
+            komut.Parameters.AddWithValue("@p10", txtHesapTuru.Text);
+            komut.Parameters.AddWithValue("@p11", lkpFirmalar.EditValue);
+            komut.Parameters.AddWithValue("@p12", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Banka Bilgisi Güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+        }
+    }
+}
 ```
 ### Rehber
 [![image](https://user-images.githubusercontent.com/95151751/228116446-17b61e92-f456-449f-9cfa-533daa9a255b.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmRehber : Form
+    {
+        public frmRehber()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+        private void frmRehber_Load(object sender, EventArgs e)
+        {
+
+            //Müşteri Bilgileri
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select AD,SOYAD,TELEFON,TELEFON2,MAIL from TBLMUSTERILER", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+
+
+            //Firma Bilgileri
+            DataTable dt2 = new DataTable();
+            SqlDataAdapter da2 = new SqlDataAdapter("select AD,YETKILIADSOYAD,TELEFON1,TELEFON2,TELEFON3,MAIL,FAX from TBLFIRMALAR", bgl.baglanti());
+            da2.Fill(dt2);
+            gridControl2.DataSource = dt2;
+        }
+
+        private void gridView1_DoubleClick_1(object sender, EventArgs e)
+        {
+            frmMail fr = new frmMail();
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            if (dr != null)
+            {
+                fr.mail = dr["MAIL"].ToString();
+            }
+            fr.Show();
+        }
+
+        private void gridView2_DoubleClick_1(object sender, EventArgs e)
+        {
+            frmMail fr = new frmMail();
+            DataRow dr = gridView2.GetDataRow(gridView2.FocusedRowHandle);
+            if (dr != null)
+            {
+                fr.mail = dr["MAIL"].ToString();
+            }
+            fr.Show();
+        }
+    }
+}
 ```
 ### Mail Gönder
 [![image](https://user-images.githubusercontent.com/95151751/228116517-f0049b1e-9722-44ec-996f-0bc993031c99.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Net;
+using System.Net.Mail;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmMail : Form
+    {
+        public frmMail()
+        {
+            InitializeComponent();
+        }
+
+        public string mail;
+        private void frmMail_Load(object sender, EventArgs e)
+        {
+            txtMail.Text = mail;
+        }
+
+        private void btnGonder_Click(object sender, EventArgs e)
+        {
+            MailMessage mesajim = new MailMessage();
+            SmtpClient istemci = new SmtpClient();
+            istemci.Credentials = new System.Net.NetworkCredential("Mail", "Şifre"); //Mesaj kimden gönderilecekse onun mail bilgileri buraya girilecek
+            istemci.Port = 587; //Türkiye mail port numarası
+            istemci.Host = "smtp.live.com"; //Windows host adresi (live yerine gmail de yazılabilir)
+            istemci.EnableSsl = true;
+            mesajim.To.Add(txtMesaj.Text);
+            mesajim.From = new MailAddress("Mail"); //Mesaj kimden gönderilecekse onun mail adresi yazılacak
+            mesajim.Subject = txtKonu.Text; //Mesajımızın konusu
+            mesajim.Body = txtMesaj.Text; //Mesajımız
+            istemci.Send(mesajim); //Mesajımızı gönderme komutu
+        }
+    }
+}
 ```
 ### Faturalar
 [![image](https://user-images.githubusercontent.com/95151751/228116606-014fe2b9-4bad-49fd-ab3d-35af1458d498.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmFaturalar : Form
+    {
+        public frmFaturalar()
+        {
+            InitializeComponent();
+        }
+
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void listele()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLFATURABILGI", bgl.baglanti());
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+
+        void temizle()
+        {
+            txtAlici.Text = "";
+            txtID.Text = "";
+            txtSeri.Text = "";
+            txtSiraNo.Text = "";
+            txtTeslimAlan.Text = "";
+            txtTeslimEden.Text = "";
+            txtVergiDaire.Text = "";
+            mskSaat.Text = "";
+            mskTarih.Text = "";
+            txtSeri.Focus();
+        }
+
+        private void frmFaturalar_Load(object sender, EventArgs e)
+        {
+            listele();
+            temizle();
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            if (txtFaturaID.Text == "")
+            {
+                SqlCommand komut = new SqlCommand("insert into TBLFATURABILGI " +
+                    "(SERI,SIRANO,TARIH,SAAT,VERGIDAIRE,ALICI,TESLIMEDEN,TESLIMALAN) values " +
+                    "(@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8)", bgl.baglanti());
+
+                komut.Parameters.AddWithValue("@p1", txtSeri.Text);
+                komut.Parameters.AddWithValue("@p2", txtSiraNo.Text);
+                komut.Parameters.AddWithValue("@p3", mskTarih.Text);
+                komut.Parameters.AddWithValue("@p4", mskSaat.Text);
+                komut.Parameters.AddWithValue("@p5", txtVergiDaire.Text);
+                komut.Parameters.AddWithValue("@p6", txtAlici.Text);
+                komut.Parameters.AddWithValue("@p7", txtTeslimEden.Text);
+                komut.Parameters.AddWithValue("@p8", txtTeslimAlan.Text);
+                komut.ExecuteNonQuery();
+                bgl.baglanti().Close();
+                MessageBox.Show("Fatura Bilgisi Sisteme Kaydedildi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listele();
+            }
+            if (txtFaturaID.Text != "")
+            {
+                double miktar, tutar, fiyat;
+                fiyat = Convert.ToDouble(txtFiyat.Text);
+                miktar = Convert.ToDouble(txtMiktar.Text);
+                tutar = miktar * fiyat;
+                txtTutar.Text = tutar.ToString();
+
+                SqlCommand komut2 = new SqlCommand("insert into TBLFATURADETAY " +
+                    "(URUNAD,MIKTAR,FIYAT,TUTAR,FATURAID) values " +
+                    "(@p1,@p2,@p3,@p4,@p5)", bgl.baglanti());
+                komut2.Parameters.AddWithValue("@p1", txtUrunAd.Text);
+                komut2.Parameters.AddWithValue("@p2", txtMiktar.Text);
+                komut2.Parameters.AddWithValue("@p3", txtFiyat.Text);
+                komut2.Parameters.AddWithValue("@p4", txtTutar.Text);
+                komut2.Parameters.AddWithValue("@p5", txtFaturaID.Text);
+                komut2.ExecuteNonQuery();
+                bgl.baglanti().Close();
+                MessageBox.Show("Faturaya Ait Ürün Kaydedildi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listele();
+            }
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            if (dr != null)
+            {
+                txtID.Text = dr["FATURABILGIID"].ToString();
+                txtSiraNo.Text = dr["SIRANO"].ToString();
+                txtSeri.Text = dr["SERI"].ToString();
+                mskTarih.Text = dr["TARIH"].ToString();
+                mskSaat.Text = dr["SAAT"].ToString();
+                txtAlici.Text = dr["ALICI"].ToString();
+                txtTeslimEden.Text = dr["TESLIMEDEN"].ToString();
+                txtTeslimAlan.Text = dr["TESLIMALAN"].ToString();
+                txtVergiDaire.Text = dr["VERGIDAIRE"].ToString();
+
+            }
+        }
+
+        private void btnTemizel_Click(object sender, EventArgs e)
+        {
+            temizle();
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLFATURABILGI where FATURABILGIID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Fatura Silindi!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            listele();
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLFATURABILGI set " +
+                "SERI=@p1,SIRANO=@p2,TARIH=@p3,SAAT=@p4,VERGIDAIRE=@p5,ALICI=@p6,TESLIMEDEN=@p7,TESLIMALAN=@p8 " +
+                "where FATURABILGIID=@p9", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtSeri.Text);
+            komut.Parameters.AddWithValue("@p2", txtSiraNo.Text);
+            komut.Parameters.AddWithValue("@p3", mskTarih.Text);
+            komut.Parameters.AddWithValue("@p4", mskSaat.Text);
+            komut.Parameters.AddWithValue("@p5", txtVergiDaire.Text);
+            komut.Parameters.AddWithValue("@p6", txtAlici.Text);
+            komut.Parameters.AddWithValue("@p7", txtTeslimEden.Text);
+            komut.Parameters.AddWithValue("@p8", txtTeslimAlan.Text);
+            komut.Parameters.AddWithValue("@p9", txtID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Fatura Bilgisi Güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            listele();
+
+        }
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            frmFaturaUrunDetay fr = new frmFaturaUrunDetay();
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+
+            if (dr != null)
+            {
+                fr.id = dr["FATURABILGIID"].ToString();
+            }
+            fr.Show();
+        }
+    }
+}
 ```
 ### Fatura Ürün Detayı
 [![image](https://user-images.githubusercontent.com/95151751/228116680-50cf2df5-fe99-44d4-9a09-aee1644c9f17.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmFaturaUrunDetay : Form
+    {
+        public frmFaturaUrunDetay()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+
+        void listele()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLFATURADETAY where FATURAID='" + id + "'", bgl.baglanti());
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+
+
+        public string id;
+        private void frmFaturaUrunDetay_Load(object sender, EventArgs e)
+        {
+            listele();
+        }
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            frmFaturaUrunDuzenleme fr = new frmFaturaUrunDuzenleme();
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+            if (dr != null)
+            {
+                fr.urunid = dr["FATURAURUNID"].ToString();
+            }
+            fr.Show();
+        }
+    }
+}
 ```
 ### Fatura Ürün Düzenleme
 [![image](https://user-images.githubusercontent.com/95151751/228116764-2a2f5203-bbd8-4f67-bb7b-f95fc72d1b68.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmFaturaUrunDuzenleme : Form
+    {
+        public frmFaturaUrunDuzenleme()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        public string urunid;
+        private void frmFaturaUrunDuzenleme_Load(object sender, EventArgs e)
+        {
+            txtUrunID.Text = urunid;
+
+            SqlCommand komut = new SqlCommand("select * from TBLFATURADETAY where FATURAURUNID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", urunid);
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                txtFiyat.Text = dr[3].ToString();
+                txtMiktar.Text = dr[2].ToString();
+                txtTutar.Text = dr[4].ToString();
+                txtUrunAd.Text = dr[1].ToString();
+            }
+            bgl.baglanti().Close();
+        }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("update TBLFATURADETAY set URUNAD=@p1, MIKTAR=@p2, FIYAT=@p3, TUTAR=@p4" +
+                " where FATURAURUNID=@p5", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtUrunAd.Text);
+            komut.Parameters.AddWithValue("@p2", txtMiktar.Text);
+            komut.Parameters.AddWithValue("@p3",decimal.Parse(txtFiyat.Text));
+            komut.Parameters.AddWithValue("@p4",decimal.Parse(txtTutar.Text));
+            komut.Parameters.AddWithValue("@p5", txtUrunID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Değişiklikler Kaydedildi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            SqlCommand komut = new SqlCommand("delete from TBLFATURADETAY where FATURAURUNID=@p1", bgl.baglanti());
+            komut.Parameters.AddWithValue("@p1", txtUrunID.Text);
+            komut.ExecuteNonQuery();
+            bgl.baglanti().Close();
+            MessageBox.Show("Ürün Silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+        }
+    }
+}
 ```
 ### Hareketler (Müşteri Hareketleri)
 [![image](https://user-images.githubusercontent.com/95151751/228116838-a3c5fd23-2550-4624-8529-424c13a16af6.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
-```c#
 
-```
 ### Hareketler (Firma Hareketleri)
 [![image](https://user-images.githubusercontent.com/95151751/228116878-992cf87f-7674-4183-a277-d49050490bd9.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmHareketler : Form
+    {
+        public frmHareketler()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void FirmaHareketleri()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("execute FirmaHareketler", bgl.baglanti());
+            da.Fill(dt);
+            gridControl2.DataSource = dt;
+        }
+
+
+        void MusteriHareketleri()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("execute MusteriHareketler", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+        private void frmHareketler_Load(object sender, EventArgs e)
+        {
+            FirmaHareketleri();
+            MusteriHareketleri();
+        }
+    }
+}
 ```
 ### Ayarlar
 [![image](https://user-images.githubusercontent.com/95151751/228117031-529a034f-9bde-4e16-91ad-c71c5e739db0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
 
+namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
+{
+    public partial class frmAyarlar : Form
+    {
+        public frmAyarlar()
+        {
+            InitializeComponent();
+        }
+
+        sqlbaglantisi bgl = new sqlbaglantisi();
+
+
+        void listele()
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("select * from TBLADMIN", bgl.baglanti());
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+        }
+
+        private void frmAyarlar_Load(object sender, EventArgs e)
+        {
+            listele();
+            txtKullaniciAdi.Text = "";
+            txtSifre.Text = "";
+            txtKullaniciAdi.Focus();
+
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
+        {
+            if (btnKaydet.Text == "Kaydet")
+            {
+                SqlCommand komut = new SqlCommand("insert into TBLADMIN values (@p1,@p2)", bgl.baglanti());
+                komut.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
+                komut.Parameters.AddWithValue("@p2", txtSifre.Text);
+                komut.ExecuteNonQuery();
+                bgl.baglanti().Close();
+                MessageBox.Show("Yeni Admin Sisteme Kaydedildi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listele();
+
+                txtKullaniciAdi.Text = "";
+                txtSifre.Text = "";
+                txtKullaniciAdi.Focus();
+            }
+            if (btnKaydet.Text == "Güncelle")
+            {
+                SqlCommand komut1 = new SqlCommand("update TBLADMIN set SIFRE=@p2 where KULLANICIAD=@p1", bgl.baglanti());
+                komut1.Parameters.AddWithValue("@p1", txtSifre.Text);
+                komut1.Parameters.AddWithValue("@p2", txtKullaniciAdi.Text);
+                komut1.ExecuteNonQuery();
+                bgl.baglanti().Close();
+                MessageBox.Show("Kayıt Güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                listele();
+
+                txtKullaniciAdi.Text = "";
+                txtSifre.Text = "";
+                txtKullaniciAdi.Focus();
+            }
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            DataRow dr = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+
+            if (dr != null)
+            {
+                txtKullaniciAdi.Text = dr["KULLANICIAD"].ToString();
+                txtSifre.Text = dr["SIFRE"].ToString();
+            }
+        }
+
+        private void txtKullaniciAdi_TextChanged(object sender, EventArgs e)
+        {
+            if (txtKullaniciAdi.Text != "")
+            {
+                btnKaydet.Text = "Güncelle";
+            }
+            else
+            {
+                btnKaydet.Text = "Kaydet";
+            }
+        }
+    }
+}
 ```
