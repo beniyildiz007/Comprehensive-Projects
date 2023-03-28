@@ -8,6 +8,7 @@
 1. [C# Hastane Otomasyon Projesi](#project1)
 2. [C# Pansiyon Kayıt Otomasyon Projesi](#project2)
 3. [C# Öğrenci Yurdu Kayıt Otomasyon Projesi](#project3)
+4. [C# ile DevExpress'te SQL Tabanlı Ticari Otomasyon](#project4)
 
 
 
@@ -2600,3 +2601,114 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 ### Erişim Kolaylığı (Hakkımızda)
 [![image](https://user-images.githubusercontent.com/95151751/226800413-b0da36c4-fdab-429f-9393-571f51099be4.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
+
+# 04- C# ile DevExpress'te SQL Tabanlı Ticari Otomasyon <a name="project4"></a>
+
+### Admin Girişi
+[![image](https://user-images.githubusercontent.com/95151751/228115446-8e420c36-1ba4-4532-b68f-0145ad9e6046.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Anasayfa
+[![image](https://user-images.githubusercontent.com/95151751/228115554-10fc1990-f44b-4ed9-bf1f-9ceb1370c70f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Ürünler
+[![image](https://user-images.githubusercontent.com/95151751/228115663-199e6596-9f2c-4b8e-a094-7e2be75d460c.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Stoklar
+[![image](https://user-images.githubusercontent.com/95151751/228115719-b305022b-8212-4b72-8af7-fe4306fa377b.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Müşteriler
+[![image](https://user-images.githubusercontent.com/95151751/228115774-5b0554bc-395a-41f8-8f24-5313d9d51e6f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Firmalar
+[![image](https://user-images.githubusercontent.com/95151751/228115857-24d1bd2b-6fab-4a45-91fe-081d2375672d.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+[![image](https://user-images.githubusercontent.com/95151751/228115951-b2a1f246-5840-4e6b-941b-2d50bfa2cac5.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+[![image](https://user-images.githubusercontent.com/95151751/228115977-11841d42-bfa9-4f86-b875-cc01ec3ed94f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Personeller
+[![image](https://user-images.githubusercontent.com/95151751/228116019-25dfe47f-733a-4676-accc-b68d39c25c89.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Giderler
+[![image](https://user-images.githubusercontent.com/95151751/228116065-488ed382-73e2-4969-ab9a-aa80e165fbc1.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Kasa
+[![image](https://user-images.githubusercontent.com/95151751/228116170-997c5914-5ac6-45e6-9026-2855e8997886.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Notlar
+[![image](https://user-images.githubusercontent.com/95151751/228116215-6cbc0b72-a2fc-4a65-974b-743da08542f0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Not Detay
+[![image](https://user-images.githubusercontent.com/95151751/228116309-988c8057-28b7-40ec-a786-5444ae9ca0c0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Bankalar
+[![image](https://user-images.githubusercontent.com/95151751/228116373-3b871930-49c0-41b5-9292-6a1b9e1d3a53.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Rehber
+[![image](https://user-images.githubusercontent.com/95151751/228116446-17b61e92-f456-449f-9cfa-533daa9a255b.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Mail Gönder
+[![image](https://user-images.githubusercontent.com/95151751/228116517-f0049b1e-9722-44ec-996f-0bc993031c99.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Faturalar
+[![image](https://user-images.githubusercontent.com/95151751/228116606-014fe2b9-4bad-49fd-ab3d-35af1458d498.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Fatura Ürün Detayı
+[![image](https://user-images.githubusercontent.com/95151751/228116680-50cf2df5-fe99-44d4-9a09-aee1644c9f17.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Fatura Ürün Düzenleme
+[![image](https://user-images.githubusercontent.com/95151751/228116764-2a2f5203-bbd8-4f67-bb7b-f95fc72d1b68.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Hareketler (Müşteri Hareketleri)
+[![image](https://user-images.githubusercontent.com/95151751/228116838-a3c5fd23-2550-4624-8529-424c13a16af6.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Hareketler (Firma Hareketleri)
+[![image](https://user-images.githubusercontent.com/95151751/228116878-992cf87f-7674-4183-a277-d49050490bd9.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
+### Ayarlar
+[![image](https://user-images.githubusercontent.com/95151751/228117031-529a034f-9bde-4e16-91ad-c71c5e739db0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
+```c#
+
+```
