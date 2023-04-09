@@ -9,6 +9,7 @@
 2. [C# Pansiyon Kayıt Otomasyon Projesi](#project2)
 3. [C# Öğrenci Yurdu Kayıt Otomasyon Projesi](#project3)
 4. [C# ile DevExpress'te SQL Tabanlı Ticari Otomasyon](#project4)
+5. [ASP.NET Bootstrap ile SQL Tabanlı Web Projesi](#project5)
 
 
 
@@ -4863,6 +4864,1908 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
                 btnKaydet.Text = "Kaydet";
             }
         }
+    }
+}
+```
+
+# ASP.NET Bootstrap ile SQL Tabanlı Web Projesi <a name="project5"></a>
+
+### Login Paneli
+![image](https://user-images.githubusercontent.com/95151751/230774885-61872aa9-91ba-4187-97f0-ad5be8f3cdc8.png)
+
+```c#
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LoginPanel.aspx.cs" Inherits="LoginPanel" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="Dosyalar1/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            width: 843px;
+            margin: auto;
+        }
+
+        .auto-style2 {
+            margin-bottom: 15px;
+            width: 650px;
+            margin: auto;
+            margin-top: 150px;
+        }
+        .auto-style3 {
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server" class="auto-style1">
+        <div class="auto-style2">
+            <h1 class="text-center"><strong>Udemy Web Not Giriş Paneli</strong></h1>
+            <br />
+            <br />
+            <div>
+                <em>
+                <asp:Label for="txtKullaniciAdi" runat="server" CssClass="auto-style3">Kullanıcı Adı</asp:Label>
+                </em>
+                <asp:TextBox ID="txtKullaniciAdi" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <em>
+                <asp:Label for="txtSifre" runat="server" CssClass="auto-style3">Şifre</asp:Label>
+                </em>
+                <asp:TextBox ID="txtSifre" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+            </div>
+            <br />
+            <strong>
+            <asp:Button runat="server" Text="Giriş Yap" ID="girisYap" class="btn btn-warning" Width="650px" Height="50px" Font-Bold="True" OnClick="girisYap_Click" />
+            </strong>
+            <br />
+            <br />
+            <strong>
+            <asp:Button runat="server" Text="Öğretmen Girişi" ID="Button1" class="btn btn-danger" Width="192px" Height="50px" Font-Bold="True" OnClick="Button1_Click" /></strong>&nbsp;
+            <strong>
+            <asp:Button runat="server" Text="Şifremi Unuttum" ID="Button2" class="btn btn-default" Width="250px" Height="50px" Font-Bold="True" /></strong>&nbsp;
+            <strong>
+            <asp:Button runat="server" Text="Yardım" ID="Button3" class="btn btn-info" Width="192px" Height="50px" Font-Bold="True" />
+
+            </strong>
+
+        </div>
+    </form>
+</body>
+</html>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+
+public partial class LoginPanel : System.Web.UI.Page
+{
+
+    SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-HKL3D7O\SQLEXPRESS;Initial Catalog=Dbo_UdemyWeb01;Integrated Security=True");
+
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void girisYap_Click(object sender, EventArgs e)
+    {
+        baglanti.Open();
+        SqlCommand komut = new SqlCommand("select * from TBLOGRENCI where NUMARA=@p1 and OGRSIFRE=@p2", baglanti);
+        komut.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
+        komut.Parameters.AddWithValue("@p2", txtSifre.Text);
+        SqlDataReader dr = komut.ExecuteReader();
+        if (dr.Read())
+        {
+            Session.Add("numara", txtKullaniciAdi.Text);
+            Response.Redirect("OgrenciDefault.aspx");
+        }
+        else
+        {
+            txtSifre.Text = "Hatalı Şifre";
+        }
+        baglanti.Close();
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        baglanti.Open();
+        SqlCommand komut = new SqlCommand("select * from TBLOGRETMEN where OGRTNUMARA=@p1 and OGRTSIFRE=@p2", baglanti);
+        komut.Parameters.AddWithValue("@p1", txtKullaniciAdi.Text);
+        komut.Parameters.AddWithValue("@p2", txtSifre.Text);
+        SqlDataReader dr = komut.ExecuteReader();
+        if (dr.Read())
+        {
+            Session.Add("ogrtnumara", txtKullaniciAdi.Text);
+            Response.Redirect("Default.aspx");
+        }
+        else
+        {
+            txtSifre.Text = "Hatalı Şifre";
+        }
+        baglanti.Close();
+
+    }
+}
+```
+
+### [Öğretmen] Öğrenci Listesi
+![image](https://user-images.githubusercontent.com/95151751/230774983-d8bee478-cf93-41b1-8c7a-edfe64292910.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NUMARA</th>
+            <th scope="col">AD</th>
+            <th scope="col">SOYAD</th>
+            <th scope="col">TELEFON</th>
+            <th scope="col">MAIL</th>
+            <th scope="col">ŞİFRE</th>
+            <th scope="col">İŞLEMLER</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("OGRID") %></td>
+                        <td><%#Eval("NUMARA") %></td>
+                        <td><%#Eval("OGRAD") %></td>
+                        <td><%#Eval("OGRSOYAD") %></td>
+                        <td><%#Eval("OGRTELEFON") %></td>
+                        <td><%#Eval("OGRMAIL") %></td>
+                        <td><%#Eval("OGRSIFRE") %></td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink1" NavigateUrl='<%# "~/OgrenciSil.aspx?OGRID="+Eval("OGRID") %>' runat="server" class="btn btn-danger">SİL</asp:HyperLink>
+                            <asp:HyperLink ID="HyperLink2" NavigateUrl='<%# "OgrenciGuncelle.aspx?OGRID="+Eval("OGRID") %>' runat="server" class="btn btn-success">GÜNCELLE</asp:HyperLink>
+                        </td>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+</asp:Content>
+
+<%--<th scope="row">1</th>--%>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLOGRENCITableAdapter dt = new DataSetTableAdapters.TBLOGRENCITableAdapter();
+        Repeater1.DataSource = dt.OgrenciListesi2();
+        Repeater1.DataBind();
+    }
+}
+```
+
+### [Öğretmen] Öğrenci Güncelle
+![image](https://user-images.githubusercontent.com/95151751/230776203-58e9e0b5-1e6a-4ad3-86d4-6ea5768f6f4a.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="OgrenciGuncelle.aspx.cs" Inherits="OgrenciGuncelle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtOgrID" runat="server">Öğrenci ID</asp:Label>
+                <asp:TextBox ID="txtOgrID" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrAd" runat="server">Öğrenci Adı</asp:Label>
+                <asp:TextBox ID="txtOgrAd" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrSoyad" runat="server">Öğrenci Soyadı</asp:Label>
+                <asp:TextBox ID="txtOgrSoyad" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrTelefon" runat="server">Öğrenci Telefon</asp:Label>
+                <asp:TextBox ID="txtOgrTelefon" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrMail" runat="server">Öğrenci Mail</asp:Label>
+                <asp:TextBox ID="txtOgrMail" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrSifre" runat="server">Öğrenci Şifre</asp:Label>
+                <asp:TextBox ID="txtOgrSifre" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrFoto" runat="server">Öğrenci Fotoğraf Linki</asp:Label>
+                <asp:TextBox ID="txtOgrFoto" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Güncelle" ID="guncelle" class="btn btn-primary" OnClick="guncelle_Click" />
+
+    </form>
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciGuncelle : System.Web.UI.Page
+{
+
+    int id;
+
+    DataSetTableAdapters.TBLOGRENCITableAdapter dt = new DataSetTableAdapters.TBLOGRENCITableAdapter();
+
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Page.IsPostBack == false)
+        {
+            try
+            {
+                id = Convert.ToInt32(Request.QueryString["OGRID"]);
+                txtOgrID.Text = id.ToString();
+                txtOgrID.Enabled = false;
+
+                txtOgrAd.Text = dt.OgrenciSec(id)[0].OGRAD;
+                txtOgrSoyad.Text = dt.OgrenciSec(id)[0].OGRSOYAD;
+                txtOgrMail.Text = dt.OgrenciSec(id)[0].OGRMAIL;
+                txtOgrTelefon.Text = dt.OgrenciSec(id)[0].OGRTELEFON;
+                txtOgrSifre.Text = dt.OgrenciSec(id)[0].OGRSIFRE;
+                txtOgrFoto.Text = dt.OgrenciSec(id)[0].OGRFOTOGRAF;
+
+            }
+            catch (Exception)
+            {
+                txtOgrFoto.Text = "Link Girin";
+            }
+
+        }
+
+    }
+
+    protected void guncelle_Click(object sender, EventArgs e)
+    {
+        dt.OgrenciGuncelle(txtOgrAd.Text, txtOgrSoyad.Text, txtOgrTelefon.Text, txtOgrMail.Text, txtOgrSifre.Text, txtOgrFoto.Text, Convert.ToInt32(txtOgrID.Text));
+        Response.Redirect("Default.aspx");
+    }
+}
+```
+
+### [Öğretmen] Öğrenci Ekle
+![image](https://user-images.githubusercontent.com/95151751/230775043-35c7ed8a-07ef-416a-bd56-06f6f30a6461.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="OgrenciEkle.aspx.cs" Inherits="OgrenciEkle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtOgrAd" runat="server">Öğrenci Adı</asp:Label>
+                <asp:TextBox id="txtOgrAd" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrSoyad" runat="server">Öğrenci Soyadı</asp:Label>
+                <asp:TextBox id="txtOgrSoyad" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrTelefon" runat="server">Öğrenci Telefon</asp:Label>
+                <asp:TextBox id="txtOgrTelefon" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrMail" runat="server">Öğrenci Mail</asp:Label>
+                <asp:TextBox id="txtOgrMail" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrSifre" runat="server">Öğrenci Şifre</asp:Label>
+                <asp:TextBox id="txtOgrSifre" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrFoto" runat="server">Öğrenci Fotoğraf Linki</asp:Label>
+                <asp:TextBox id="txtOgrFoto" runat="server" CssClass="form-control" ></asp:TextBox>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Kaydet" id="kaydet" class="btn btn-info" OnClick="kaydet_Click" />
+
+    </form>
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciEkle : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void kaydet_Click(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLOGRENCITableAdapter dt = new DataSetTableAdapters.TBLOGRENCITableAdapter();
+        dt.OgrenciEkle(txtOgrAd.Text, txtOgrSoyad.Text, txtOgrTelefon.Text, txtOgrMail.Text, txtOgrSifre.Text, txtOgrFoto.Text);
+        Response.Redirect("Default.aspx");
+    }
+}
+```
+
+### [Öğretmen] Dersler
+![image](https://user-images.githubusercontent.com/95151751/230775078-0b69f6bc-8caf-4fb9-96d2-72843ed4731d.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="DersListesi.aspx.cs" Inherits="DersListesi" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+
+        <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">DERS ID</th>
+            <th scope="col">DERS ADI</th>
+            <th scope="col">İŞLEMLER</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("DERSID") %></td>
+                        <td><%#Eval("DERSAD") %></td>
+                        <td>
+                            <asp:HyperLink NavigateUrl='<%# "DersSil.aspx?DERSID="+Eval("DERSID") %>' ID="HyperLink1" runat="server" class="btn btn-danger">SİL</asp:HyperLink>
+                            <asp:HyperLink NavigateUrl='<%# "DersGuncelle.aspx?DERSID="+Eval("DERSID") %>' ID="HyperLink2" runat="server" class="btn btn-success">GÜNCELLE</asp:HyperLink>
+                        </td>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+    <asp:HyperLink ID="HyperLink3" NavigateUrl="DersEkle.aspx" runat="server" CssClass="btn btn-info">Ders Ekle</asp:HyperLink>
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class DersListesi : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLDERSLERTableAdapter dt = new DataSetTableAdapters.TBLDERSLERTableAdapter();
+        Repeater1.DataSource = dt.DersListesi();
+        Repeater1.DataBind();
+    }
+}
+```
+
+### [Öğretmen] Ders Güncelle
+![image](https://user-images.githubusercontent.com/95151751/230776329-e27ee0f7-d05c-4687-bf56-eaec93934999.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="DersGuncelle.aspx.cs" Inherits="DersGuncelle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtDersID" runat="server">Ders ID</asp:Label>
+                <asp:TextBox ID="txtDersID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtDersAdi" runat="server">Ders Adı</asp:Label>
+                <asp:TextBox ID="txtDersAdi" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Ders Güncelle" ID="guncelle" class="btn btn-primary" OnClick="guncelle_Click" />
+
+    </form>
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class DersGuncelle : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            int id = Convert.ToInt32(Request.QueryString["DERSID"]);
+            DataSetTableAdapters.TBLDERSLERTableAdapter dt = new DataSetTableAdapters.TBLDERSLERTableAdapter();
+            txtDersID.Text = id.ToString();
+            txtDersAdi.Text = dt.DersGetir(id)[0].DERSAD;
+        }
+    }
+
+    protected void guncelle_Click(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLDERSLERTableAdapter dt = new DataSetTableAdapters.TBLDERSLERTableAdapter();
+        dt.DersGuncelle(txtDersAdi.Text, Convert.ToInt32(txtDersID.Text));
+        Response.Redirect("DersListesi.aspx");
+    }
+}
+```
+
+### [Öğretmen] Ders Ekle
+![image](https://user-images.githubusercontent.com/95151751/230776373-02b2fd4e-f0df-49d2-90ce-6bba29e06a77.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="DersEkle.aspx.cs" Inherits="DersEkle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtDers" runat="server">Ders Adı</asp:Label>
+                <asp:TextBox id="txtDers" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Oluştur" id="olustur" class="btn btn-info" OnClick="olustur_Click" />
+
+    </form>
+
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class DersEkle : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void olustur_Click(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLDERSLERTableAdapter dt = new DataSetTableAdapters.TBLDERSLERTableAdapter();
+        dt.DersEkle(txtDers.Text);
+        Response.Redirect("DersListesi.aspx");
+    }
+}
+```
+
+### [Öğretmen] Gelen Mesajlar
+![image](https://user-images.githubusercontent.com/95151751/230775114-af06e388-fe88-42eb-b927-8b1e99d0bf47.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="GelenMesajlar.aspx.cs" Inherits="GelenMesajlar" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">GÖNDEREN</th>
+            <th scope="col">BAŞLIK</th>
+            <th scope="col">İÇERİK</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("MESAJID") %></td>
+                        <td><%#Eval("GONDEREN") %></td>
+                        <td><%#Eval("BASLIK") %></td>
+                        <td><%#Eval("ICERIK") %></td>
+<%--                        <td>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruSil.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink1" runat="server" class="btn btn-danger">SİL</asp:HyperLink>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruGuncelle.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink2" runat="server" class="btn btn-success">GÜNCELLE</asp:HyperLink>
+                        </td>--%>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class GelenMesajlar : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            DataSetTableAdapters.TBLMESAJLARTableAdapter dt = new DataSetTableAdapters.TBLMESAJLARTableAdapter();
+            Repeater1.DataSource = dt.OgretmenGelenMesaj(Session["ogrtnumara"].ToString());
+            Repeater1.DataBind();
+        }
+    }
+}
+```
+
+### [Öğretmen] Giden Mesajlar
+![image](https://user-images.githubusercontent.com/95151751/230775143-0d3cd4af-aaf3-41af-a21f-3b042bb2ae38.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="GidenMesajlar.aspx.cs" Inherits="GidenMesajlar" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+        <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ALICI</th>
+            <th scope="col">BAŞLIK</th>
+            <th scope="col">İÇERİK</th>
+            <th scope="col">TARİH</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("MESAJID") %></td>
+                        <td><%#Eval("ALICI") %></td>
+                        <td><%#Eval("BASLIK") %></td>
+                        <td><%#Eval("ICERIK") %></td>
+                        <td><%#Eval("TARIH") %></td>
+<%--                        <td>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruSil.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink1" runat="server" class="btn btn-danger">SİL</asp:HyperLink>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruGuncelle.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink2" runat="server" class="btn btn-success">GÜNCELLE</asp:HyperLink>
+                        </td>--%>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class GidenMesajlar : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            DataSetTableAdapters.TBLMESAJLARTableAdapter dt = new DataSetTableAdapters.TBLMESAJLARTableAdapter();
+            Repeater1.DataSource = dt.OgretmenGidenMesajlar(Session["ogrtnumara"].ToString());
+            Repeater1.DataBind();
+        }
+    }
+}
+```
+
+### [Öğretmen] Mesaj Oluştur
+![image](https://user-images.githubusercontent.com/95151751/230775170-1c5b777f-1697-482f-acde-0c600df6fde0.png)
+
+```
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="MesajOlustur.aspx.cs" Inherits="MesajOlustur" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtGonderen" runat="server">Gönderen</asp:Label>
+                <asp:TextBox id="txtGonderen" runat="server" CssClass="form-control" enabled="false" ></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtAlici" runat="server">Alıcı</asp:Label>
+                <asp:TextBox id="txtAlici" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtMesajBaslik" runat="server">Mesaj Başlık</asp:Label>
+                <asp:TextBox id="txtMesajBaslik" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtIcerik" runat="server">Mesaj İçerik</asp:Label>                
+                <textarea id="txtIcerik" cols="20" rows="7" class="form-control" runat="server" ></textarea>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Mesaj Gönder" id="btnGonder" class="btn btn-info" OnClick="btnGonder_Click" />
+
+    </form>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class MesajOlustur : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        txtGonderen.Text = "0001";
+    }
+
+    protected void btnGonder_Click(object sender, EventArgs e)
+    {
+        if (IsPostBack)
+        {
+            DataSetTableAdapters.TBLMESAJLARTableAdapter dt = new DataSetTableAdapters.TBLMESAJLARTableAdapter();
+            dt.MesajGonder(txtGonderen.Text, txtAlici.Text, txtMesajBaslik.Text,txtIcerik.Value);
+            Response.Redirect("GidenMesajlar.aspx");
+        }
+    }
+}
+```
+
+### [Öğretmen] Duyuru Listesi
+![image](https://user-images.githubusercontent.com/95151751/230775191-b462f27b-6cce-4a63-8e7c-fed3674fef11.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="DuyuruListesi.aspx.cs" Inherits="DuyuruListesi" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">BAŞLIK</th>
+            <th scope="col">İÇERİK</th>
+            <th scope="col">ÖĞRETMEN</th>
+            <th scope="col">İŞLEMLER</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("DUYURUID") %></td>
+                        <td><%#Eval("DUYURUBASLIK") %></td>
+                        <td><%#Eval("DUYURUICERIK") %></td>
+                        <td><%#Eval("DUYURUOGRT") %></td>
+                        <td>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruSil.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink1" runat="server" class="btn btn-danger">SİL</asp:HyperLink>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruGuncelle.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink2" runat="server" class="btn btn-success">GÜNCELLE</asp:HyperLink>
+                        </td>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+</asp:Content>
+
+
+<%--
+NavigateUrl='<%# "~/OgrenciSil.aspx?OGRID="+Eval("OGRID") %>'
+NavigateUrl='<%# "OgrenciGuncelle.aspx?OGRID="+Eval("OGRID") %>'
+--%>
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class DuyuruListesi : System.Web.UI.Page
+{
+
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLDUYURULARTableAdapter dt = new DataSetTableAdapters.TBLDUYURULARTableAdapter();
+        Repeater1.DataSource = dt.DuyuruListesi();
+        Repeater1.DataBind();
+    }
+}
+```
+
+### [Öğretmen] Duyuru Güncelle
+![image](https://user-images.githubusercontent.com/95151751/230776912-f26c8df5-415c-4d9e-83a9-b5b58219fd25.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="DuyuruGuncelle.aspx.cs" Inherits="DuyuruGuncelle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+
+        <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtDuyuruID" runat="server">Duyuru ID</asp:Label>
+                <asp:TextBox ID="txtDuyuruID" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtDuyuruBaslik" runat="server">Duyuru Başlık</asp:Label>
+                <asp:TextBox id="txtDuyuruBaslik" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="TextArea1" runat="server">Duyuru İçerik</asp:Label>
+                <textarea id="TextArea1" cols="20" rows="6" class="form-control" runat="server"></textarea>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Oluştur" id="olustur" class="btn btn-primary" OnClick="olustur_Click" />
+
+    </form>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class DuyuruGuncelle : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            int id = Convert.ToInt32(Request.QueryString["DUYURUID"]);
+            DataSetTableAdapters.TBLDUYURULARTableAdapter dt = new DataSetTableAdapters.TBLDUYURULARTableAdapter();
+            txtDuyuruID.Text = id.ToString();
+            txtDuyuruID.Enabled = false;
+            txtDuyuruBaslik.Text = dt.DuyuruSec(id)[0].DUYURUBASLIK;
+            TextArea1.Value = dt.DuyuruSec(id)[0].DUYURUICERIK;
+
+        }
+    }
+
+    protected void olustur_Click(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLDUYURULARTableAdapter dt = new DataSetTableAdapters.TBLDUYURULARTableAdapter();
+        dt.DuyuruGuncelle(txtDuyuruBaslik.Text, TextArea1.Value, Convert.ToInt32(txtDuyuruID.Text));
+        Response.Redirect("DuyuruListesi.aspx");
+    }
+}
+```
+
+### [Öğretmen] Duyuru Ekle
+![image](https://user-images.githubusercontent.com/95151751/230775222-5fec40e2-a556-4c7f-b334-215f5db2f4f2.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="DuyuruEkle.aspx.cs" Inherits="DuyuruEkle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="DropDownList1" runat="server">Duyuru Öğretmen</asp:Label>
+                <asp:DropDownList id="DropDownList1" runat="server" cssClass="form-control"></asp:DropDownList>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtDuyuruBaslik" runat="server">Duyuru Başlık</asp:Label>
+                <asp:TextBox id="txtDuyuruBaslik" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="TextArea1" runat="server">Duyuru İçerik</asp:Label>
+                <textarea id="TextArea1" cols="20" rows="6" class="form-control" runat="server"></textarea>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Oluştur" id="olustur" class="btn btn-info" OnClick="olustur_Click" />
+
+    </form>
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class DuyuruEkle : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            DataSetTableAdapters.TBLOGRETMENTableAdapter dt = new DataSetTableAdapters.TBLOGRETMENTableAdapter();
+            DropDownList1.DataSource = dt.OgretmenListesi();
+            DropDownList1.DataTextField = "OGRTADSOYAD";
+            DropDownList1.DataValueField = "OGRTID";
+            DropDownList1.DataBind();
+
+        }
+    }
+
+    protected void olustur_Click(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLDUYURULARTableAdapter dt = new DataSetTableAdapters.TBLDUYURULARTableAdapter();
+        dt.DuyuruEkle(txtDuyuruBaslik.Text, TextArea1.Value.ToString(), Convert.ToInt32(DropDownList1.SelectedValue));
+        Response.Redirect("DuyuruListesi.aspx");
+    }
+}
+```
+
+### [Öğretmen] Notlar
+![image](https://user-images.githubusercontent.com/95151751/230775245-187a57fb-1886-4f31-a123-63766c99f9cc.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="NotListesi.aspx.cs" Inherits="NotListesi" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">ÖĞRENCİ ID</th>
+            <th scope="col">AD SOYAD</th>
+            <th scope="col">DERS ADI</th>
+            <th scope="col">SINAV 1</th>
+            <th scope="col">SINAV 2</th>
+            <th scope="col">SINAV 3</th>
+            <th scope="col">ORTALAMA</th>
+            <th scope="col">DURUM</th>
+            <th scope="col">GÜNCELLE</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("OGRENCIID") %></td>
+                        <td><%#Eval("OGRENCIADSOYAD") %></td>
+                        <td><%#Eval("DERSAD") %></td>
+                        <td><%#Eval("SINAV1") %></td>
+                        <td><%#Eval("SINAV2") %></td>
+                        <td><%#Eval("SINAV3") %></td>
+                        <td><%#Eval("ORTALAMA") %></td>
+                        <td><%#Eval("DURUM") %></td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink2" NavigateUrl='<%# "NotGuncelle.aspx?NOTID="+Eval("NOTID") %>' runat="server" class="btn btn-success">GÜNCELLE</asp:HyperLink>
+                        </td>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class NotListesi : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.OgrNotlarTableAdapter dt=new DataSetTableAdapters.OgrNotlarTableAdapter();
+        Repeater1.DataSource = dt.NotlariGetir();
+        Repeater1.DataBind();
+    }
+}
+```
+
+### [Öğretmen] Not Güncelle
+![image](https://user-images.githubusercontent.com/95151751/230776986-67704060-c7de-4770-bf64-ab0bbee8a059.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="NotGuncelle.aspx.cs" Inherits="NotGuncelle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtDersAdi" runat="server">Ders Adı</asp:Label>
+                <asp:TextBox ID="txtDersAdi" Enabled="false" runat="server"  CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrID" runat="server">Öğrenci ID</asp:Label>
+                <asp:TextBox ID="txtOgrID" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrAdSoyad" runat="server">Öğrenci Adı Soyadı</asp:Label>
+                <asp:TextBox ID="txtOgrAdSoyad" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtSinav1" runat="server">Sınav 1</asp:Label>
+                <asp:TextBox ID="txtSinav1" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtSinav2" runat="server">Sınav 2</asp:Label>
+                <asp:TextBox ID="txtSinav2" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtSinav3" runat="server">Sınav 3</asp:Label>
+                <asp:TextBox ID="txtSinav3" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOrtalama" runat="server">Ortalama</asp:Label>
+                <asp:TextBox ID="txtOrtalama" Enabled="false" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtDurum" runat="server">Durum</asp:Label>
+                <asp:TextBox ID="txtDurum" Enabled="false" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Hesapla" ID="hesapla" class="btn btn-toolbar" OnClick="hesapla_Click" />
+        <asp:Button runat="server" Text="Güncelle" ID="guncelle" class="btn btn-primary" OnClick="guncelle_Click" />
+
+    </form>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class NotGuncelle : System.Web.UI.Page
+{
+    int nid;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            nid = Convert.ToInt32(Request.QueryString["NOTID"].ToString());
+
+            DataSetTableAdapters.OgrNotlarTableAdapter dt = new DataSetTableAdapters.OgrNotlarTableAdapter();
+            txtOgrID.Text = dt.NotGetir2(nid)[0].OGRENCIID.ToString();
+            txtOgrAdSoyad.Text = dt.NotGetir2(nid)[0].OGRENCIADSOYAD.ToString();
+            txtDersAdi.Text = dt.NotGetir2(nid)[0].DERSAD.ToString();
+            txtSinav1.Text = dt.NotGetir2(nid)[0].SINAV1.ToString();
+            txtSinav2.Text = dt.NotGetir2(nid)[0].SINAV2.ToString();
+            txtSinav3.Text = dt.NotGetir2(nid)[0].SINAV3.ToString();
+            txtOrtalama.Text = dt.NotGetir2(nid)[0].ORTALAMA.ToString();
+            txtDurum.Text = dt.NotGetir2(nid)[0].DURUM.ToString();
+        }
+
+    }
+
+    protected void hesapla_Click(object sender, EventArgs e)
+    {
+        double sinav1, sinav2, sinav3, ortalama;
+        sinav1 = Convert.ToInt32(txtSinav1.Text);
+        sinav2 = Convert.ToInt32(txtSinav2.Text);
+        sinav3 = Convert.ToInt32(txtSinav3.Text);
+        ortalama = (sinav1 + sinav2 + sinav3) / 3;
+        txtOrtalama.Text=ortalama.ToString("0.00");
+        if (ortalama >= 50)
+        {
+            txtDurum.Text = "True";
+        }
+        else
+        {
+            txtDurum.Text = "False";
+        }
+    }
+
+    protected void guncelle_Click(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.OgrNotlarTableAdapter dt = new DataSetTableAdapters.OgrNotlarTableAdapter();
+        dt.NotGuncelle(byte.Parse(txtSinav1.Text), byte.Parse(txtSinav2.Text), byte.Parse(txtSinav3.Text), decimal.Parse(txtOrtalama.Text), bool.Parse(txtDurum.Text), Convert.ToInt32(Request.QueryString["NOTID"].ToString()));
+        Response.Redirect("NotListesi.aspx");
+    }
+}
+```
+
+### [Öğretmen] İstatistikler
+![image](https://user-images.githubusercontent.com/95151751/230775266-b85bc4c5-10ea-42dc-bd31-20c1294cb952.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="Istatistikler.aspx.cs" Inherits="Istatistikler" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:TextBox ID="Textbox1" runat="server" CssClass="form-control" Enabled="false">Toplam Öğrenci Sayısı: 136</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox2" runat="server" CssClass="form-control" Enabled="false">Toplam Öğretmen Sayısı: 14</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox3" runat="server" CssClass="form-control" Enabled="false">Toplam Ders Sayısı: 17</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox4" runat="server" CssClass="form-control" Enabled="false">Toplam Ders Sayısı: 17</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox5" runat="server" CssClass="form-control" Enabled="false">En Başarılı Ders: Matematik</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox6" runat="server" CssClass="form-control" Enabled="false">Toplam Atılan Mesaj: 2547</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox7" runat="server" CssClass="form-control" Enabled="false">Sistemdeki Duyuru Sayısı: 745</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox8" runat="server" CssClass="form-control" Enabled="false">Matematik Not Ortalaması: 65,78</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox9" runat="server" CssClass="form-control" Enabled="false">Algoritma Not Ortalaması: 77,12</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox10" runat="server" CssClass="form-control" Enabled="false">TÜrkçe Not Ortalaması: 82,17</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox11" runat="server" CssClass="form-control" Enabled="false">İstatistik Örnek 1</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox12" runat="server" CssClass="form-control" Enabled="false">İstatistik Örnek 2</asp:TextBox>
+            </div>
+            <br />
+        </div>
+    </form>
+
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Istatistikler : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.DataTable1TableAdapter dt = new DataSetTableAdapters.DataTable1TableAdapter();
+        Textbox1.Text = "Toplam Öğrenci Sayısı: " + dt.Istatistik1().ToString();
+        Textbox2.Text = "Toplam Öğretmen Sayısı: " + dt.Istatistik2().ToString();
+        Textbox3.Text = "Toplam Ders Sayısı: " + dt.Istatistik3().ToString();
+        Textbox4.Text = "Matematik Dersinin 1. Sınavındaki En Başarılı Öğrenci: " + dt.Istatistik4().ToString();
+        Textbox5.Text = "Fizik Dersinin 1. Sınavındaki En Başarılı Öğrenci: " + dt.Istatistik5().ToString();
+        Textbox6.Text = "Dil ve Anlatım Dersinin 1. Sınavındaki En Başarılı Öğrenci: " + dt.Istatistik6().ToString();
+        Textbox7.Text = "Edebiyat Dersinin 1. Sınavındaki En Başarılı Öğrenci: " + dt.Istatistik7().ToString();
+        Textbox8.Text = "Matematik Dersinin 1. Sınav Ortalaması: " + dt.Istatistik8().ToString();
+        Textbox9.Text = "Fizik Dersinin 1. Sınav Ortalaması: " + dt.Istatistik9().ToString();
+        Textbox10.Text = "Edebiyat Dersinin 1. Sınav Ortalaması: " + dt.Istatistik10().ToString();
+        Textbox11.Text = "Matematik Dersinde Geçen Öğrenci Sayısı: " + dt.Istatistik11().ToString();
+        Textbox12.Text = "Matematik Dersinde Kalan Öğrenci Sayısı: " + dt.Istatistik12().ToString();
+    }
+}
+```
+
+### [Öğretmen] Grafikler
+![image](https://user-images.githubusercontent.com/95151751/230775289-a6ef279c-19f5-4834-b115-2ce5f23630c8.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogretmen.master" AutoEventWireup="true" CodeFile="Grafikler.aspx.cs" Inherits="Grafikler" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+
+
+    <form id="form1" runat="server">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <td class="text-center">
+                    <asp:Chart ID="Chart1" runat="server" Height="400px" Width="750px" Palette="Bright">
+                        <Series>
+                            <asp:Series Name="Matematik" Legend="Legend1">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </ChartAreas>
+                        <Legends>
+                            <asp:Legend Name="Legend1">
+                            </asp:Legend>
+                        </Legends>
+                    </asp:Chart>
+                </td>
+                <td class="text-center">
+                    <asp:Chart ID="Chart2" runat="server" Height="400px" Width="750px">
+                        <Series>
+                            <asp:Series Name="DersAd" ChartType="Area">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <asp:Chart ID="Chart3" runat="server" Height="400px" Width="750px">
+                        <Series>
+                            <asp:Series Name="Cinsiyet" ChartType="Pie">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                </td>
+                <td class="text-center">
+                    <asp:Chart ID="Chart4" runat="server" Height="400px" Width="750px">
+                        <Series>
+                            <asp:Series Name="Dersler" ChartType="Doughnut">
+                            </asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1">
+                            </asp:ChartArea>
+                        </ChartAreas>
+                    </asp:Chart>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+public partial class Grafikler : System.Web.UI.Page
+{
+
+    SqlConnection baglanti = new SqlConnection(@"Data Source=DESKTOP-HKL3D7O\SQLEXPRESS;Initial Catalog=Dbo_UdemyWeb01;Integrated Security=True");
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+        //Chart 4 --Dersler--
+        baglanti.Open();
+        SqlCommand komut = new SqlCommand("execute Graf1", baglanti);
+        SqlDataReader dr = komut.ExecuteReader();
+        while (dr.Read())
+        {
+            Chart4.Series["Dersler"].Points.AddXY(Convert.ToString(dr[0]), int.Parse(dr[1].ToString()));
+        }
+        baglanti.Close();
+
+
+        //CHart 3 --Cinsiyetler--
+        baglanti.Open();
+        SqlCommand komut2 = new SqlCommand("execute Graf2", baglanti);
+        SqlDataReader dr2 = komut2.ExecuteReader();
+        while (dr2.Read())
+        {
+            Chart3.Series["Cinsiyet"].Points.AddXY(Convert.ToString(dr2[0]), int.Parse(dr2[1].ToString()));
+        }
+        baglanti.Close();
+
+
+        //Chart 2 --Öğretmenler--
+        baglanti.Open();
+        SqlCommand komut3 = new SqlCommand("execute Graf3", baglanti);
+        SqlDataReader dr3 = komut3.ExecuteReader();
+        while (dr3.Read())
+        {
+            Chart2.Series["DersAd"].Points.AddXY(Convert.ToString(dr3[0]), int.Parse(dr3[1].ToString()));
+        }
+        baglanti.Close();
+
+
+        //Chart 1 --Matematik 1. Sınav Sonuçları--
+        baglanti.Open();
+        SqlCommand komut4 = new SqlCommand("execute Graf4", baglanti);
+        SqlDataReader dr4 = komut4.ExecuteReader();
+        while (dr4.Read())
+        {
+            Chart1.Series["Matematik"].Points.AddXY(Convert.ToString(dr4[0]), int.Parse(dr4[1].ToString()));
+        }
+        baglanti.Close();
+
+
+    }
+}
+```
+
+### [Öğrenci] Profilim
+![image](https://user-images.githubusercontent.com/95151751/230775379-ea345c33-1806-4a70-be3e-24dc2db8703b.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogrenci.master" AutoEventWireup="true" CodeFile="OgrenciDefault.aspx.cs" Inherits="OgrenciDefault" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:TextBox ID="Textbox1" runat="server" CssClass="form-control" Enabled="false">Toplam Öğrenci Sayısı: 136</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox2" runat="server" CssClass="form-control" Enabled="false">Toplam Öğretmen Sayısı: 14</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox3" runat="server" CssClass="form-control" Enabled="false">Toplam Ders Sayısı: 17</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox4" runat="server" CssClass="form-control" Enabled="false">Toplam Ders Sayısı: 17</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox5" runat="server" CssClass="form-control" Enabled="false">En Başarılı Ders: Matematik</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox6" runat="server" CssClass="form-control" Enabled="false">Toplam Atılan Mesaj: 2547</asp:TextBox>
+            </div>
+            <br />
+            <asp:Button runat="server" Text="Şifre Değiştir" ID="sifreDegistir" class="btn btn-primary" OnClick="guncelle_Click"/>
+
+        </div>
+    </form>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciDefault : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Textbox1.Text = Session["numara"].ToString();
+
+        DataSetTableAdapters.TBLOGRENCITableAdapter dt = new DataSetTableAdapters.TBLOGRENCITableAdapter();
+        Textbox2.Text = "Ad Soyad: " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRAD + " " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRSOYAD;
+        Textbox3.Text = "Mail Adresi: "+ dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRMAIL;
+        Textbox4.Text = "Şifre: "+ dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRSIFRE;
+        Textbox5.Text = "Telefon Numarası: " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRTELEFON;
+        Textbox6.Text = "Fotoğraf Adresi: " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRFOTOGRAF;
+    }
+
+    protected void guncelle_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OgrenciGuncelle2.aspx?NUMARA=" + Textbox1.Text);
+    }
+}
+```
+
+### [Öğrenci] Şifre Değiştir
+![image](https://user-images.githubusercontent.com/95151751/230777103-f3d228b1-443e-4d86-9a2e-fc0c93f32fab.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogrenci.master" AutoEventWireup="true" CodeFile="OgrenciGuncelle2.aspx.cs" Inherits="OgrenciGuncelle2" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+
+        <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:TextBox ID="Textbox1" runat="server" CssClass="form-control" Enabled="False"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox4" runat="server" CssClass="form-control" Enabled="true">Şifre</asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:TextBox ID="Textbox5" runat="server" CssClass="form-control" Enabled="true">Şifre Tekrar</asp:TextBox>
+            </div>
+            <br />
+            <asp:Button runat="server" Text="Güncelle" ID="guncelle" class="btn btn-success" OnClick="guncelle_Click"/>
+
+        </div>
+    </form>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciGuncelle2 : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Textbox1.Text = Request.QueryString["NUMARA"];
+
+        if (!IsPostBack)
+        {
+
+        }
+
+        //Textbox2.Text = "Ad Soyad: " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRAD + " " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRSOYAD;
+        //Textbox3.Text = "Mail Adresi: " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRMAIL;
+        //Textbox4.Text = dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRSIFRE;
+        //Textbox5.Text = "Telefon Numarası: " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRTELEFON;
+        //Textbox6.Text = "Fotoğraf Adresi: " + dt.OgrenciPaneliGetir(Textbox1.Text)[0].OGRFOTOGRAF;
+
+    }
+
+    protected void guncelle_Click(object sender, EventArgs e)
+    {
+        if((Textbox4.Text==Textbox5.Text) && Textbox4.Text != "")
+        {
+            DataSetTableAdapters.TBLOGRENCITableAdapter dt = new DataSetTableAdapters.TBLOGRENCITableAdapter();
+            dt.OgrenciSifreGuncelle(Textbox4.Text, Textbox1.Text);
+            Response.Redirect("OgrenciDefault.aspx?NUMARA=" + Textbox1.Text);
+
+        }
+        else
+        {
+            Response.Write("Şifre Uyuşmazlığı!");
+        }
+    }
+}
+```
+
+### [Öğrenci] Gelen Mesajlar
+![image](https://user-images.githubusercontent.com/95151751/230775422-459e10e8-e25e-4504-aea3-618ca7145c08.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogrenci.master" AutoEventWireup="true" CodeFile="OgrenciGelenMesajlar.aspx.cs" Inherits="OgrenciGelenMesajlar" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">GÖNDEREN</th>
+            <th scope="col">BAŞLIK</th>
+            <th scope="col">İÇERİK</th>
+            <th scope="col">TARİH</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("GONDEREN") %></td>
+                        <td><%#Eval("BASLIK") %></td>
+                        <td><%#Eval("ICERIK") %></td>
+                        <td><%#Eval("TARIH") %></td>
+                        <%--                        <td>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruSil.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink1" runat="server" class="btn btn-danger">SİL</asp:HyperLink>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruGuncelle.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink2" runat="server" class="btn btn-success">GÜNCELLE</asp:HyperLink>
+                        </td>--%>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciGelenMesajlar : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLMESAJLARTableAdapter dt = new DataSetTableAdapters.TBLMESAJLARTableAdapter();
+        Repeater1.DataSource = dt.OgrenciGelenKutusu1(Session["numara"].ToString());
+        Repeater1.DataBind();
+    }
+}
+```
+
+### [Öğrenci] Giden Mesajlar
+![image](https://user-images.githubusercontent.com/95151751/230775630-45354a61-7263-4b4d-b1eb-aca4618079b7.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogrenci.master" AutoEventWireup="true" CodeFile="OgrenciGidenMesajlar.aspx.cs" Inherits="OgrenciGidenMesajlar" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">ALICI</th>
+            <th scope="col">BAŞLIK</th>
+            <th scope="col">İÇERİK</th>
+            <th scope="col">TARİH</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("ALICI") %></td>
+                        <td><%#Eval("BASLIK") %></td>
+                        <td><%#Eval("ICERIK") %></td>
+                        <td><%#Eval("TARIH") %></td>
+                        <%--                        <td>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruSil.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink1" runat="server" class="btn btn-danger">SİL</asp:HyperLink>
+                            <asp:HyperLink NavigateUrl='<%# "DuyuruGuncelle.aspx?DUYURUID="+Eval("DUYURUID") %>' ID="HyperLink2" runat="server" class="btn btn-success">GÜNCELLE</asp:HyperLink>
+                        </td>--%>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciGidenMesajlar : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLMESAJLARTableAdapter dt = new DataSetTableAdapters.TBLMESAJLARTableAdapter();
+        Repeater1.DataSource = dt.OgrenciGidenKutusu1(Session["numara"].ToString());
+        Repeater1 .DataBind();
+    }
+}
+```
+
+### [Öğrenci] Mesaj Oluştur
+![image](https://user-images.githubusercontent.com/95151751/230775650-125d7a27-bbc3-4416-974e-793a5b481881.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogrenci.master" AutoEventWireup="true" CodeFile="OgrenciMesajOlustur.aspx.cs" Inherits="OgrenciMesajOlustur" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <form id="Form1" runat="server">
+
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtGonderen" runat="server">Gönderen</asp:Label>
+                <asp:TextBox ID="txtGonderen" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtAlici" runat="server">Alıcı</asp:Label>
+                <asp:TextBox ID="txtAlici" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtMesajBaslik" runat="server">Mesaj Başlık</asp:Label>
+                <asp:TextBox ID="txtMesajBaslik" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtIcerik" runat="server">Mesaj İçerik</asp:Label>
+                <textarea id="txtIcerik" cols="20" rows="7" class="form-control" runat="server"></textarea>
+            </div>
+        </div>
+        <asp:Button runat="server" Text="Mesaj Gönder" ID="btnGonder" class="btn btn-info" OnClick="btnGonder_Click" />
+
+    </form>
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciMesajOlustur : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        txtGonderen.Text = Session["numara"].ToString();
+    }
+
+    protected void btnGonder_Click(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLMESAJLARTableAdapter dt = new DataSetTableAdapters.TBLMESAJLARTableAdapter();
+        dt.MesajGonder(txtGonderen.Text, txtAlici.Text, txtMesajBaslik.Text, txtIcerik.Value);
+        Response.Redirect("OgrenciGidenMesajlar.aspx");
+    }
+}
+```
+
+### [Öğrenci] Duyurular
+![image](https://user-images.githubusercontent.com/95151751/230775659-b673551d-15f4-4d98-bb8f-ecebaecf68c7.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogrenci.master" AutoEventWireup="true" CodeFile="OgrenciDuyuru.aspx.cs" Inherits="OgrenciDuyuru" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+
+        <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">BAŞLIK</th>
+            <th scope="col">İÇERİK</th>
+            <th scope="col">ÖĞRETMEN</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("DUYURUID") %></td>
+                        <td><%#Eval("DUYURUBASLIK") %></td>
+                        <td><%#Eval("DUYURUICERIK") %></td>
+                        <td><%#Eval("OGRTADSOYAD") %></td>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciDuyuru : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.TBLDUYURULARTableAdapter dt = new DataSetTableAdapters.TBLDUYURULARTableAdapter();
+        Repeater1.DataSource = dt.OgrenciDuyuruListesi();
+        Repeater1.DataBind();
+
+    }
+}
+```
+
+### [Öğrenci] Sınav Notları
+![image](https://user-images.githubusercontent.com/95151751/230775677-db9fa784-df19-4f05-866f-f896e041bf53.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Ogrenci.master" AutoEventWireup="true" CodeFile="OgrenciNotu.aspx.cs" Inherits="OgrenciNotu" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th scope="col">ÖĞRENCİ ID</th>
+            <th scope="col">AD SOYAD</th>
+            <th scope="col">DERS ADI</th>
+            <th scope="col">SINAV 1</th>
+            <th scope="col">SINAV 2</th>
+            <th scope="col">SINAV 3</th>
+            <th scope="col">ORTALAMA</th>
+            <th scope="col">DURUM</th>
+        </tr>
+        <tbody>
+
+            <asp:Repeater ID="Repeater1" runat="server">
+
+                <ItemTemplate>
+
+                    <tr>
+                        <td><%#Eval("OGRENCIID") %></td>
+                        <td><%#Eval("OGRENCIADSOYAD") %></td>
+                        <td><%#Eval("DERSAD") %></td>
+                        <td><%#Eval("SINAV1") %></td>
+                        <td><%#Eval("SINAV2") %></td>
+                        <td><%#Eval("SINAV3") %></td>
+                        <td><%#Eval("ORTALAMA") %></td>
+                        <td><%#Eval("DURUM") %></td>
+                    </tr>
+
+                </ItemTemplate>
+
+            </asp:Repeater>
+
+        </tbody>
+    </table>
+
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class OgrenciNotu : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        DataSetTableAdapters.OgrNotlarTableAdapter dt = new DataSetTableAdapters.OgrNotlarTableAdapter();
+        Repeater1.DataSource = dt.OgrenciNotu(Session["numara"].ToString());
+        Repeater1.DataBind();
     }
 }
 ```
