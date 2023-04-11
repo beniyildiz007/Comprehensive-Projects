@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Dbo_CvEntityModelStoreContainer" CdmEntityContainer="Dbo_CvEntityEntities">
+    <EntitySetMapping Name="TBLADRES">
+      <EntityTypeMapping TypeName="Dbo_CvEntityModel.TBLADRES">
+        <MappingFragment StoreEntitySet="TBLADRES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+          <ScalarProperty Name="KONUM" ColumnName="KONUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLCALISMALARIM">
+      <EntityTypeMapping TypeName="Dbo_CvEntityModel.TBLCALISMALARIM">
+        <MappingFragment StoreEntitySet="TBLCALISMALARIM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLHAKKIMDA">
+      <EntityTypeMapping TypeName="Dbo_CvEntityModel.TBLHAKKIMDA">
+        <MappingFragment StoreEntitySet="TBLHAKKIMDA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BILGILER" ColumnName="BILGILER" />
+          <ScalarProperty Name="EGITIM" ColumnName="EGITIM" />
+          <ScalarProperty Name="ISDENEYIMLERI" ColumnName="ISDENEYIMLERI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLILETISIM">
+      <EntityTypeMapping TypeName="Dbo_CvEntityModel.TBLILETISIM">
+        <MappingFragment StoreEntitySet="TBLILETISIM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ADSOYAD" ColumnName="ADSOYAD" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          <ScalarProperty Name="MESAJ" ColumnName="MESAJ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLYETENEKLER">
+      <EntityTypeMapping TypeName="Dbo_CvEntityModel.TBLYETENEKLER">
+        <MappingFragment StoreEntitySet="TBLYETENEKLER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YETENEK" ColumnName="YETENEK" />
+          <ScalarProperty Name="DERECE" ColumnName="DERECE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
