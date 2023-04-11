@@ -10,6 +10,7 @@
 3. [C# Öğrenci Yurdu Kayıt Otomasyon Projesi](#project3)
 4. [C# ile DevExpress'te SQL Tabanlı Ticari Otomasyon](#project4)
 5. [ASP.NET Bootstrap ile SQL Tabanlı Web Projesi](#project5)
+6. [ASP.NET Entity Framework ile Dinamik Admin Panelli CV Sitesi](#project6)
 
 
 
@@ -6769,3 +6770,551 @@ public partial class OgrenciNotu : System.Web.UI.Page
     }
 }
 ```
+
+# ASP.NET Entity Framework ile Dinamik Admin Panelli CV Sitesi <a name="project6"></a>
+### Hakkımda
+![image](https://user-images.githubusercontent.com/95151751/231292449-8892f81f-9cf0-4845-84e9-35998b71c62a.png)
+
+```c#
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="_06_CvEntityProje.Default" %>
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entity CV Projesi</title>
+    <!-- custom-theme -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Delightful Profile template Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login sign up Responsive web template, SmartPhone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="/web/application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //custom-theme -->
+    <link href="/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- js -->
+    <script src="/web/js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- font-awesome-icons -->
+    <link href="/web/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <link href="/web/css/lightcase.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/web/css/easy-responsive-tabs.css " />
+    <link href="//fonts.googleapis.com/css?family=Arsenal:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <h1>YAZILIM KİMLİK KARTI</h1>
+        <div class="w3_agile_main_grids">
+            <div class="w3layouts_main_grid_left">
+                <div class="w3_main_grid_left_grid">
+                    <asp:Repeater ID="Repeater1" runat="server">
+                        <ItemTemplate>
+                            <h2><%# Eval("BILGILER") %></h2>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <p>Full Stack Software Developer</p>
+                    <div class="w3l_figure">
+                        <img src="/web/images/profil-min.png" alt="Berkan Nihat Yıldız" style="width:140px; height:140px;" />
+                    </div>
+                    <ul class="agileinfo_social_icons">
+                        <li><a href="https://github.com/beniyildiz007" class="w3_agileits_facebook"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/berkan-nihat-yildiz/" class="wthree_twitter"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/beniyildiz007/" class="agileinfo_google"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w3layouts_main_grid_right">
+                <div class="w3ls_main_grid_right_grid">
+                    <div id="parentHorizontalTab">
+                        <ul class="resp-tabs-list hor_1">
+                            <li><i class="fa fa-user" aria-hidden="true"></i>HAKKIMDA</li>
+                            <li><i class="fa fa-briefcase" aria-hidden="true"></i>ÇALIŞMALARIM</li>
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>İLETİŞİM</li>
+                        </ul>
+                        <div class="resp-tabs-container hor_1">
+                            <div class="agileits_main_grid_right_grid">
+                                <!-- HAKKIMDA YAZISI -->
+                                <p style="font-weight: bold; font-size: larger">Eğitim Hayatım</p>
+                                <asp:Repeater ID="Repeater2" runat="server">
+                                    <ItemTemplate>
+                                        <div><%# Eval("EGITIM") %></div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <p style="font-weight: bold; font-size: larger; margin-top: 15px;">İş Deneyimlerim</p>
+                                <asp:Repeater ID="Repeater3" runat="server">
+                                    <ItemTemplate>
+                                        <div><%# Eval("ISDENEYIMLERI") %></div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+<%--                                <div class="wthree_tab_grid_sub">
+                                    <div class="wthree_tab_grid_sub_left">
+                                        <h5>321</h5>
+                                        <p>Tweets</p>
+                                    </div>
+                                    <div class="wthree_tab_grid_sub_left">
+                                        <h5>213</h5>
+                                        <p>Followers</p>
+                                    </div>
+                                    <div class="wthree_tab_grid_sub_left">
+                                        <h5>123</h5>
+                                        <p>Following</p>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>--%>
+                                <br />
+                                <br />
+                                <div class="agileits_skills">
+                                    <h3>YETENEKLERİM</h3>
+                                    <div class="w3_agileits_skills_grid">
+                                        <ul>
+                                            <asp:Repeater ID="Repeater4" runat="server">
+                                                <ItemTemplate>
+                                                    <li>
+                                                        <label><%# Eval("YETENEK") %></label>
+                                                        <span></span>%<%# Eval("DERECE") %></li>
+
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wthree_main_grid_right_grid">
+                                <h3>BİTİRDİĞİM PROJELERİM</h3>
+                                <div class="w3_agileits_main_grid_work_grids">
+                                    <div class="agile_main_grid_work_gridl">
+                                        <a href="/web/images/1.jpg" class="showcase" data-rel="lightcase:myCollection:slideshow" title="Easy Profile">
+                                            <img src="/web/images/1.jpg" alt=" " />
+                                        </a>
+                                    </div>
+                                    <div class="agile_main_grid_work_gridl">
+                                        <a href="/web/images/2.jpg" class="showcase" data-rel="lightcase:myCollection:slideshow" title="Easy Profile">
+                                            <img src="/web/images/2.jpg" alt=" " />
+                                        </a>
+                                    </div>
+                                    <div class="agile_main_grid_work_gridl">
+                                        <a href="/web/images/3.jpg" class="showcase" data-rel="lightcase:myCollection:slideshow" title="Easy Profile">
+                                            <img src="/web/images/3.jpg" alt=" " />
+                                        </a>
+                                    </div>
+                                    <div class="agile_main_grid_work_gridl">
+                                        <a href="/web/images/4.jpg" class="showcase" data-rel="lightcase:myCollection:slideshow" title="Easy Profile">
+                                            <img src="/web/images/4.jpg" alt=" " />
+                                        </a>
+                                    </div>
+                                    <div class="agile_main_grid_work_gridl">
+                                        <a href="/web/images/5.jpg" class="showcase" data-rel="lightcase:myCollection:slideshow" title="Easy Profile">
+                                            <img src="/web/images/5.jpg" alt=" " />
+                                        </a>
+                                    </div>
+                                    <div class="agile_main_grid_work_gridl">
+                                        <a href="/web/images/6.jpg" class="showcase" data-rel="lightcase:myCollection:slideshow" title="Easy Profile">
+                                            <img src="/web/images/6.jpg" alt=" " />
+                                        </a>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="wthree_main_grid_right_grid">
+                                <h3>İLETİŞİM ADRESLERİM</h3>
+                                <form action="#" method="post" runat="server">
+                                    <div class="agileits_w3layouts_contact_left">
+                                        <asp:TextBox ID="txtAd" runat="server" placeholder="Adınız" style="padding:15px"></asp:TextBox>
+                                        <asp:TextBox ID="txtMail" runat="server" placeholder="Mail Adersiniz" style="margin:15px 0px; padding:15px;"></asp:TextBox>
+                                        <asp:TextBox ID="TextBox1" runat="server" placeholder="Mesajınız" TextMode="MultiLine" style="padding:15px"></asp:TextBox>
+                                    </div>
+                                    <div class="agileits_w3layouts_contact_right">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6032.791420422463!2d29.216823697311423!3d40.885133896740264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac350c8107edd%3A0x1e2dde395846822a!2zU2FwYW4gQmHEn2xhcsSxLCAzNDg5MyBQZW5kaWsvxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1681230584677!5m2!1str!2str" style="border: 0"></iframe>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="agile_submit">
+                                        <asp:Button ID="Button1" runat="server" Text="Gönder" OnClick="Button1_Click" />
+                                    </div>
+                                </form>
+                                <div class="wthree_tab_grid">
+                                    <ul class="wthree_tab_grid_list">
+                                        <li><i class="fa fa-mobile" aria-hidden="true"></i></li>
+                                        <li>Telefon<span>+90 507 932 4972</span></li>
+                                    </ul>
+                                    <ul class="wthree_tab_grid_list">
+                                        <li><i class="fa fa-envelope-o" aria-hidden="true"></i></li>
+                                        <li>Mail<span><a href="mailto:yildiz.nihatberkan@gmail.com">yildiz.nihatberkan@gmail.com</a></span></li>
+                                    </ul>
+                                    <ul class="wthree_tab_grid_list">
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                                        <li>Adres<span>Pendik / İstanbul</span></li>
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="agileits_copyright">
+            <p>© 2023 Tüm Hakları Saklıdır.</p>
+        </div>
+    </div>
+    <script src="/web/js/easyResponsiveTabs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Horizontal Tab
+            $('#parentHorizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true, // 100% fit in a container
+                tabidentify: 'hor_1', // The tab groups identifier
+                activate: function (event) { // Callback function if tab is switched
+                    var $tab = $(this);
+                    var $info = $('#nested-tabInfo');
+                    var $name = $('span', $info);
+                    $name.text($tab.text());
+                    $info.show();
+                }
+            });
+        });
+    </script>
+    <!-- light-case -->
+    <script src="/web/js/lightcase.js"></script>
+    <script src="/web/js/jquery.events.touch.js"></script>
+    <script>
+        $('.showcase').lightcase();
+    </script>
+    <!-- //light-case -->
+
+</body>
+</html>
+
+```
+
+### Çalışmalarım -1
+![image](https://user-images.githubusercontent.com/95151751/231292599-f249001a-9032-434a-a0cc-1794fed0f3a1.png)
+
+### Çalışmalarım -2
+![image](https://user-images.githubusercontent.com/95151751/231292704-3c5788ce-ca6d-4959-9ac1-12b30535b538.png)
+
+### İletişim
+![image](https://user-images.githubusercontent.com/95151751/231292750-5c283c50-2c88-4711-9041-54683855408f.png)
+
+### [Admin Paneli] Yeteneklerim
+![image](https://user-images.githubusercontent.com/95151751/231292932-45e055ae-6281-4e5e-bcd9-8e0aa55acb3e.png)
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Yeteneklerim.aspx.cs" Inherits="_06_CvEntityProje.Hakkkimda" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <table class="table table-bordered" style="margin-left: 30px; width: 90%">
+        <tr>
+            <th>ID</th>
+            <th>YETENEK</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+        <asp:Repeater ID="Repeater1" runat="server">
+            <ItemTemplate>
+                <tr>
+                    <td><%# Eval("ID")  %></td>
+                    <td><%# Eval("YETENEK")  %></td>
+                    <td>
+                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-danger" NavigateUrl='<%# "YetenekSil.aspx?ID="+Eval("ID") %>'>SİL</asp:HyperLink></td>
+                    <td>
+                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-success" NavigateUrl='<%# "YetenekGuncelle.aspx?ID="+Eval("ID") %>'>GÜNCELLE</asp:HyperLink></td>
+                </tr>
+            </ItemTemplate>
+        </asp:Repeater>
+    </table>
+    <asp:Button ID="btnEkle" runat="server" Text="Yeni Yetenek Ekle" CssClass="btn btn-primary" OnClick="btnEkle_Click" style="margin-left: 30px;" />
+
+</asp:Content>
+
+```
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace _06_CvEntityProje
+{
+    public partial class Hakkkimda : System.Web.UI.Page
+    {
+
+        Dbo_CvEntityEntities db = new Dbo_CvEntityEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Repeater1.DataSource = db.TBLYETENEKLER.ToList();
+            Repeater1.DataBind();
+        }
+
+        protected void btnEkle_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("YeniYetenekEkle.aspx");
+        }
+    }
+}
+```
+
+### [Admin Paneli] Yeni Yetenek Ekle
+![image](https://user-images.githubusercontent.com/95151751/231292996-9fff056a-79f0-4435-9cf5-2f7cfd787455.png)
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="YeniYetenekEkle.aspx.cs" Inherits="_06_CvEntityProje.YeniYetenekEkle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div style="margin-left:30px">
+        <h3>YENİ YETENEK EKLEME SAYFASI</h3>
+        <br />
+        <asp:TextBox ID="TextBox1" runat="server" placeholder="Yeteneğini gir" CssClass="form-control" Style="max-width: 500px;"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="TextBox2" runat="server" placeholder="Yetenek Derecesi..." CssClass="form-control" Style="max-width: 500px;"></asp:TextBox>
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Kaydet" CssClass="btn btn-info" OnClick="Button1_Click" />
+
+    </div>
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace _06_CvEntityProje
+{
+    public partial class YeniYetenekEkle : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Dbo_CvEntityEntities db = new Dbo_CvEntityEntities();
+            TBLYETENEKLER t = new TBLYETENEKLER();
+            t.YETENEK = TextBox1.Text;
+            t.DERECE = Convert.ToByte(TextBox2.Text);
+            db.TBLYETENEKLER.Add(t);
+            db.SaveChanges();
+            Response.Redirect("Yeteneklerim.aspx");
+        }
+    }
+}
+```
+
+### [Admin Paneli] Yetenek Güncelle
+![image](https://user-images.githubusercontent.com/95151751/231293044-560601cc-c8f4-4407-97d5-cc5292700ad1.png)
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="YetenekGuncelle.aspx.cs" Inherits="_06_CvEntityProje.YetenekGuncelle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div style="margin-left: 30px">
+        <h3>YETENEK GÜNCELLEME SAYFASI</h3>
+        <br />
+        <asp:TextBox ID="txtYetenek" runat="server" placeholder="Yeteneğini gir" CssClass="form-control" Style="max-width: 500px;"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="TextBox1" runat="server" placeholder="Yetenek Derecesi..." CssClass="form-control" Style="max-width: 500px;"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnGuncelle" runat="server" Text="Güncelle" CssClass="btn btn-success" OnClick="btnGuncelle_Click"/>
+
+    </div>
+
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace _06_CvEntityProje
+{
+    public partial class YetenekGuncelle : System.Web.UI.Page
+    {
+        Dbo_CvEntityEntities db = new Dbo_CvEntityEntities();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                var deger = db.TBLYETENEKLER.Find(int.Parse(Request.QueryString["ID"]));
+                txtYetenek.Text = deger.YETENEK;
+                
+            }
+        }
+        
+        protected void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            var ytnk = db.TBLYETENEKLER.Find(int.Parse(Request.QueryString["ID"]));
+            ytnk.YETENEK = txtYetenek.Text;
+            ytnk.DERECE = Convert.ToByte(TextBox1.Text);
+            db.SaveChanges();
+            Response.Redirect("Yeteneklerim.aspx");
+
+        }
+    }
+}
+```
+
+### [Admin Paneli] Yetenek Sil
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace _06_CvEntityProje
+{
+    public partial class YetenekSil : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Dbo_CvEntityEntities db = new Dbo_CvEntityEntities();
+            var ytnk = db.TBLYETENEKLER.Find(Convert.ToInt32(Request.QueryString["ID"]));
+            db.TBLYETENEKLER.Remove(ytnk);
+            db.SaveChanges();
+            Response.Redirect("Yeteneklerim.aspx");
+        }
+    }
+}
+```
+
+### [Admin Paneli] İletişim
+![image](https://user-images.githubusercontent.com/95151751/231293116-2aee111a-c9f4-4552-b62b-ab03745f3bed.png)
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="iletisim.aspx.cs" Inherits="_06_CvEntityProje.iletisim" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <table class="table table-bordered" style="margin-left: 30px; width: 90%">
+        <tr>
+            <th>ID</th>
+            <th>AD SOYAD</th>
+            <th>MAİL</th>
+            <th>MESAJI GÖR</th>
+        </tr>
+        <asp:Repeater ID="Repeater1" runat="server">
+            <itemtemplate>
+                <tr>
+                    <td><%# Eval("ID")  %></td>
+                    <td><%# Eval("ADSOYAD")  %></td>
+                    <td><%# Eval("MESAJ")  %></td>
+                    <td>
+                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-info" NavigateUrl='<%# "MesajDetay.aspx?ID="+Eval("ID") %>'>Mesajı Gör</asp:HyperLink></td>
+                </tr>
+            </itemtemplate>
+        </asp:Repeater>
+    </table>
+
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace _06_CvEntityProje
+{
+    public partial class iletisim : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Dbo_CvEntityEntities db = new Dbo_CvEntityEntities();
+            var mesajlar = db.TBLILETISIM.ToList();
+            Repeater1.DataSource = mesajlar;
+            Repeater1.DataBind();
+        }
+    }
+}
+```
+
+### [Admin Paneli] Mesaj Detayları
+![image](https://user-images.githubusercontent.com/95151751/231293162-d597e7fc-b0bf-4c41-9b49-2a7abf79010a.png)
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="MesajDetay.aspx.cs" Inherits="_06_CvEntityProje.MesajDetay" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div style="margin-left: 30px; max-width: 500px;">
+        <h3>MESAJ DETAYLARI</h3>
+        <br />
+        <asp:TextBox ID="txtAdSoyad" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="txtMail" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="txtMesaj" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnMesajlar" runat="server" Text="MESAJLARIM" CssClass="btn btn-info" OnClick="btnMesajlar_Click"/>
+
+    </div>
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace _06_CvEntityProje
+{
+    public partial class MesajDetay : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Dbo_CvEntityEntities db = new Dbo_CvEntityEntities();
+            var mesaj = db.TBLILETISIM.Find(int.Parse(Request.QueryString["ID"]));
+            txtAdSoyad.Text = mesaj.ADSOYAD;
+            txtMail.Text = mesaj.MAIL;
+            txtMesaj.Text = mesaj.MESAJ;
+        }
+
+        protected void btnMesajlar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("iletisim.aspx");
+        }
+    }
+}
+```
+
