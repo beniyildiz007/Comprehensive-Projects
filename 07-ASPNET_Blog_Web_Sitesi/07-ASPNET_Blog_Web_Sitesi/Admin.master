@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin" %>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>CV Admin Paneli</title>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="AdminDosyalar/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Our Custom CSS -->
+    <link href="AdminDosyalar/StyleSheet2.css" rel="stylesheet" />
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar" style="background-color:#bd5d38;">
+            <div class="sidebar-header" style="background-color:#bd5d38;">
+                <a href="Default.aspx" target="_blank"><h3>Siteyi Görüntüle</h3></a>
+                <hr />
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="Hakkimda.aspx">
+                        <i class="fas fa-home"></i>&nbsp;
+                        Hakkımda
+                    </a>
+                </li>
+                <li>
+                    <a href="AdminDeneyimler.aspx">
+                        <i class="fas fa-briefcase"></i>&nbsp;
+                        Deneyimlerim
+                    </a>
+                </li>
+                <li>
+                    <a href="AdminEgitimler.aspx">
+                        <i class="fas fa-train"></i>&nbsp;
+                        Eğitim Hayatım
+                    </a>
+                </li>
+                <li>
+                    <a href="AdminYetenekler.aspx">
+                        <i class="fas fa-music"></i>&nbsp;
+                        Yeteneklerim
+                    </a>
+                </li>
+                <li>
+                    <a href="AdminHobiler.aspx">
+                        <i class="fas fa-play"></i>&nbsp;
+                        Hobilerim
+                    </a>
+                </li>
+                <li>
+                    <a href="AdminSertifikalar.aspx">
+                        <i class="fas fa-certificate"></i>&nbsp;
+                        Sertifikalarım
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+
+        </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="AdminDosyalar/jquery-1.12.0.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="AdminDosyalar/js-bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
