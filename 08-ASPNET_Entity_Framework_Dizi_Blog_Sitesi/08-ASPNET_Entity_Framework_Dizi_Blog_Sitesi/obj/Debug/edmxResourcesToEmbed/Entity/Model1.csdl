@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Dbo_BlogDiziModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBLBLOG">
+    <Key>
+      <PropertyRef Name="BLOGID" />
+    </Key>
+    <Property Name="BLOGID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BLOGBASLIK" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="BLOGICERIK" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="BLOGTARIH" Type="DateTime" Precision="0" />
+    <Property Name="BLOGGORSEL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BLOGTUR" Type="Byte" />
+    <Property Name="BLOGKATEGORI" Type="Byte" />
+    <NavigationProperty Name="TBLKATEGORI" Relationship="Self.FK_TBLBLOG_TBLKATEGORI" FromRole="TBLBLOG" ToRole="TBLKATEGORI" />
+    <NavigationProperty Name="TBLTUR" Relationship="Self.FK_TBLBLOG_TBLTUR" FromRole="TBLBLOG" ToRole="TBLTUR" />
+    <NavigationProperty Name="TBLYORUM" Relationship="Self.FK_TBLYORUM_TBLBLOG" FromRole="TBLBLOG" ToRole="TBLYORUM" />
+  </EntityType>
+  <EntityType Name="TBLHAKKIMIZDA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ACIKLAMA" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBLILETISIM">
+    <Key>
+      <PropertyRef Name="MESAJID" />
+    </Key>
+    <Property Name="MESAJID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ADSOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KONU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MESAJ" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBLKATEGORI">
+    <Key>
+      <PropertyRef Name="KATEGORIID" />
+    </Key>
+    <Property Name="KATEGORIID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KATEGORIAD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLBLOG" Relationship="Self.FK_TBLBLOG_TBLKATEGORI" FromRole="TBLKATEGORI" ToRole="TBLBLOG" />
+  </EntityType>
+  <EntityType Name="TBLTUR">
+    <Key>
+      <PropertyRef Name="TURID" />
+    </Key>
+    <Property Name="TURID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TURAD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLBLOG" Relationship="Self.FK_TBLBLOG_TBLTUR" FromRole="TBLTUR" ToRole="TBLBLOG" />
+  </EntityType>
+  <EntityType Name="TBLYORUM">
+    <Key>
+      <PropertyRef Name="YORUMID" />
+    </Key>
+    <Property Name="YORUMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KULLANICIAD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="MAIL" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="YORUMICERIK" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="YORUMBLOG" Type="Int32" />
+    <NavigationProperty Name="TBLBLOG" Relationship="Self.FK_TBLYORUM_TBLBLOG" FromRole="TBLYORUM" ToRole="TBLBLOG" />
+  </EntityType>
+  <Association Name="FK_TBLBLOG_TBLKATEGORI">
+    <End Role="TBLKATEGORI" Type="Self.TBLKATEGORI" Multiplicity="0..1" />
+    <End Role="TBLBLOG" Type="Self.TBLBLOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKATEGORI">
+        <PropertyRef Name="KATEGORIID" />
+      </Principal>
+      <Dependent Role="TBLBLOG">
+        <PropertyRef Name="BLOGKATEGORI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLBLOG_TBLTUR">
+    <End Role="TBLTUR" Type="Self.TBLTUR" Multiplicity="0..1" />
+    <End Role="TBLBLOG" Type="Self.TBLBLOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLTUR">
+        <PropertyRef Name="TURID" />
+      </Principal>
+      <Dependent Role="TBLBLOG">
+        <PropertyRef Name="BLOGTUR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLYORUM_TBLBLOG">
+    <End Role="TBLBLOG" Type="Self.TBLBLOG" Multiplicity="0..1" />
+    <End Role="TBLYORUM" Type="Self.TBLYORUM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLBLOG">
+        <PropertyRef Name="BLOGID" />
+      </Principal>
+      <Dependent Role="TBLYORUM">
+        <PropertyRef Name="YORUMBLOG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Dbo_BlogDiziEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBLBLOG" EntityType="Self.TBLBLOG" />
+    <EntitySet Name="TBLHAKKIMIZDA" EntityType="Self.TBLHAKKIMIZDA" />
+    <EntitySet Name="TBLILETISIM" EntityType="Self.TBLILETISIM" />
+    <EntitySet Name="TBLKATEGORI" EntityType="Self.TBLKATEGORI" />
+    <EntitySet Name="TBLTUR" EntityType="Self.TBLTUR" />
+    <EntitySet Name="TBLYORUM" EntityType="Self.TBLYORUM" />
+    <AssociationSet Name="FK_TBLBLOG_TBLKATEGORI" Association="Self.FK_TBLBLOG_TBLKATEGORI">
+      <End Role="TBLKATEGORI" EntitySet="TBLKATEGORI" />
+      <End Role="TBLBLOG" EntitySet="TBLBLOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLBLOG_TBLTUR" Association="Self.FK_TBLBLOG_TBLTUR">
+      <End Role="TBLTUR" EntitySet="TBLTUR" />
+      <End Role="TBLBLOG" EntitySet="TBLBLOG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLYORUM_TBLBLOG" Association="Self.FK_TBLYORUM_TBLBLOG">
+      <End Role="TBLBLOG" EntitySet="TBLBLOG" />
+      <End Role="TBLYORUM" EntitySet="TBLYORUM" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
