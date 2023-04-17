@@ -1,0 +1,9 @@
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\bin\Debug\EntityLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\bin\Debug\EntityLayer.pdb
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

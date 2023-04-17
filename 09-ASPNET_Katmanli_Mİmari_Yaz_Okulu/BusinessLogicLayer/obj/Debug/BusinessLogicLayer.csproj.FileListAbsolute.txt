@@ -1,0 +1,11 @@
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\bin\Debug\EntityLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\bin\Debug\EntityLayer.pdb
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.AssemblyReference.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.CopyComplete
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb

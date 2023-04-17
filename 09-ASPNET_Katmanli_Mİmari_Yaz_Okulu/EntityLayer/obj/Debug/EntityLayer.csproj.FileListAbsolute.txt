@@ -1,0 +1,6 @@
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\EntityLayer\bin\Debug\EntityLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\EntityLayer\bin\Debug\EntityLayer.pdb
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\EntityLayer\obj\Debug\EntityLayer.csproj.AssemblyReference.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\EntityLayer\obj\Debug\EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\EntityLayer\obj\Debug\EntityLayer.dll
+C:\Users\nihat\OneDrive\Belgeler\GitHub\Comprehensive-Projects\09-ASPNET_Katmanli_Mİmari_Yaz_Okulu\EntityLayer\obj\Debug\EntityLayer.pdb
