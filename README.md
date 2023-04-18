@@ -13,6 +13,7 @@
 6. [ASP.NET Entity Framework ile Dinamik Admin Panelli CV Sitesi](#project6)
 7. [ASP.NET Bootstrap Login & Admin Panelli Dinamik CV Sitesi](#project7)
 8. [ASP.NET Bootstrap Entity Framework ile Blog Sitesi](#project8)
+9. [ASP.NET Katmanli Mimari'de Mini Yaz Okulu Projesi](#project9)
 
 
 
@@ -9796,13 +9797,346 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
 ```
 
 
+# 09- ASP.NET Katmanli Mimari'de Mini Yaz Okulu Projesi <a name="project9"></a>
+
+### Öğrenci Listesi
+![OgrenciListesi](https://user-images.githubusercontent.com/95151751/232912975-a9124f86-ab6f-4f5a-9101-95ec794724d3.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="OgrenciListesi.aspx.cs" Inherits="OgrenciListesi" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Öğrenci ID</th>
+            <th>Öğrenci Ad</th>
+            <th>Öğrenci Soyad</th>
+            <th>Öğrenci Numara</th>
+            <th>Öğrenci Şifre</th>
+            <th>Öğrenci Fotoğraf</th>
+            <th>Bakiye</th>
+            <th>İşlemler</th>
+        </tr>
+        <tbody>
+            <asp:Repeater ID="Repeater1" runat="server">
+                <ItemTemplate>
+                    <tr>
+                        <td><%# Eval("OGRID") %></td>
+                        <td><%# Eval("AD") %></td>
+                        <td><%# Eval("SOYAD") %></td>
+                        <td><%# Eval("NUMARA") %></td>
+                        <td><%# Eval("SIFRE") %></td>
+                        <td><%# Eval("FOTOGRAF") %></td>
+                        <td><%# Eval("BAKIYE") %></td>
+                        <td>
+                            <asp:HyperLink ID="HyperLink1"  CssClass="btn btn-danger" runat="server" NavigateUrl='<%# "OgrenciSil.aspx?OGRID="+Eval("OGRID") %>'>Sil</asp:HyperLink>
+                            <asp:HyperLink ID="HyperLink2" CssClass="btn btn-success" runat="server" NavigateUrl='<%# "OgrenciGuncelle.aspx?OGRID="+Eval("OGRID") %>'>Güncelle</asp:HyperLink>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+        </tbody>
+    </table>
+</asp:Content>
 
 
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using EntityLayer;
+using DataAccessLayer;
+using BusinessLogicLayer;
+
+public partial class OgrenciListesi : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        List<EntityOgrenci> ogrList = BLLOgrenci.BllListele();
+        Repeater1.DataSource = ogrList;
+        Repeater1.DataBind();
+    }
+}
+```
+
+### Öğrenci Yeni Kayıt
+![YeniKayıt](https://user-images.githubusercontent.com/95151751/232913050-3fc3e142-bf1b-4586-9102-2aaa5d10ad94.png)
 
 
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <form runat="server">
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtOgrAd" runat="server" Text="Öğrenci Adı:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" id="txtOgrAd" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrSoyad" runat="server" Text="Öğrenci Soyadı:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" id="txtOgrSoyad" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrNumara" runat="server" Text="Öğrenci Numara:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" id="txtOgrNumara" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrSifre" runat="server" Text="Öğrenci Şifre:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" id="txtOgrSifre" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrFoto" runat="server" Text="Öğrenci Fotoğraf:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" id="txtOgrFoto" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <asp:Button runat="server" Text="Kaydet" id="btnKaydet" CssClass="btn btn-primary" OnClick="btnKaydet_Click" />
 
 
+        </div>
 
+    </form>
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using EntityLayer;
+using DataAccessLayer;
+using BusinessLogicLayer;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnKaydet_Click(object sender, EventArgs e)
+    {
+        EntityOgrenci ent = new EntityOgrenci();
+        ent.AD = txtOgrAd.Text;
+        ent.SOYAD = txtOgrSoyad.Text;
+        ent.NUMARA = txtOgrNumara.Text;
+        ent.SIFRE = txtOgrSifre.Text;
+        ent.FOTOGRAF = txtOgrFoto.Text;
+        BLLOgrenci.OgrenciEkleBLL(ent);
+        Response.Redirect("OgrenciListesi.aspx");
+    }
+}
+```
+
+### Öğrenci Sil
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using EntityLayer;
+using DataAccessLayer;
+using BusinessLogicLayer;
+
+public partial class OgrenciSil : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        EntityOgrenci ent = new EntityOgrenci();
+        ent.OGRID = Convert.ToInt32(Request.QueryString["OGRID"]);
+        BLLOgrenci.BLLOgrenciSil(ent.OGRID);
+        Response.Redirect("OgrenciListesi.aspx");
+    }
+}
+```
+
+### Öğrenci Güncelle
+![OgrenciGuncelle](https://user-images.githubusercontent.com/95151751/232913064-8d20f425-6dae-447e-849f-4d2782c7e414.png)
+
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="OgrenciGuncelle.aspx.cs" Inherits="OgrenciGuncelle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <form runat="server">
+        <div class="form-group">
+            <div>
+                <asp:Label for="txtOgrID" runat="server" Text="Öğrenci ID:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" ID="txtOgrID" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrAd" runat="server" Text="Öğrenci Adı:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" ID="txtOgrAd" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrSoyad" runat="server" Text="Öğrenci Soyadı:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" ID="txtOgrSoyad" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrNumara" runat="server" Text="Öğrenci Numara:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" ID="txtOgrNumara" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrSifre" runat="server" Text="Öğrenci Şifre:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" ID="txtOgrSifre" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <div>
+                <asp:Label for="txtOgrFoto" runat="server" Text="Öğrenci Fotoğraf:" Font-Bold="True"></asp:Label>
+                <asp:TextBox runat="server" ID="txtOgrFoto" CssClass="form-control"></asp:TextBox>
+            </div>
+            <br />
+            <asp:Button runat="server" Text="Güncelle" ID="btnGuncelle" CssClass="btn btn-success" OnClick="btnGuncelle_Click" />
+
+
+        </div>
+
+    </form>
+
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using EntityLayer;
+using DataAccessLayer;
+using BusinessLogicLayer;
+
+public partial class OgrenciGuncelle : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        int id = Convert.ToInt32(Request.QueryString["OGRID"]);
+        txtOgrID.Text = id.ToString();
+        txtOgrID.Enabled = false;
+
+        if (!IsPostBack)
+        {
+            List<EntityOgrenci> ogrList = BLLOgrenci.BLLDetay(id);
+            txtOgrAd.Text = ogrList[0].AD.ToString();
+            txtOgrSoyad.Text = ogrList[0].SOYAD.ToString();
+            txtOgrNumara.Text = ogrList[0].NUMARA.ToString();
+            txtOgrFoto.Text = ogrList[0].SIFRE.ToString();
+            txtOgrSifre.Text = ogrList[0].SIFRE.ToString();
+        }
+    }
+
+    protected void btnGuncelle_Click(object sender, EventArgs e)
+    {
+        EntityOgrenci ent = new EntityOgrenci();
+        ent.AD = txtOgrAd.Text;
+        ent.SOYAD = txtOgrSoyad.Text;
+        ent.SIFRE = txtOgrSifre.Text;
+        ent.NUMARA = txtOgrNumara.Text;
+        ent.FOTOGRAF = txtOgrFoto.Text;
+        ent.OGRID = Convert.ToInt32(txtOgrID.Text);
+        BLLOgrenci.BLLOgrenciGuncelle(ent);
+        Response.Redirect("OgrenciListesi.aspx");
+    }
+}
+```
+
+### Ders Talebi Oluştur
+![Dersler](https://user-images.githubusercontent.com/95151751/232913088-3975c3fc-93bd-4b4b-b212-529c8cd5935e.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Dersler.aspx.cs" Inherits="Dersler" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <form runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Ders Seçin"></asp:Label>
+            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control"></asp:DropDownList>
+        </div>
+        <br />
+        <div>
+            <asp:Label ID="Label2" runat="server" Text="Öğrenci ID"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+        <br />
+        <asp:Button ID="btnTalep" runat="server" Text="Ders Talebi Oluştur" CssClass="btn btn-warning" OnClick="btnTalep_Click" />
+    </form>
+</asp:Content>
+
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using EntityLayer;
+using DataAccessLayer;
+using BusinessLogicLayer;
+
+public partial class Dersler : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            List<EntityDers> entDers = BLLDers.BllListele();
+            DropDownList1.DataSource = BLLDers.BllListele();
+            DropDownList1.DataTextField = "DERSAD";
+            DropDownList1.DataValueField = "DERSID";
+            DropDownList1.DataBind();
+
+        }
+    }
+
+    protected void btnTalep_Click(object sender, EventArgs e)
+    {
+        EntityBasvuruForm ent = new EntityBasvuruForm();
+        ent.BASOGRID = int.Parse(TextBox1.Text);
+        ent.BASDERSID = int.Parse(DropDownList1.SelectedValue.ToString());
+        BLLDers.BLLTalepEkle(ent);
+        Response.Redirect("Dersler.aspx");
+    }
+}
+```
 
 
 
