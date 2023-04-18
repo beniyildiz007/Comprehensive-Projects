@@ -12,6 +12,7 @@
 5. [ASP.NET Bootstrap ile SQL Tabanlı Web Projesi](#project5)
 6. [ASP.NET Entity Framework ile Dinamik Admin Panelli CV Sitesi](#project6)
 7. [ASP.NET Bootstrap Login & Admin Panelli Dinamik CV Sitesi](#project7)
+8. [ASP.NET Bootstrap Entity Framework ile Blog Sitesi](#project8)
 
 
 
@@ -8922,4 +8923,905 @@ public partial class AdminSertifikaGuncelle : System.Web.UI.Page
     }
 }
 ```
+
+
+# 08- ASP.NET Bootstrap Entity Framework ile Blog Sitesi <a name="project8"></a>
+
+### Anasayfa (Bloglar)
+![bloglar](https://user-images.githubusercontent.com/95151751/232872206-917ef259-b94d-4450-8285-861e81b2bda4.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Kullanici.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Default" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container">
+        <div class="content-grids">
+            <div class="col-md-8 content-main">
+                <div class="content-grid">
+                    <asp:Repeater ID="Repeater1" runat="server">
+                        <ItemTemplate>
+                            <div class="content-grid-info">
+                                <img src='<%# Eval("BLOGGORSEL") %>' alt="" style="height: 500px; max-width: 600px" />
+                                <div class="post-info">
+                                    <h4><a href='BlogDetay.aspx?ID=<%# Eval("BLOGID") %>'>'<%# Eval("BLOGBASLIK") %>'</a>  '<%# Eval("BLOGTARIH") %>'</h4>
+                                    <p>'<%# Eval("BLOGICERIK") %>'</p>
+                                    <a href='BlogDetay.aspx?ID=<%# Eval("BLOGID") %>'><span></span>Devamını Oku</a>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+            </div>
+            <div class="col-md-4 content-right">
+                <div class="recent">
+                    <h3>En Son Bloglar</h3>
+                    <ul>
+                        <asp:Repeater ID="Repeater2" runat="server">
+                            <ItemTemplate>
+                                <li><a href="#"><%# Eval("BLOGBASLIK") %></a></li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                </div>
+                <div class="comments">
+                    <h3>Son Yorumlar</h3>
+                    <ul>
+                        <li><a href="#">Amada Doe </a>on <a href="#">Hello World!</a></li>
+                        <li><a href="#">Peter Doe </a>on <a href="#">Photography</a></li>
+                        <li><a href="#">Steve Roberts  </a>on <a href="#">HTML5/CSS3</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+<%--                <div class="archives">
+                    <h3>Arşivler</h3>
+                    <ul>
+                        <li><a href="#">Ocak 2023</a></li>
+                        <li><a href="#">Şubat 2023</a></li>
+                        <li><a href="#">Mart 2023</a></li>
+                        <li><a href="#">Nisan 2023</a></li>
+                    </ul>
+                </div>--%>
+                <div class="categories">
+                    <h3>Kategoriler</h3>
+                    <ul>
+                        <asp:Repeater ID="Repeater3" runat="server">
+                            <ItemTemplate>
+                                <li><a href="#"><%# Eval("KATEGORIAD") %></a></li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Repeater1.DataSource = db.TBLBLOG.ToList();
+            Repeater1.DataBind();
+
+            Repeater2.DataSource = db.TBLBLOG.ToList();
+            Repeater2.DataBind();
+
+            Repeater3.DataSource = db.TBLKATEGORI.ToList();
+            Repeater3.DataBind();
+        }
+    }
+}
+```
+
+### Blog Detay
+![BlogDetay](https://user-images.githubusercontent.com/95151751/232872542-691eb2ee-894b-49e3-aad1-72c92c1b1ac9.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Kullanici.Master" AutoEventWireup="true" CodeBehind="BlogDetay.aspx.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.BlogDetay" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <link href="web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <link href="web/css/style.css" rel='stylesheet' type='text/css' />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Personal Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!----webfonts---->
+        <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+        <!----//webfonts---->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <!--end slider -->
+        <!--script-->
+        <script type="text/javascript" src="web/js/move-top.js"></script>
+        <script type="text/javascript" src="web/js/easing.js"></script>
+        <!--/script-->
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+                    $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 900);
+                });
+            });
+        </script>
+        <!---->
+
+    </head>
+    <body>
+        <!---header---->
+        <div class="header">
+        </div>
+        <!--/header-->
+        <div class="single">
+            <div class="container">
+                <div class="col-md-8 single-main">
+                    <div class="single-grid">
+                        <asp:Repeater ID="Repeater1" runat="server">
+                            <ItemTemplate>
+                                <img src='<%# Eval("BLOGGORSEL") %>' alt="" style="height: 800px; max-width: 720px; margin-bottom: 20px;" />
+                                <p style="font-weight: bold"><%# Eval("BLOGBASLIK") %></p>
+                                <p><%# Eval("BLOGICERIK") %></p>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                    <asp:Repeater ID="Repeater2" runat="server">
+                        <ItemTemplate>
+                            <ul class="comment-list">
+                                <li>
+                                    <img src="web/images/avatar.png" class="img-responsive" alt="">
+                                    <div class="desc">
+                                        <p><a href="#" rel="author" style="font-weight: bold;"><%# Eval("KULLANICIAD") %>:</a></p>
+                                        <p><%# Eval("YORUMICERIK") %></p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <div class="content-form">
+                        <h3>Bir Yorum Yap</h3>
+                        <form runat="server">
+                            <asp:TextBox ID="txtAd" runat="server" placeholder="Adınız" required=""></asp:TextBox>
+                            <asp:TextBox ID="txtEmail" runat="server" placeholder="Email Adresiniz" required=""></asp:TextBox>
+                            <asp:TextBox ID="txtMesaj" runat="server" placeholder="Mesajınız" required="" TextMode="MultiLine" Height="150px"></asp:TextBox>
+                            <asp:Button ID="btnYorumYap" runat="server" Text="Yorum Yap" OnClick="btnYorumYap_Click" />
+                        </form>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </body>
+    </html>
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi
+{
+    public partial class BlogDetay : System.Web.UI.Page
+    {
+
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(Request.QueryString["ID"]);
+            Repeater1.DataSource = db.TBLBLOG.Where(x => x.BLOGID == id).ToList();
+            Repeater1.DataBind();
+
+            Repeater2.DataSource = db.TBLYORUM.Where(x => x.YORUMBLOG == id).ToList();
+            Repeater2.DataBind();
+        }
+
+        protected void btnYorumYap_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(Request.QueryString["ID"]);
+            TBLYORUM t = new TBLYORUM();
+            t.KULLANICIAD = txtAd.Text;
+            t.MAIL = txtEmail.Text;
+            t.YORUMICERIK = txtMesaj.Text;
+            t.YORUMBLOG = id;
+            db.TBLYORUM.Add(t);
+            db.SaveChanges();
+            Response.Redirect("BlogDetay.aspx?ID=" + id);
+        }
+    }
+}
+```
+
+### Hakkımızda
+![hakkimizda](https://user-images.githubusercontent.com/95151751/232872450-16c86c73-6a32-4bff-a7c6-0f63b27e36fa.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Kullanici.Master" AutoEventWireup="true" CodeBehind="Hakkimizda.aspx.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Hakkimizda" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Repeater ID="Repeater1" runat="server">
+        <ItemTemplate>
+            <div class="container">
+                <div class="about-section">
+                    <div class="about-grid">
+                        <h3>HAKKIMIZDA</h3>
+                        <p><%# Eval("ACIKLAMA") %></p>
+                    </div>
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi
+{
+    public partial class Hakkimizda : System.Web.UI.Page
+    {
+
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Repeater1.DataSource = db.TBLHAKKIMIZDA.ToList();
+            Repeater1.DataBind();
+        }
+    }
+}
+```
+
+### İletişim
+![iletisim](https://user-images.githubusercontent.com/95151751/232872476-c372a21e-15e4-4e63-8fa0-ac0cb9d7ac86.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Kullanici.Master" AutoEventWireup="true" CodeBehind="iletisim.aspx.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.iletisim" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="contact-content">
+        <div class="container">
+            <div class="contact-info">
+                <h2>İLETİŞİM</h2>
+                <p>Blog sayffamızda bulunan film ve dizilere eklemek istedikleriniz için veya yorumlarda yaşayacağınız herhangi bir problem olursa bu panelden bizlere mesaj gönderebilirsiniz. Mesaj gönderme sırasında mutlaka mail adresinizi doğru bir şekilde yazın ki bu mail üzerinden sizlere dönüş yapabilelim.</p>
+            </div>
+            <div class="contact-details">
+                <form runat="server">
+                    <asp:TextBox ID="txtAdSoyad" runat="server" placeholder="Ad Soyad" required></asp:TextBox>
+                    <asp:TextBox ID="txtMail" runat="server" placeholder="Mail" required></asp:TextBox>
+                    <asp:TextBox ID="txtTelefon" runat="server" placeholder="Telefon" required></asp:TextBox>
+                    <asp:TextBox ID="txtKonu" runat="server" placeholder="Konu" required></asp:TextBox>
+                    <asp:TextBox ID="txtMesaj" runat="server" placeholder="Mesajınız" required TextMode="MultiLine" Height="200px"></asp:TextBox>
+                    <asp:Button ID="btnGonder" runat="server" Text="Gönder" OnClick="btnGonder_Click" />
+                </form>
+            </div>
+            <div class="contact-details">
+                <div class="col-md-6 contact-map">
+                    <div style="max-width:100%;list-style:none; transition: none;overflow:hidden;width:500px;height:500px;"><div id="g-mapdisplay" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=İstanbul,+Türkiye&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="googlecoder" rel="nofollow" href="https://www.bootstrapskins.com/themes" id="get-data-for-embed-map">premium bootstrap themes</a><style>#g-mapdisplay img.text-marker{max-width:none!important;background:none!important;}img{max-width:none}</style></div></div>
+                <div class="col-md-6 company_address">
+                    <h4>Adresimiz</h4>
+                    <p>500 Lorem Ipsum Dolor Sit,</p>
+                    <p>22-56-2-9 Sit Amet, Lorem,</p>
+                    <p>USA</p>
+                    <p>Phone:(00) 222 666 444</p>
+                    <p>Fax: (000) 123 456 78 0</p>
+                    <p>Email: <a href="mailto:info@example.com">info@mycompany.com</a></p>
+                    <p>Follow on: <a href="#">Facebook</a>, <a href="#">Twitter</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi
+{
+    public partial class iletisim : System.Web.UI.Page
+    {
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void btnGonder_Click(object sender, EventArgs e)
+        {
+            TBLILETISIM t = new TBLILETISIM();
+            t.ADSOYAD = txtAdSoyad.Text;
+            t.KONU = txtKonu.Text;
+            t.MAIL = txtMail.Text;
+            t.TELEFON = txtTelefon.Text;
+            t.MESAJ = txtMesaj.Text;
+            db.TBLILETISIM.Add(t);
+            db.SaveChanges();
+            Response.Redirect("iletisim.aspx");
+        }
+    }
+}
+```
+
+### Ön Yüz Master Kodları
+
+```c#
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Kullanici.master.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Kullanici" %>
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Personal Blog a Blogging Category Flat Bootstarp  Responsive Website Template | Home :: w3layouts</title>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+    <link href="web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="web/css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Personal Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!----webfonts---->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+    <!----//webfonts---->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!--end slider -->
+    <!--script-->
+    <script type="text/javascript" src="web/js/move-top.js"></script>
+    <script type="text/javascript" src="web/js/easing.js"></script>
+    <!--/script-->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 900);
+            });
+        });
+    </script>
+    <!---->
+
+</head>
+<body>
+    <!---header---->
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="Default.aspx">
+                    <img src="web/images/logo.jpg" title="" /></a>
+            </div>
+            <!---start-top-nav---->
+            <div class="top-menu">
+                <div class="search">
+                    <form>
+                        <input type="text" placeholder="" required="">
+                        <input type="submit" value="" />
+                    </form>
+                </div>
+                <span class="menu"></span>
+                <ul>
+                    <li><a href="Default.aspx">Bloglar</a></li>
+                    <li><a href="Hakkimizda.aspx">Hakkımızda</a></li>
+                    <li><a href="iletisim.aspx">İletişim</a></li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <script>
+                $("span.menu").click(function () {
+                    $(".top-menu ul").slideToggle("slow", function () {
+                    });
+                });
+            </script>
+            <!---//End-top-nav---->
+        </div>
+    </div>
+    <!--/header-->
+    <div class="content">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    </div>
+    <!---->
+    <div class="footer">
+        <div class="container">
+            <p>Copyrights © 2023 Dizi&Film Blog Tüm Hakları Saklıdır | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+        </div>
+    </div>
+
+```
+
+
+### [Admin Sayfası] Bloglar
+![Bloglar](https://user-images.githubusercontent.com/95151751/232873440-9d59ea16-f28e-44eb-aada-783a74bc1603.png)
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Bloglar.aspx.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar.Bloglar" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>BAŞLIK</th>
+            <th>TARİH</th>
+            <th>TÜR</th>
+            <th>KATEGORİ</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+        <asp:Repeater ID="Repeater1" runat="server">
+            <ItemTemplate>
+                <tr>
+                    <td><%# Eval("BLOGID") %></td>
+                    <td><%# Eval("BLOGBASLIK") %></td>
+                    <td><%# Eval("BLOGTARIH") %></td>
+                    <td><%# Eval("BLOGTUR") %></td>
+                    <td><%# Eval("BLOGKATEGORI") %></td>
+                    <td>
+                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-danger" NavigateUrl='<%# "BlogSil.aspx?BLOGID="+Eval("BLOGID") %>'>Sil</asp:HyperLink>
+                    </td>
+                    <td>
+                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-success" NavigateUrl='<%# "BlogGuncelle.aspx?BLOGID="+Eval("BLOGID") %>'>Güncelle</asp:HyperLink>
+
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:Repeater>
+    </table>
+    <a href="YeniBlog.aspx" class="btn btn-primary">Yeni Blog</a>
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
+{
+    public partial class Bloglar : System.Web.UI.Page
+    {
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Repeater1.DataSource = db.TBLBLOG.ToList();
+            Repeater1.DataBind();
+        }
+    }
+}
+```
+
+### [Admin Sayfası] Yeni Blog
+![YeniBlog](https://user-images.githubusercontent.com/95151751/232873512-17d7bee1-3146-42da-80f7-ec1355c5d1b2.png)
+
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="YeniBlog.aspx.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar.YeniBlog" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <form runat="server" class="form-group">
+        <asp:TextBox id="txtBaslik" runat="server" CssClass="form-control" placeholder="Blog Başlık"></asp:TextBox>
+        <br />
+        <asp:TextBox id="txtTarih" runat="server" CssClass="form-control" placeholder="Blog Tarih"></asp:TextBox>
+        <br />
+        <asp:TextBox id="txtGorsel" runat="server" CssClass="form-control" placeholder="Blog Görsel"></asp:TextBox>
+        <br />
+        <asp:DropDownList id="drpTur" runat="server" CssClass="form-control" DataTextField="TURAD" DataValueField="TURID"></asp:DropDownList>
+        <br />
+        <asp:DropDownList id="drpKategori" runat="server" CssClass="form-control" DataTextField="KATEGORIAD" DataValueField="KATEGORIID"></asp:DropDownList>
+        <br />
+        <asp:TextBox id="txtIcerik" runat="server" CssClass="form-control" placeholder="Blog İçerik" textmode="multiline" height="200px"></asp:TextBox>
+        <br />
+        <asp:Button id="btnKaydet" runat="server" Text="Kaydet" CssClass="btn btn-primary" OnClick="btnKaydet_Click" />
+    </form>
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
+{
+    public partial class YeniBlog : System.Web.UI.Page
+    {
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            if (!IsPostBack)
+            {
+                //Türleri Listeleme
+                drpTur.DataSource = (from x in db.TBLTUR
+                                     select new
+                                     {
+                                         x.TURID,
+                                         x.TURAD
+                                     }).ToList();
+                drpTur.DataBind();
+
+
+                //Kategorileri Listeleme
+                drpKategori.DataSource = (from x in db.TBLKATEGORI
+                                          select new
+                                          {
+                                              x.KATEGORIID,
+                                              x.KATEGORIAD
+                                          }).ToList();
+                drpKategori.DataBind();
+            }
+        }
+
+        protected void btnKaydet_Click(object sender, EventArgs e)
+        {
+            TBLBLOG t = new TBLBLOG();
+            t.BLOGBASLIK = txtBaslik.Text;
+            t.BLOGTARIH = DateTime.Parse(txtTarih.Text);
+            t.BLOGGORSEL = txtGorsel.Text;
+            t.BLOGTUR = byte.Parse(drpTur.SelectedValue);
+            t.BLOGKATEGORI = byte.Parse(drpKategori.SelectedValue);
+            t.BLOGICERIK = txtIcerik.Text;
+            db.TBLBLOG.Add(t);
+            db.SaveChanges();
+            Response.Redirect("Bloglar.aspx");
+        }
+    }
+}
+```
+
+
+### [Admin Sayfası] Blog Sil
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
+{
+    public partial class BlogSil : System.Web.UI.Page
+    {
+
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            int id = int.Parse(Request.QueryString["BLOGID"]);
+            db.TBLBLOG.Remove(db.TBLBLOG.Find(id));
+            db.SaveChanges();
+            Response.Redirect("Bloglar.aspx");
+        }
+    }
+}
+```
+
+### [Admin Sayfası] Blog Güncelle
+![BlogGuncelle](https://user-images.githubusercontent.com/95151751/232873751-75a4a863-9838-4292-8cf1-bfc2cd72849b.png)
+
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="BlogGuncelle.aspx.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar.BlogGuncelle" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <form runat="server" class="form-group">
+        <asp:TextBox ID="txtID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="txtBaslik" runat="server" CssClass="form-control" placeholder="Blog Başlık"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="txtTarih" runat="server" CssClass="form-control" placeholder="Blog Tarih"></asp:TextBox>
+        <br />
+        <asp:TextBox ID="txtGorsel" runat="server" CssClass="form-control" placeholder="Blog Görsel"></asp:TextBox>
+        <br />
+        <asp:DropDownList ID="drpTur" runat="server" CssClass="form-control" DataTextField="TURAD" DataValueField="TURID"></asp:DropDownList>
+        <br />
+        <asp:DropDownList ID="drpKategori" runat="server" CssClass="form-control" DataTextField="KATEGORIAD" DataValueField="KATEGORIID"></asp:DropDownList>
+        <br />
+        <asp:TextBox ID="txtIcerik" runat="server" CssClass="form-control" placeholder="Blog İçerik" TextMode="multiline" Height="200px"></asp:TextBox>
+        <br />
+        <asp:Button ID="btnGuncelle" runat="server" Text="Güncelle" CssClass="btn btn-success" OnClick="btnGuncelle_Click" />
+    </form>
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
+{
+    public partial class BlogGuncelle : System.Web.UI.Page
+    {
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(Request.QueryString["BLOGID"]);
+
+            if (!IsPostBack)
+            {
+                //Türleri Listeleme
+                drpTur.DataSource = (from x in db.TBLTUR
+                                     select new
+                                     {
+                                         x.TURID,
+                                         x.TURAD
+                                     }).ToList();
+                drpTur.DataBind();
+
+
+                //Kategorileri Listeleme
+                drpKategori.DataSource = (from x in db.TBLKATEGORI
+                                          select new
+                                          {
+                                              x.KATEGORIID,
+                                              x.KATEGORIAD
+                                          }).ToList();
+                drpKategori.DataBind();
+            }
+
+
+
+            var deger = db.TBLBLOG.Find(id);
+
+            txtID.Text = deger.BLOGID.ToString();
+            txtBaslik.Text = deger.BLOGBASLIK;
+            txtTarih.Text = deger.BLOGTARIH.ToString();
+            txtGorsel.Text = deger.BLOGGORSEL;
+            drpKategori.SelectedValue = deger.BLOGKATEGORI.ToString();
+            drpTur.SelectedValue = deger.BLOGTUR.ToString();
+            txtIcerik.Text = deger.BLOGICERIK;
+
+        }
+
+        protected void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(Request.QueryString["BLOGID"]);
+
+            var deger = db.TBLBLOG.Find(id);
+            deger.BLOGBASLIK = txtBaslik.Text;
+            deger.BLOGTARIH = DateTime.Parse(txtTarih.Text);
+            deger.BLOGGORSEL = txtGorsel.Text;
+            deger.BLOGKATEGORI = byte.Parse(drpKategori.SelectedValue);
+            deger.BLOGTUR = byte.Parse(drpTur.SelectedValue);
+            deger.BLOGICERIK = txtIcerik.Text;
+            db.SaveChanges();
+            Response.Redirect("Bloglar.aspx");
+            
+        }
+    }
+}
+```
+
+
+### [Admin Sayfası] Yorumlar
+![Yorumlar](https://user-images.githubusercontent.com/95151751/232873809-a8625879-7084-4cbc-9cd1-3338835414d1.png)
+
+
+```c#
+<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Yorumlar.aspx.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar.Yorumlar" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>KULLANICI</th>
+            <th>BLOG</th>
+            <th>SİL</th>
+        </tr>
+        <asp:Repeater ID="Repeater1" runat="server">
+            <ItemTemplate>
+                <tr>
+                    <td><%# Eval("YORUMID") %></td>
+                    <td><%# Eval("KULLANICIAD") %></td>
+                    <td><%# Eval("BLOGBASLIK") %></td>
+                    <td>
+                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-danger" NavigateUrl='<%# "YorumSil.aspx?YORUMID="+Eval("YORUMID") %>'>Sil</asp:HyperLink>
+                    </td>
+<%--                    <td>
+                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="btn btn-success" NavigateUrl='<%# "YorumGuncelle.aspx?YORUMID="+Eval("YORUMID") %>'>Güncelle</asp:HyperLink>
+
+                    </td>--%>
+                </tr>
+            </ItemTemplate>
+        </asp:Repeater>
+    </table>
+
+
+</asp:Content>
+
+```
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Entity;
+
+namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
+{
+    public partial class Yorumlar : System.Web.UI.Page
+    {
+        Dbo_BlogDiziEntities db = new Dbo_BlogDiziEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Repeater1.DataSource = (from x in db.TBLYORUM
+                                    select new
+                                    {
+                                        x.YORUMID,
+                                        x.KULLANICIAD,
+                                        x.TBLBLOG.BLOGBASLIK
+                                    }).ToList();
+            Repeater1.DataBind();
+        }
+    }
+}
+```
+
+
+### Admin Sayfası Master Kodları
+
+```c#
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Admin" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin Paneli</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../Default.aspx" style="background-color:black;" target="_blank">Dizi & Film Sitesi</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="Bloglar.aspx">Bloglar</a></li>
+      <li><a href="Yorumlar.aspx">Yorumlar</a></li>
+      <li><a href="Mesajlar.aspx">Mesajlar</a></li>
+      <li><a href="Hakkimizda.aspx">Hakkımızda</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+</div>
+
+</body>
+</html>
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
