@@ -1,0 +1,34 @@
+﻿@using _10_MVC01_Youtube_Proje.Models.Entity;
+@model List<TBLKATEGORILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>KATEGORİ ID</th>
+            <th>KATEGORİ ADI</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+        <tbody>
+            @foreach (var kt in Model)
+            {
+            <tr>
+                <th>@kt.KATEGORIID</th>
+                <td>@kt.KATEGORIAD</td>
+                <td><a href="/KATEGORI/SIL/@kt.KATEGORIID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/KATEGORI/KategoriGetir/@kt.KATEGORIID" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/KATEGORI/YeniKategori" class="btn btn-primary"> YENİ KATEOGRİ EKLE</a>
+}
+else
+{
+    <p>Henüz kategori eklenmemiş.</p>
+}

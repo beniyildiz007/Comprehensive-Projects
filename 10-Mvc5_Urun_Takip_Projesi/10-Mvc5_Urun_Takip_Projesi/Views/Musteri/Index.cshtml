@@ -1,0 +1,33 @@
+﻿@using _10_MVC01_Youtube_Proje.Models.Entity;
+@model List<TBLMUSTERILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>MÜŞTERİ ID</th>
+        <th>MÜŞTERİ ADI</th>
+        <th>MÜŞTERİ SOYADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    <tbody>
+        @foreach (var must in Model)
+        {
+            <tr>
+                <th>@must.MUSTERIID</th>
+                <td>@must.MUSTERIAD</td>
+                <td>@must.MUSTERISOYAD</td>
+                @*<td><a href="/MUSTERI/SIL/@must.MUSTERIID" class="btn btn-danger">SİL</a></td>*@
+                <td>@Html.ActionLink("SİL", "SIL", new { id = must.MUSTERIID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>
+                <td><a href="/MUSTERI/MusteriGetir/@must.MUSTERIID" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/MUSTERI/YeniMusteri" class="btn btn-primary"> YENİ MUSTERI EKLE</a>
+
+
+
