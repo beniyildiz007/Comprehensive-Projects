@@ -10139,7 +10139,7 @@ public partial class Dersler : System.Web.UI.Page
 }
 ```
 
-# 10- Mvc5 Ürün Takip Projesi <a name="project1"></a>
+# 10- Mvc5 Ürün Takip Projesi <a name="project10"></a>
 
 ### Ürünler
 ![Urunler-1](https://user-images.githubusercontent.com/95151751/232947681-11c3d4c1-b93b-474b-8389-34892983391b.png)
