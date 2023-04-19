@@ -1,9 +1,9 @@
-
+<a name="i1"></a>
 
 >_Büyük fikirler büyük başarılar getirmez, küçük başarılar büyük başarıları inşa eder._
 
 
-<a name="i1"></a>
+
 ## İçindekiler (Contents)
 1. [C# Hastane Otomasyon Projesi](#project1)
 2. [C# Pansiyon Kayıt Otomasyon Projesi](#project2)
@@ -333,7 +333,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Doktor Girişi
+### Doktor Girişi [Başa Dön ↑](#i1)
 [![Berkan Nihat Yıldız](https://i.hizliresim.com/c4fb5vt.jpg)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -380,7 +380,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Doktor Detay Paneli
+### Doktor Detay Paneli [Başa Dön ↑](#i1)
 [![Berkan Nihat Yıldız](https://user-images.githubusercontent.com/95151751/224477255-4dbe4247-38f3-4e4d-ab36-c6f7eb1d48cf.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -455,7 +455,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Doktor Bilgi Düzenleme
+### Doktor Bilgi Düzenleme [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/224477337-a3525c9c-2f69-4a9b-af64-41a577fb9a66.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -514,7 +514,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Duyurular
+### Duyurular [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/224477381-cdc78352-aa15-44b9-9c4e-b38f555002ae.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -549,7 +549,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Sekreter Girişi
+### Sekreter Girişi [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/224477430-1e559b05-f109-42b2-b50f-da8a16509105.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -597,7 +597,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Sekreter Detay Paneli
+### Sekreter Detay Paneli [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/224477465-47882ef2-433e-4901-830f-6807d05d5e19.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -727,7 +727,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Doktor paneli
+### Doktor paneli [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/224477518-c64e304c-f3ca-4f86-b25f-c17688568254.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -786,7 +786,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Branş Paneli
+### Branş Paneli [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/224477567-6c20776a-6fe5-45b4-9561-3935a2984568.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -858,7 +858,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Randevu Listesi
+### Randevu Listesi [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/224477587-85deecaa-e7d1-441b-8e76-1ca60de25edf.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -902,7 +902,7 @@ namespace _02_Hastane_Proejesi
 
 # 02- C# Pansiyon Kayıt Otomasyon Projesi <a name="project2"></a>
 
-### Admin Girişi
+### Admin Girişi [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226797637-0837d15b-96a0-46a4-802c-c9966f1ddb25.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -974,7 +974,7 @@ namespace _02_Pansiyon_Kayit_Projesi
 }
 ```
 
-### Anasayfa
+### Anasayfa [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226797769-eb020630-bb10-4a05-9cea-630a55da49de.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1051,7 +1051,7 @@ namespace _02_Pansiyon_Kayit_Projesi
 }
 ```
 
-### Yeni Müşteri
+### Yeni Müşteri [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226797918-e19587be-d530-490b-b5b2-eed6dcca82c7.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1175,7 +1175,7 @@ namespace _02_Pansiyon_Kayit_Projesi
 }
 ```
 
-### Odalar
+### Odalar [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226797995-75d4034c-fdbc-4f45-92ff-98424eb4457d.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1200,7 +1200,7 @@ namespace _02_Pansiyon_Kayit_Projesi
 }
 ```
 
-### Müşteriler
+### Müşteriler [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226798080-8804c5c5-4d1b-4fbc-9f65-fcab07e14004.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1372,7 +1372,7 @@ namespace _02_Pansiyon_Kayit_Projesi
 }
 ```
 
-### Gelir-Gider Formu
+### Gelir-Gider Formu [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226798145-e39137b5-cbb8-4201-a350-8b8b213204d4.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1467,7 +1467,7 @@ namespace _02_Pansiyon_Kayit_Projesi
 }
 ```
 
-### Stoklar
+### Stoklar [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226798207-bae777f7-02dc-410f-8a44-ee5cc5003f36.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1533,7 +1533,7 @@ namespace _02_Pansiyon_Kayit_Projesi
 }
 ```
 
-### Hakkımızda
+### Hakkımızda [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226798259-c71ab6c5-c136-430d-ac86-ca394e779cba.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
 
@@ -1589,7 +1589,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Anasayfa
+### Anasayfa [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799122-3bdffbeb-b544-4f44-ba07-999c6bacdbcf.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1741,7 +1741,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Öğrenci Kayıt
+### Öğrenci Kayıt [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799232-86e4777e-b650-4b8e-9fd7-95af913ce015.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1851,7 +1851,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Öğrenci Listesi
+### Öğrenci Listesi [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799281-b36f264f-e8f8-4894-b7ee-4015c12b76a5.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -1902,7 +1902,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Öğrenci Bilgileri Düzenle
+### Öğrenci Bilgileri Düzenle [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799411-7531874b-84a4-4f2b-bce1-1e28f93087a7.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2011,7 +2011,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Bölümler
+### Bölümler [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799468-efddc08a-ea8e-434b-8d05-cfefb281abbd.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2094,7 +2094,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Ödemeler
+### Ödemeler [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799588-66e49e73-cd21-42ec-8e8d-65d0cc1cbe5f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2167,7 +2167,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Gider Ekle
+### Gider Ekle [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799665-4a958e4d-182b-4f64-bea4-9da765e0b583.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2210,7 +2210,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Gider Listesi
+### Gider Listesi [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799711-6266178b-ecd0-47bc-a70b-f672b355d5f5.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2257,7 +2257,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Giderleri Güncelle
+### Giderleri Güncelle [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799765-234cffa1-c13d-4285-b74c-e2e9ec8caa4e.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2316,7 +2316,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Gelir İstatistikleri
+### Gelir İstatistikleri [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226799822-9346dae0-3819-44c2-b410-ed0027fae62d.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2391,7 +2391,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Yönetici İşlemleri
+### Yönetici İşlemleri [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226800008-1a148e1c-96bd-4c0d-9c0f-e7aa01d6829a.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2474,7 +2474,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Personel İşlemleri
+### Personel İşlemleri [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226800049-d1e34149-8a35-4d75-8228-8c89f5a1a2db.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2555,7 +2555,7 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Not Oluştur
+### Not Oluştur [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226800087-58029af7-f61e-4062-a0b0-e249bdef3e39.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2593,25 +2593,25 @@ namespace _03_Ogrenci_Yurt_Kayit_Otomasyonu
 }
 ```
 
-### Not Kaydet (saveFileDialog)
+### Not Kaydet (saveFileDialog) [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226800191-a9c7c66a-159f-4469-b73b-639823deb78f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
 
-### Erişim Kolaylığı (calc.exe && mspaint.exe)
+### Erişim Kolaylığı (calc.exe && mspaint.exe) [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226800258-96241647-1430-4ec1-94ae-f7d660350ea6.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
 
-### Erişim Kolaylığı (Radyolar)
+### Erişim Kolaylığı (Radyolar) [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226800318-deb108e4-7408-4b3f-a5ba-51b3f22b5973.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
 
-### Erişim Kolaylığı (Hakkımızda)
+### Erişim Kolaylığı (Hakkımızda) [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/226800413-b0da36c4-fdab-429f-9393-571f51099be4.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
 
 # 04- C# ile DevExpress'te SQL Tabanlı Ticari Otomasyon <a name="project4"></a>
 
-### Admin Girişi
+### Admin Girişi [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228115446-8e420c36-1ba4-4532-b68f-0145ad9e6046.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2676,7 +2676,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Ana Form
+### Ana Form [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228115554-10fc1990-f44b-4ed9-bf1f-9ceb1370c70f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2877,7 +2877,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Anasayfa
+### Anasayfa [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228115554-10fc1990-f44b-4ed9-bf1f-9ceb1370c70f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -2953,7 +2953,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Ürünler
+### Ürünler [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228115663-199e6596-9f2c-4b8e-a094-7e2be75d460c.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -3085,7 +3085,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Stoklar
+### Stoklar [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228115719-b305022b-8212-4b72-8af7-fe4306fa377b.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -3132,7 +3132,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Müşteriler
+### Müşteriler [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228115774-5b0554bc-395a-41f8-8f24-5313d9d51e6f.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -3292,7 +3292,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Firmalar
+### Firmalar [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228115857-24d1bd2b-6fab-4a45-91fe-081d2375672d.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
 [![image](https://user-images.githubusercontent.com/95151751/228115951-b2a1f246-5840-4e6b-941b-2d50bfa2cac5.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
@@ -3498,7 +3498,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Personeller
+### Personeller [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116019-25dfe47f-733a-4676-accc-b68d39c25c89.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -3660,7 +3660,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Giderler
+### Giderler [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116065-488ed382-73e2-4969-ab9a-aa80e165fbc1.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -3793,7 +3793,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Kasa
+### Kasa [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116170-997c5914-5ac6-45e6-9026-2855e8997886.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -3970,7 +3970,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Notlar
+### Notlar [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116215-6cbc0b72-a2fc-4a65-974b-743da08542f0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4103,7 +4103,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Not Detay
+### Not Detay [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116309-988c8057-28b7-40ec-a786-5444ae9ca0c0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4134,7 +4134,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Bankalar
+### Bankalar [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116373-3b871930-49c0-41b5-9292-6a1b9e1d3a53.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4313,7 +4313,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Rehber
+### Rehber [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116446-17b61e92-f456-449f-9cfa-533daa9a255b.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4379,7 +4379,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Mail Gönder
+### Mail Gönder [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116517-f0049b1e-9722-44ec-996f-0bc993031c99.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4426,7 +4426,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Faturalar
+### Faturalar [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116606-014fe2b9-4bad-49fd-ab3d-35af1458d498.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4594,7 +4594,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Fatura Ürün Detayı
+### Fatura Ürün Detayı [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116680-50cf2df5-fe99-44d4-9a09-aee1644c9f17.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4650,7 +4650,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Fatura Ürün Düzenleme
+### Fatura Ürün Düzenleme [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116764-2a2f5203-bbd8-4f67-bb7b-f95fc72d1b68.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4719,10 +4719,10 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Hareketler (Müşteri Hareketleri)
+### Hareketler (Müşteri Hareketleri) [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116838-a3c5fd23-2550-4624-8529-424c13a16af6.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 
-### Hareketler (Firma Hareketleri)
+### Hareketler (Firma Hareketleri) [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228116878-992cf87f-7674-4183-a277-d49050490bd9.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4773,7 +4773,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
     }
 }
 ```
-### Ayarlar
+### Ayarlar [Başa Dön ↑](#i1)
 [![image](https://user-images.githubusercontent.com/95151751/228117031-529a034f-9bde-4e16-91ad-c71c5e739db0.png)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -4876,7 +4876,7 @@ namespace _04_DevExpress_SQL_Tabanli_Ticari_Otomasyon
 
 # ASP.NET Bootstrap ile SQL Tabanlı Web Projesi <a name="project5"></a>
 
-### Login Paneli
+### Login Paneli [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230774885-61872aa9-91ba-4187-97f0-ad5be8f3cdc8.png)
 
 ```c#
@@ -5007,7 +5007,7 @@ public partial class LoginPanel : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Öğrenci Listesi
+### [Öğretmen] Öğrenci Listesi [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230774983-d8bee478-cf93-41b1-8c7a-edfe64292910.png)
 
 ```c#
@@ -5078,7 +5078,7 @@ public partial class _Default : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Öğrenci Güncelle
+### [Öğretmen] Öğrenci Güncelle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230776203-58e9e0b5-1e6a-4ad3-86d4-6ea5768f6f4a.png)
 
 ```c#
@@ -5184,7 +5184,7 @@ public partial class OgrenciGuncelle : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Öğrenci Ekle
+### [Öğretmen] Öğrenci Ekle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775043-35c7ed8a-07ef-416a-bd56-06f6f30a6461.png)
 
 ```c#
@@ -5258,7 +5258,7 @@ public partial class OgrenciEkle : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Dersler
+### [Öğretmen] Dersler [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775078-0b69f6bc-8caf-4fb9-96d2-72843ed4731d.png)
 
 ```c#
@@ -5321,7 +5321,7 @@ public partial class DersListesi : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Ders Güncelle
+### [Öğretmen] Ders Güncelle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230776329-e27ee0f7-d05c-4687-bf56-eaec93934999.png)
 
 ```c#
@@ -5382,7 +5382,7 @@ public partial class DersGuncelle : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Ders Ekle
+### [Öğretmen] Ders Ekle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230776373-02b2fd4e-f0df-49d2-90ce-6bba29e06a77.png)
 
 ```c#
@@ -5433,7 +5433,7 @@ public partial class DersEkle : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Gelen Mesajlar
+### [Öğretmen] Gelen Mesajlar [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775114-af06e388-fe88-42eb-b927-8b1e99d0bf47.png)
 
 ```c#
@@ -5501,7 +5501,7 @@ public partial class GelenMesajlar : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Giden Mesajlar
+### [Öğretmen] Giden Mesajlar [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775143-0d3cd4af-aaf3-41af-a21f-3b042bb2ae38.png)
 
 ```c#
@@ -5569,7 +5569,7 @@ public partial class GidenMesajlar : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Mesaj Oluştur
+### [Öğretmen] Mesaj Oluştur [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775170-1c5b777f-1697-482f-acde-0c600df6fde0.png)
 
 ```
@@ -5639,7 +5639,7 @@ public partial class MesajOlustur : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Duyuru Listesi
+### [Öğretmen] Duyuru Listesi [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775191-b462f27b-6cce-4a63-8e7c-fed3674fef11.png)
 
 ```c#
@@ -5710,7 +5710,7 @@ public partial class DuyuruListesi : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Duyuru Güncelle
+### [Öğretmen] Duyuru Güncelle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230776912-f26c8df5-415c-4d9e-83a9-b5b58219fd25.png)
 
 ```c#
@@ -5781,7 +5781,7 @@ public partial class DuyuruGuncelle : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Duyuru Ekle
+### [Öğretmen] Duyuru Ekle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775222-5fec40e2-a556-4c7f-b334-215f5db2f4f2.png)
 
 ```c#
@@ -5850,7 +5850,7 @@ public partial class DuyuruEkle : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Notlar
+### [Öğretmen] Notlar [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775245-187a57fb-1886-4f31-a123-63766c99f9cc.png)
 
 ```c#
@@ -5924,7 +5924,7 @@ public partial class NotListesi : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Not Güncelle
+### [Öğretmen] Not Güncelle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230776986-67704060-c7de-4770-bf64-ab0bbee8a059.png)
 
 ```c#
@@ -6045,7 +6045,7 @@ public partial class NotGuncelle : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] İstatistikler
+### [Öğretmen] İstatistikler [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775266-b85bc4c5-10ea-42dc-bd31-20c1294cb952.png)
 
 ```c#
@@ -6143,7 +6143,7 @@ public partial class Istatistikler : System.Web.UI.Page
 }
 ```
 
-### [Öğretmen] Grafikler
+### [Öğretmen] Grafikler [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775289-a6ef279c-19f5-4834-b115-2ce5f23630c8.png)
 
 ```c#
@@ -6289,7 +6289,7 @@ public partial class Grafikler : System.Web.UI.Page
 }
 ```
 
-### [Öğrenci] Profilim
+### [Öğrenci] Profilim [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775379-ea345c33-1806-4a70-be3e-24dc2db8703b.png)
 
 ```c#
@@ -6366,7 +6366,7 @@ public partial class OgrenciDefault : System.Web.UI.Page
 }
 ```
 
-### [Öğrenci] Şifre Değiştir
+### [Öğrenci] Şifre Değiştir [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230777103-f3d228b1-443e-4d86-9a2e-fc0c93f32fab.png)
 
 ```c#
@@ -6446,7 +6446,7 @@ public partial class OgrenciGuncelle2 : System.Web.UI.Page
 }
 ```
 
-### [Öğrenci] Gelen Mesajlar
+### [Öğrenci] Gelen Mesajlar [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775422-459e10e8-e25e-4504-aea3-618ca7145c08.png)
 
 ```c#
@@ -6512,7 +6512,7 @@ public partial class OgrenciGelenMesajlar : System.Web.UI.Page
 }
 ```
 
-### [Öğrenci] Giden Mesajlar
+### [Öğrenci] Giden Mesajlar [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775630-45354a61-7263-4b4d-b1eb-aca4618079b7.png)
 
 ```c#
@@ -6578,7 +6578,7 @@ public partial class OgrenciGidenMesajlar : System.Web.UI.Page
 }
 ```
 
-### [Öğrenci] Mesaj Oluştur
+### [Öğrenci] Mesaj Oluştur [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775650-125d7a27-bbc3-4416-974e-793a5b481881.png)
 
 ```c#
@@ -6644,7 +6644,7 @@ public partial class OgrenciMesajOlustur : System.Web.UI.Page
 }
 ```
 
-### [Öğrenci] Duyurular
+### [Öğrenci] Duyurular [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775659-b673551d-15f4-4d98-bb8f-ecebaecf68c7.png)
 
 ```c#
@@ -6706,7 +6706,7 @@ public partial class OgrenciDuyuru : System.Web.UI.Page
 }
 ```
 
-### [Öğrenci] Sınav Notları
+### [Öğrenci] Sınav Notları [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/230775677-db9fa784-df19-4f05-866f-f896e041bf53.png)
 
 ```c#
@@ -6777,7 +6777,8 @@ public partial class OgrenciNotu : System.Web.UI.Page
 ```
 
 # ASP.NET Entity Framework ile Dinamik Admin Panelli CV Sitesi <a name="project6"></a>
-### Hakkımda
+
+### Hakkımda [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231292449-8892f81f-9cf0-4845-84e9-35998b71c62a.png)
 
 ```c#
@@ -6999,16 +7000,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 ```
 
-### Çalışmalarım -1
+### Çalışmalarım -1 [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231292599-f249001a-9032-434a-a0cc-1794fed0f3a1.png)
 
-### Çalışmalarım -2
+### Çalışmalarım -2 [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231292704-3c5788ce-ca6d-4959-9ac1-12b30535b538.png)
 
-### İletişim
+### İletişim [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231292750-5c283c50-2c88-4711-9041-54683855408f.png)
 
-### [Admin Paneli] Yeteneklerim
+### [Admin Paneli] Yeteneklerim [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231292932-45e055ae-6281-4e5e-bcd9-8e0aa55acb3e.png)
 ```c#
 <%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Yeteneklerim.aspx.cs" Inherits="_06_CvEntityProje.Hakkkimda" %>
@@ -7071,7 +7072,7 @@ namespace _06_CvEntityProje
 }
 ```
 
-### [Admin Paneli] Yeni Yetenek Ekle
+### [Admin Paneli] Yeni Yetenek Ekle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231292996-9fff056a-79f0-4435-9cf5-2f7cfd787455.png)
 ```c#
 <%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="YeniYetenekEkle.aspx.cs" Inherits="_06_CvEntityProje.YeniYetenekEkle" %>
@@ -7124,7 +7125,7 @@ namespace _06_CvEntityProje
 }
 ```
 
-### [Admin Paneli] Yetenek Güncelle
+### [Admin Paneli] Yetenek Güncelle [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231293044-560601cc-c8f4-4407-97d5-cc5292700ad1.png)
 ```c#
 <%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="YetenekGuncelle.aspx.cs" Inherits="_06_CvEntityProje.YetenekGuncelle" %>
@@ -7185,7 +7186,7 @@ namespace _06_CvEntityProje
 }
 ```
 
-### [Admin Paneli] Yetenek Sil
+### [Admin Paneli] Yetenek Sil [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -7211,7 +7212,7 @@ namespace _06_CvEntityProje
 }
 ```
 
-### [Admin Paneli] İletişim
+### [Admin Paneli] İletişim [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231293116-2aee111a-c9f4-4552-b62b-ab03745f3bed.png)
 ```c#
 <%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="iletisim.aspx.cs" Inherits="_06_CvEntityProje.iletisim" %>
@@ -7268,7 +7269,7 @@ namespace _06_CvEntityProje
 }
 ```
 
-### [Admin Paneli] Mesaj Detayları
+### [Admin Paneli] Mesaj Detayları [Başa Dön ↑](#i1)
 ![image](https://user-images.githubusercontent.com/95151751/231293162-d597e7fc-b0bf-4c41-9b49-2a7abf79010a.png)
 ```c#
 <%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="MesajDetay.aspx.cs" Inherits="_06_CvEntityProje.MesajDetay" %>
@@ -7326,7 +7327,7 @@ namespace _06_CvEntityProje
 
 # ASP.NET Bootstrap Login & Admin Panelli Dinamik CV Sitesi <a name="project7"></a>
 
-### Site Ön Yüzü Kodları
+### Site Ön Yüzü Kodları [Başa Dön ↑](#i1)
 
 ```c#
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
@@ -7599,32 +7600,32 @@ namespace _06_CvEntityProje
 
 ```
 
-### [Site Ön Yüzü] Hakkımda
+### [Site Ön Yüzü] Hakkımda [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231579686-1ec17f14-afe3-4b26-aecf-f7ed0fa65c5b.png)
 
-### [Site Ön Yüzü] Deneyimlerim
+### [Site Ön Yüzü] Deneyimlerim [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231579738-314be45b-5424-4b4d-978d-517bc26eb801.png)
 
-### [Site Ön Yüzü] Eğitim Hayatım
+### [Site Ön Yüzü] Eğitim Hayatım [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231579811-e79a4782-fddb-4cad-9222-c8ccd7e76096.png)
 
-### [Site Ön Yüzü] Yeteneklerim
+### [Site Ön Yüzü] Yeteneklerim [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231579855-973159bd-5a18-44a7-aa5c-9c1c3e067e18.png)
 
-### [Site Ön Yüzü] Hobilerim
+### [Site Ön Yüzü] Hobilerim [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231579919-89a84968-4f91-4d95-8c64-e893f78d6175.png)
 
-### [Site Ön Yüzü] Sertifikalarım
+### [Site Ön Yüzü] Sertifikalarım [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231579990-5a3c3b61-e439-4890-bfe6-7a913e385549.png)
 
 
-### Login Paneli
+### Login Paneli [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231578988-2bf8f5ab-c963-4fd9-8b41-cede7c92d470.png)
 
@@ -7745,7 +7746,7 @@ public partial class LoginPanel : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Hakkımda
+### [Admin Paneli] Hakkımda [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231580390-380ccfa3-f8be-4f50-ac61-c790cf4bc666.png)
 
@@ -7835,7 +7836,7 @@ public partial class Hakkimda : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Deneyimlerim
+### [Admin Paneli] Deneyimlerim [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231580539-9fbeba1c-a38f-4b51-a444-d4c76292e59c.png)
 
@@ -7903,7 +7904,7 @@ public partial class AdminDeneyimler : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Deneyim Ekle
+### [Admin Paneli] Deneyim Ekle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231580625-f52363b0-6ae6-4fde-ab02-8ef36c29d613.png)
 
@@ -7970,7 +7971,7 @@ public partial class AdminDeneyimEkle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Deneyim Sil
+### [Admin Paneli] Deneyim Sil [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -7991,7 +7992,7 @@ public partial class AdminDeneyimSil : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Deneyim Güncelle
+### [Admin Paneli] Deneyim Güncelle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231580764-853e2fda-a052-4bf9-bc87-3e73c5fef77a.png)
 
@@ -8075,7 +8076,7 @@ public partial class AdminDeneyimGuncelle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Eğitim Hayatım
+### [Admin Paneli] Eğitim Hayatım [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231580859-390ce01b-6390-49e9-974f-132f974e3d29.png)
 
@@ -8144,7 +8145,7 @@ public partial class AdminEgitimler : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Eğitim Ekle
+### [Admin Paneli] Eğitim Ekle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231580929-fbc9e0aa-05f7-4493-82d5-87bf3a0f3ccd.png)
 
@@ -8216,7 +8217,7 @@ public partial class AdminEgitimEkle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Eğitim Sil
+### [Admin Paneli] Eğitim Sil [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -8237,7 +8238,7 @@ public partial class AdminEgitimSil : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Eğitim Güncelle
+### [Admin Paneli] Eğitim Güncelle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231581040-9b59c7a4-7240-403f-8055-e91b860e2fdc.png)
 
@@ -8325,7 +8326,7 @@ public partial class AdminEgitimGuncelle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Yeteneklerim
+### [Admin Paneli] Yeteneklerim [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231581127-e4036fdc-a73a-4c3e-ab94-5ed2c7bd99f6.png)
 
@@ -8387,7 +8388,7 @@ public partial class AdminYetenekler : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Yetenek Ekle
+### [Admin Paneli] Yetenek Ekle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231581186-774cab56-78e2-49a1-94c6-1494e58d25b7.png)
 
@@ -8439,7 +8440,7 @@ public partial class AdminYetenekEkle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Yetenek Sil
+### [Admin Paneli] Yetenek Sil [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -8460,7 +8461,7 @@ public partial class AdminYetenekSil : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Yetenek Güncelle
+### [Admin Paneli] Yetenek Güncelle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231581249-6078600a-c5d7-4ce4-82a8-4aed41eca556.png)
 
@@ -8522,7 +8523,7 @@ public partial class AdminYetenekGuncelle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Hobilerim
+### [Admin Paneli] Hobilerim [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231581406-9c2c0d90-b92c-46ff-a5ba-68769edcfea4.png)
 
@@ -8583,7 +8584,7 @@ public partial class AdminHobiler : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Hobi Ekle
+### [Admin Paneli] Hobi Ekle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231581453-e6589641-d7f0-42f7-89fd-b68aa31c1e32.png)
 
@@ -8635,7 +8636,7 @@ public partial class AdminHobiEkle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Hobi Sil
+### [Admin Paneli] Hobi Sil [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -8656,7 +8657,7 @@ public partial class AdminHobiSil : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Hobi Güncelle
+### [Admin Paneli] Hobi Güncelle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231581971-cd4d88cb-65de-4169-99f0-4529cab6f571.png)
 
@@ -8719,7 +8720,7 @@ public partial class HobiGuncelle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Sertifikalarım
+### [Admin Paneli] Sertifikalarım [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231582042-d1f06d50-2b6f-4f92-aa3b-bfdf3409c1bd.png)
 
@@ -8782,7 +8783,7 @@ public partial class AdminSertifikalar : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Sertifika Ekle
+### [Admin Paneli] Sertifika Ekle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231582117-970239c8-5253-4c8b-b1f3-451465864aca.png)
 
@@ -8836,7 +8837,7 @@ public partial class AdminSertifikaEkle : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Sertifika Sil
+### [Admin Paneli] Sertifika Sil [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -8857,7 +8858,7 @@ public partial class AdminSertifikaSil : System.Web.UI.Page
 }
 ```
 
-### [Admin Paneli] Sertifika Güncelle
+### [Admin Paneli] Sertifika Güncelle [Başa Dön ↑](#i1)
 
 ![image](https://user-images.githubusercontent.com/95151751/231582178-2d0e86c3-de25-42a8-9db9-08d311ecf10f.png)
 
@@ -8930,7 +8931,7 @@ public partial class AdminSertifikaGuncelle : System.Web.UI.Page
 
 # 08- ASP.NET Bootstrap Entity Framework ile Blog Sitesi <a name="project8"></a>
 
-### Anasayfa (Bloglar)
+### Anasayfa (Bloglar) [Başa Dön ↑](#i1)
 ![bloglar](https://user-images.githubusercontent.com/95151751/232872206-917ef259-b94d-4450-8285-861e81b2bda4.png)
 
 ```c#
@@ -9035,7 +9036,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi
 }
 ```
 
-### Blog Detay
+### Blog Detay [Başa Dön ↑](#i1)
 ![BlogDetay](https://user-images.githubusercontent.com/95151751/232872542-691eb2ee-894b-49e3-aad1-72c92c1b1ac9.png)
 
 ```c#
@@ -9170,7 +9171,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi
 }
 ```
 
-### Hakkımızda
+### Hakkımızda [Başa Dön ↑](#i1)
 ![hakkimizda](https://user-images.githubusercontent.com/95151751/232872450-16c86c73-6a32-4bff-a7c6-0f63b27e36fa.png)
 
 ```c#
@@ -9220,7 +9221,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi
 }
 ```
 
-### İletişim
+### İletişim [Başa Dön ↑](#i1)
 ![iletisim](https://user-images.githubusercontent.com/95151751/232872476-c372a21e-15e4-4e63-8fa0-ac0cb9d7ac86.png)
 
 ```c#
@@ -9307,7 +9308,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi
 }
 ```
 
-### Ön Yüz Master Kodları
+### Ön Yüz Master Kodları [Başa Dön ↑](#i1)
 
 ```c#
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Kullanici.master.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Kullanici" %>
@@ -9399,7 +9400,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 ```
 
 
-### [Admin Sayfası] Bloglar
+### [Admin Sayfası] Bloglar [Başa Dön ↑](#i1)
 ![Bloglar](https://user-images.githubusercontent.com/95151751/232873440-9d59ea16-f28e-44eb-aada-783a74bc1603.png)
 
 ```c#
@@ -9464,7 +9465,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
 }
 ```
 
-### [Admin Sayfası] Yeni Blog
+### [Admin Sayfası] Yeni Blog [Başa Dön ↑](#i1)
 ![YeniBlog](https://user-images.githubusercontent.com/95151751/232873512-17d7bee1-3146-42da-80f7-ec1355c5d1b2.png)
 
 
@@ -9552,7 +9553,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
 ```
 
 
-### [Admin Sayfası] Blog Sil
+### [Admin Sayfası] Blog Sil [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -9581,7 +9582,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
 }
 ```
 
-### [Admin Sayfası] Blog Güncelle
+### [Admin Sayfası] Blog Güncelle [Başa Dön ↑](#i1)
 ![BlogGuncelle](https://user-images.githubusercontent.com/95151751/232873751-75a4a863-9838-4292-8cf1-bfc2cd72849b.png)
 
 
@@ -9687,7 +9688,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
 ```
 
 
-### [Admin Sayfası] Yorumlar
+### [Admin Sayfası] Yorumlar [Başa Dön ↑](#i1)
 ![Yorumlar](https://user-images.githubusercontent.com/95151751/232873809-a8625879-7084-4cbc-9cd1-3338835414d1.png)
 
 
@@ -9758,7 +9759,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
 ```
 
 
-### Admin Sayfası Master Kodları
+### Admin Sayfası Master Kodları [Başa Dön ↑](#i1)
 
 ```c#
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="_08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.Admin" %>
@@ -9801,7 +9802,7 @@ namespace _08_ASPNET_Entity_Framework_Dizi_Blog_Sitesi.AdminSayfalar
 
 # 09- ASP.NET Katmanli Mimari'de Mini Yaz Okulu Projesi <a name="project9"></a>
 
-### Öğrenci Listesi
+### Öğrenci Listesi [Başa Dön ↑](#i1)
 ![OgrenciListesi](https://user-images.githubusercontent.com/95151751/232912975-a9124f86-ab6f-4f5a-9101-95ec794724d3.png)
 
 ```c#
@@ -9869,7 +9870,7 @@ public partial class OgrenciListesi : System.Web.UI.Page
 }
 ```
 
-### Öğrenci Yeni Kayıt
+### Öğrenci Yeni Kayıt [Başa Dön ↑](#i1)
 ![YeniKayıt](https://user-images.githubusercontent.com/95151751/232913050-3fc3e142-bf1b-4586-9102-2aaa5d10ad94.png)
 
 
@@ -9950,7 +9951,7 @@ public partial class _Default : System.Web.UI.Page
 }
 ```
 
-### Öğrenci Sil
+### Öğrenci Sil [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -9975,7 +9976,7 @@ public partial class OgrenciSil : System.Web.UI.Page
 }
 ```
 
-### Öğrenci Güncelle
+### Öğrenci Güncelle [Başa Dön ↑](#i1)
 ![OgrenciGuncelle](https://user-images.githubusercontent.com/95151751/232913064-8d20f425-6dae-447e-849f-4d2782c7e414.png)
 
 
@@ -10075,7 +10076,7 @@ public partial class OgrenciGuncelle : System.Web.UI.Page
 }
 ```
 
-### Ders Talebi Oluştur
+### Ders Talebi Oluştur [Başa Dön ↑](#i1)
 ![Dersler](https://user-images.githubusercontent.com/95151751/232913088-3975c3fc-93bd-4b4b-b212-529c8cd5935e.png)
 
 ```c#
@@ -10142,7 +10143,7 @@ public partial class Dersler : System.Web.UI.Page
 
 # 10- Mvc5 Ürün Takip Projesi <a name="project10"></a>
 
-### Ürünler
+### Ürünler [Başa Dön ↑](#i1)
 ![Urunler-1](https://user-images.githubusercontent.com/95151751/232947681-11c3d4c1-b93b-474b-8389-34892983391b.png)
 
 ![Urunler-2](https://user-images.githubusercontent.com/95151751/232947697-cb6e4f4b-a98b-473a-83de-e09f044c0beb.png)
@@ -10207,7 +10208,7 @@ public partial class Dersler : System.Web.UI.Page
 
 ```
 
-### Yeni Ürün Ekleme
+### Yeni Ürün Ekleme [Başa Dön ↑](#i1)
 ![YeniUrun](https://user-images.githubusercontent.com/95151751/232947801-ae433b3f-0c1d-4b15-8713-63871089ce2e.png)
 
 
@@ -10249,7 +10250,7 @@ public partial class Dersler : System.Web.UI.Page
 ```
 
 
-### Ürün Güncelleme
+### Ürün Güncelleme [Başa Dön ↑](#i1)
 ![UrunGuncelle](https://user-images.githubusercontent.com/95151751/232947853-a8e1e358-6f1c-4974-96f0-adcaf29f33b4.png)
 
 
@@ -10291,7 +10292,7 @@ public partial class Dersler : System.Web.UI.Page
 
 ```
 
-### Ürünler Controller
+### Ürünler Controller [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -10374,7 +10375,7 @@ namespace _10_MVC01_Youtube_Proje.Controllers
 }
 ```
 
-### Kategoriler
+### Kategoriler [Başa Dön ↑](#i1)
 ![Kategoriler](https://user-images.githubusercontent.com/95151751/232947882-8f10cf22-fdee-442a-b898-dbb5d9ab6543.png)
 
 
@@ -10416,7 +10417,7 @@ else
 
 ```
 
-### Yeni Kategori Ekle
+### Yeni Kategori Ekle [Başa Dön ↑](#i1)
 ![YeniKategori](https://user-images.githubusercontent.com/95151751/232947915-39c01ed0-6607-40de-a307-b25727b18540.png)
 
 
@@ -10444,7 +10445,7 @@ else
 
 ```
 
-### Kategori Güncelle
+### Kategori Güncelle [Başa Dön ↑](#i1)
 ![KategoriGuncelle](https://user-images.githubusercontent.com/95151751/232947966-bade230a-e30d-4262-ab9f-85914c4579c1.png)
 
 
@@ -10472,7 +10473,7 @@ else
 
 ```
 
-### Kategoriler Controller
+### Kategoriler Controller [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -10536,7 +10537,7 @@ namespace _10_MVC01_Youtube_Proje.Controllers
 }
 ```
 
-### Müşteriler
+### Müşteriler [Başa Dön ↑](#i1)
 ![Musteriler](https://user-images.githubusercontent.com/95151751/232947997-a868d999-f1ee-4a95-9773-8d741d882086.png)
 
 
@@ -10575,7 +10576,7 @@ namespace _10_MVC01_Youtube_Proje.Controllers
 ```
 
 
-### Yeni Müşteri Ekle
+### Yeni Müşteri Ekle [Başa Dön ↑](#i1)
 ![YeniMusteri](https://user-images.githubusercontent.com/95151751/232948014-cdfaaeeb-7c8e-4803-a9be-814ee186d2a9.png)
 
 
@@ -10609,7 +10610,7 @@ namespace _10_MVC01_Youtube_Proje.Controllers
 
 ```
 
-### Müşteri Güncelle
+### Müşteri Güncelle [Başa Dön ↑](#i1)
 ![MusteriGuncelle](https://user-images.githubusercontent.com/95151751/232948072-b829e297-eac4-4a3b-9338-a39dbb25d957.png)
 
 
@@ -10641,7 +10642,7 @@ namespace _10_MVC01_Youtube_Proje.Controllers
 
 ```
 
-### Müşteriler Controller
+### Müşteriler Controller [Başa Dön ↑](#i1)
 
 ```c#
 using System;
@@ -10706,7 +10707,7 @@ namespace _10_MVC01_Youtube_Proje.Controllers
 }
 ```
 
-### Satışlar
+### Satışlar [Başa Dön ↑](#i1)
 ![Satıslar-1](https://user-images.githubusercontent.com/95151751/232948147-8ef8b839-73c6-431a-b62b-d6841c879893.png)
 
 ![Satıslar-2](https://user-images.githubusercontent.com/95151751/232948164-0a91e27e-7149-4047-8f25-f9c9fec03799.png)
@@ -10753,7 +10754,7 @@ namespace _10_MVC01_Youtube_Proje.Controllers
 
 ```
 
-### Satışlar Controller
+### Satışlar Controller [Başa Dön ↑](#i1)
 
 ```c#
 using System;
