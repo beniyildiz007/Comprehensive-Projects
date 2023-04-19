@@ -10608,12 +10608,6 @@ namespace _10_MVC01_Youtube_Proje.Controllers
 
 ```
 
-### Müşteri Sil
-
-```c#
-
-```
-
 ### Müşteri Güncelle
 ![MusteriGuncelle](https://user-images.githubusercontent.com/95151751/232948072-b829e297-eac4-4a3b-9338-a39dbb25d957.png)
 
