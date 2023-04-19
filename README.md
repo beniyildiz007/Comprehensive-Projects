@@ -3,7 +3,7 @@
 >_Büyük fikirler büyük başarılar getirmez, küçük başarılar büyük başarıları inşa eder._
 
 
-
+<a name="i1"></a>
 ## İçindekiler (Contents)
 1. [C# Hastane Otomasyon Projesi](#project1)
 2. [C# Pansiyon Kayıt Otomasyon Projesi](#project2)
@@ -14,6 +14,7 @@
 7. [ASP.NET Bootstrap Login & Admin Panelli Dinamik CV Sitesi](#project7)
 8. [ASP.NET Bootstrap Entity Framework ile Blog Sitesi](#project8)
 9. [ASP.NET Katmanli Mimari'de Mini Yaz Okulu Projesi](#project9)
+10. [Mvc5 Ürün Takip Projesi](#project10)
 
 
 
@@ -117,7 +118,7 @@ namespace _02_Hastane_Proejesi
     }
 }
 ```
-### Hasta Üye Olma Paneli
+### Hasta Üye Olma Paneli [deneme](#i1)
 [![Berkan Nihat Yıldız](https://i.hizliresim.com/17vij7d.jpg)](https://www.linkedin.com/in/berkan-nihat-yildiz/)
 ```c#
 using System;
@@ -10138,18 +10139,662 @@ public partial class Dersler : System.Web.UI.Page
 }
 ```
 
+# 10- Mvc5 Ürün Takip Projesi <a name="project1"></a>
+
+### Ürünler
+![Urunler-1](https://user-images.githubusercontent.com/95151751/232947681-11c3d4c1-b93b-474b-8389-34892983391b.png)
+
+![Urunler-2](https://user-images.githubusercontent.com/95151751/232947697-cb6e4f4b-a98b-473a-83de-e09f044c0beb.png)
+
+![UrunArama](https://user-images.githubusercontent.com/95151751/232947726-6cefabe2-0ec0-4c5a-a04f-87338599d890.png)
+
+```c#
+@using _10_MVC01_Youtube_Proje.Models.Entity;
+@model List<TBLURUNLER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tbl1">
+    <thead>
+        <tr>
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN ADI</th>
+            <th>MARKASI</th>
+            <th>KATEGORİ</th>
+            <th>FİYAT</th>
+            <th>STOK</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urun in Model)
+        {
+            <tr>
+                <th>@urun.URUNID</th>
+                <td>@urun.URUNAD</td>
+                <td>@urun.MARKA</td>
+                <td>
+                    @if (urun.TBLKATEGORILER != null)
+                    {@urun.TBLKATEGORILER.KATEGORIAD}
+            </td>
+            <td>@urun.FIYAT</td>
+            <td>@urun.STOK</td>
+            <td><a href="/URUN/SIL/@urun.URUNID" class="btn btn-danger">SİL</a></td>
+            <td><a href="/URUN/UrunGetir/@urun.URUNID" class="btn btn-success">GÜNCELLE</a></td>
+
+        </tr>
+    }
+    </tbody>
+</table>
+<a href="/URUN/YeniUrun" class="btn btn-primary"> YENİ URUN EKLE</a>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<script>
+    $("#tbl1").DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Turkish.json"
+        }
+    });
+</script>
 
 
 
+```
+
+### Yeni Ürün Ekleme
+![YeniUrun](https://user-images.githubusercontent.com/95151751/232947801-ae433b3f-0c1d-4b15-8713-63871089ce2e.png)
+
+
+```c#
+@model _10_MVC01_Youtube_Proje.Models.Entity.TBLURUNLER
+@{
+    ViewBag.Title = "YeniUrun";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Ürün Adı</label>
+        <input type="text" class="form-control" name="URUNAD" required="" maxlength="30" />
+    </div>
+    <div style="margin-top:10px">
+        <label>Marka</label>
+        <input type="text" class="form-control" name="MARKA" required="" maxlength="30" />
+    </div>
+    <div style="margin-top:10px">
+        <label>Kategori Seçiniz</label>
+        @Html.DropDownListFor(m => m.TBLKATEGORILER.KATEGORIID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control"})
+    </div>
+    <div style="margin-top:10px">
+        <label>Fiyat</label>
+        <input type="text" class="form-control" name="FIYAT" required="" maxlength="30" />
+    </div>
+    <div style="margin-top:10px">
+        <label>Stok</label>
+        <input type="text" class="form-control" name="STOK" required="" maxlength="30" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Ürün Ekle</button>
+    </div>
+</form>
 
 
 
+```
+
+
+### Ürün Güncelleme
+![UrunGuncelle](https://user-images.githubusercontent.com/95151751/232947853-a8e1e358-6f1c-4974-96f0-adcaf29f33b4.png)
+
+
+```c#
+@model _10_MVC01_Youtube_Proje.Models.Entity.TBLURUNLER
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Urun", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.URUNID)
+        @Html.TextBoxFor(m => m.URUNID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.URUNAD)
+        @Html.TextBoxFor(m => m.URUNAD, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.MARKA)
+        @Html.TextBoxFor(m => m.MARKA, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.URUNKATEGORI)
+        @Html.DropDownListFor(m=>m.TBLKATEGORILER.KATEGORIID,(List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        @*@Html.TextBoxFor(m => m.URUNKATEGORI, new { @class = "form-control" })*@
+        <br />
+        @Html.LabelFor(m => m.FIYAT)
+        @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.STOK)
+        @Html.TextBoxFor(m => m.STOK, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-success">Ürün Güncelle</button>
+    </div>
+}
 
 
 
+```
+
+### Ürünler Controller
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using _10_MVC01_Youtube_Proje.Models.Entity;
+
+namespace _10_MVC01_Youtube_Proje.Controllers
+{
+    public class UrunController : Controller
+    {
+        Dbo_MvcStokEntities db = new Dbo_MvcStokEntities();
+        // GET: Urun
+        public ActionResult Index()
+        {
+            var degerler = db.TBLURUNLER.ToList();
+            return View(degerler);
+        }
+
+        [HttpGet]
+        public ActionResult YeniUrun()
+        {
+            List<SelectListItem> degerler = (from i in db.TBLKATEGORILER.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = i.KATEGORIAD,
+                                                 Value = i.KATEGORIID.ToString()
+                                             }).ToList();
+            ViewBag.dgr = degerler;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult YeniUrun(TBLURUNLER p1)
+        {
+            var ktg = db.TBLKATEGORILER.Where(m => m.KATEGORIID == p1.TBLKATEGORILER.KATEGORIID).FirstOrDefault();
+            p1.TBLKATEGORILER = ktg;
+            db.TBLURUNLER.Add(p1);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SIL(int id)
+        {
+            db.TBLURUNLER.Remove(db.TBLURUNLER.Find(id));
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult UrunGetir(int id)
+        {
+            var urun = db.TBLURUNLER.Find(id);
+
+            List<SelectListItem> degerler = (from i in db.TBLKATEGORILER.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = i.KATEGORIAD,
+                                                 Value = i.KATEGORIID.ToString()
+                                             }).ToList();
+            ViewBag.dgr = degerler;
+            return View("UrunGetir", urun);
+        }
+
+        public ActionResult Guncelle(TBLURUNLER p)
+        {
+            var urun = db.TBLURUNLER.Find(p.URUNID);
+            urun.URUNAD = p.URUNAD;
+            urun.MARKA = p.MARKA;
+            urun.STOK = p.STOK;
+            urun.FIYAT = p.FIYAT;
+            //urun.URUNKATEGORI = p.URUNAD;
+            var ktg = db.TBLKATEGORILER.Where(m => m.KATEGORIID == p.TBLKATEGORILER.KATEGORIID).FirstOrDefault();
+            urun.URUNKATEGORI = ktg.KATEGORIID;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}
+```
+
+### Kategoriler
+![Kategoriler](https://user-images.githubusercontent.com/95151751/232947882-8f10cf22-fdee-442a-b898-dbb5d9ab6543.png)
 
 
+```c#
+@using _10_MVC01_Youtube_Proje.Models.Entity;
+@model List<TBLKATEGORILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
 
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>KATEGORİ ID</th>
+            <th>KATEGORİ ADI</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+        <tbody>
+            @foreach (var kt in Model)
+            {
+            <tr>
+                <th>@kt.KATEGORIID</th>
+                <td>@kt.KATEGORIAD</td>
+                <td><a href="/KATEGORI/SIL/@kt.KATEGORIID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/KATEGORI/KategoriGetir/@kt.KATEGORIID" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/KATEGORI/YeniKategori" class="btn btn-primary"> YENİ KATEOGRİ EKLE</a>
+}
+else
+{
+    <p>Henüz kategori eklenmemiş.</p>
+}
+
+```
+
+### Yeni Kategori Ekle
+![YeniKategori](https://user-images.githubusercontent.com/95151751/232947915-39c01ed0-6607-40de-a307-b25727b18540.png)
+
+
+```c#
+@model _10_MVC01_Youtube_Proje.Models.Entity.TBLKATEGORILER
+@{
+    ViewBag.Title = "YeniKategori";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @*<div>
+        <label>Kategori Adı</label>
+        <input type="text" class="form-control" name="KATEGORIAD" />
+    </div>*@
+    <div>
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(m => m.KATEGORIAD, new {@class="form-control"})
+        @Html.ValidationMessageFor(m => m.KATEGORIAD, "", new {@style="color:red"})
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Kategori Ekle</button>
+    </div>
+</form>
+
+```
+
+### Kategori Güncelle
+![KategoriGuncelle](https://user-images.githubusercontent.com/95151751/232947966-bade230a-e30d-4262-ab9f-85914c4579c1.png)
+
+
+```c#
+@model _10_MVC01_Youtube_Proje.Models.Entity.TBLKATEGORILER
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Kategori", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.KATEGORIID)
+        @Html.TextBoxFor(m => m.KATEGORIID, new { @class = "form-control"})
+        <br />
+        @Html.LabelFor(m => m.KATEGORIAD)
+        @Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-success">Kategori Güncelle</button>
+    </div>
+}
+
+
+```
+
+### Kategoriler Controller
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using _10_MVC01_Youtube_Proje.Models.Entity;
+
+namespace _10_MVC01_Youtube_Proje.Controllers
+{
+    public class KategoriController : Controller
+    {
+        // GET: Kategori
+        Dbo_MvcStokEntities db = new Dbo_MvcStokEntities();
+        public ActionResult Index()
+        {
+            var degerler = db.TBLKATEGORILER.ToList();
+            return View(degerler);
+        }
+
+        [HttpGet]
+        public ActionResult YeniKategori()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult YeniKategori(TBLKATEGORILER p1)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniKategori");
+            }
+            db.TBLKATEGORILER.Add(p1);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SIL(int id)
+        {
+            db.TBLKATEGORILER.Remove(db.TBLKATEGORILER.Find(id));
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult KategoriGetir(int id)
+        {
+            var ktgr = db.TBLKATEGORILER.Find(id);
+            return View("KategoriGetir", ktgr);
+        }
+
+        public ActionResult Guncelle(TBLKATEGORILER p1)
+        {
+            var ktg = db.TBLKATEGORILER.Find(p1.KATEGORIID);
+            ktg.KATEGORIAD = p1.KATEGORIAD;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}
+```
+
+### Müşteriler
+![Musteriler](https://user-images.githubusercontent.com/95151751/232947997-a868d999-f1ee-4a95-9773-8d741d882086.png)
+
+
+```c#
+@using _10_MVC01_Youtube_Proje.Models.Entity;
+@model List<TBLMUSTERILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>MÜŞTERİ ID</th>
+        <th>MÜŞTERİ ADI</th>
+        <th>MÜŞTERİ SOYADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    <tbody>
+        @foreach (var must in Model)
+        {
+            <tr>
+                <th>@must.MUSTERIID</th>
+                <td>@must.MUSTERIAD</td>
+                <td>@must.MUSTERISOYAD</td>
+                @*<td><a href="/MUSTERI/SIL/@must.MUSTERIID" class="btn btn-danger">SİL</a></td>*@
+                <td>@Html.ActionLink("SİL", "SIL", new { id = must.MUSTERIID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor musunuz?')" })</td>
+                <td><a href="/MUSTERI/MusteriGetir/@must.MUSTERIID" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/MUSTERI/YeniMusteri" class="btn btn-primary"> YENİ MUSTERI EKLE</a>
+
+```
+
+
+### Yeni Müşteri Ekle
+![YeniMusteri](https://user-images.githubusercontent.com/95151751/232948014-cdfaaeeb-7c8e-4803-a9be-814ee186d2a9.png)
+
+
+```c#
+@model _10_MVC01_Youtube_Proje.Models.Entity.TBLMUSTERILER
+@{
+    ViewBag.Title = "YeniMusteri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Müşteri Adı</label>
+        @Html.TextBoxFor(m => m.MUSTERIAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MUSTERIAD, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:10px">
+        <label>Müşteri Soyadı</label>
+        <input type="text" class="form-control" name="MUSTERISOYAD" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btnMusteriEkle">Müşteri Ekle</button>
+    </div>
+    <script>
+        $('#btnMusteriEkle').click(function () {
+            alert('Müşteri ekleme işlemi başarıyla gerçekleştirildi!');
+        });
+    </script>
+</form>
+
+
+```
+
+### Müşteri Sil
+
+```c#
+
+```
+
+### Müşteri Güncelle
+![MusteriGuncelle](https://user-images.githubusercontent.com/95151751/232948072-b829e297-eac4-4a3b-9338-a39dbb25d957.png)
+
+
+```c#
+@model _10_MVC01_Youtube_Proje.Models.Entity.TBLMUSTERILER
+@{
+    ViewBag.Title = "MusteriGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Musteri", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.MUSTERIID)
+        @Html.TextBoxFor(m => m.MUSTERIID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.MUSTERIAD)
+        @Html.TextBoxFor(m => m.MUSTERIAD, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.MUSTERISOYAD)
+        @Html.TextBoxFor(m => m.MUSTERISOYAD, new { @class = "form-control" })
+        <br />
+    </div>
+    <div>
+        <button class="btn btn-success">Müşteri Güncelle</button>
+    </div>
+}
+
+
+```
+
+### Müşteriler Controller
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using _10_MVC01_Youtube_Proje.Models.Entity;
+
+namespace _10_MVC01_Youtube_Proje.Controllers
+{
+    public class MusteriController : Controller
+    {
+        Dbo_MvcStokEntities db = new Dbo_MvcStokEntities();
+        // GET: Musteri
+        public ActionResult Index()
+        {
+            var degerler = db.TBLMUSTERILER.ToList();
+            return View(degerler);
+        }
+
+        [HttpGet]
+        public ActionResult YeniMusteri()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult YeniMusteri(TBLMUSTERILER p1)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniMusteri");
+            }
+            db.TBLMUSTERILER.Add(p1);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SIL(int id)
+        {
+            db.TBLMUSTERILER.Remove(db.TBLMUSTERILER.Find(id));
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult MusteriGetir(int id)
+        {
+            var mus = db.TBLMUSTERILER.Find(id);
+            return View("MusteriGetir", mus);
+        }
+
+        public ActionResult Guncelle(TBLMUSTERILER p1)
+        {
+            var musteri = db.TBLMUSTERILER.Find(p1.MUSTERIID);
+            musteri.MUSTERIAD = p1.MUSTERIAD;
+            musteri.MUSTERISOYAD = p1.MUSTERISOYAD;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}
+```
+
+### Satışlar
+![Satıslar-1](https://user-images.githubusercontent.com/95151751/232948147-8ef8b839-73c6-431a-b62b-d6841c879893.png)
+
+![Satıslar-2](https://user-images.githubusercontent.com/95151751/232948164-0a91e27e-7149-4047-8f25-f9c9fec03799.png)
+
+
+```c#
+@model _10_MVC01_Youtube_Proje.Models.Entity.TBLSATISLAR
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Satış Yap</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Satış Yapma Ekranı</h2>
+            </div>
+            <form method="post" action="/Satis/YeniSatis">
+                <div class="modal-body">
+                    <label>
+                        Ürün Adı
+                    </label>
+                    @Html.TextBoxFor(m => m.URUN, new { @class = "form-control" })
+                    <br />
+                    <label>Müşteri Adı Soyadı</label>
+                    @Html.TextBoxFor(m => m.MUSTERI, new { @class = "form-control" })
+                    <br />
+                    <label>Adet</label>
+                    @Html.TextBoxFor(m => m.ADET, new { @class = "form-control" })
+                    <br />
+                    <label>Fiyat</label>
+                    @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+                    <br />
+                    <button class="btn btn-info" type="submit">Satış İşlemini Yap</button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Vazgeç</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+```
+
+### Satışlar Controller
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using _10_MVC01_Youtube_Proje.Models.Entity;
+
+namespace _10_MVC01_Youtube_Proje.Controllers
+{
+    public class SatisController : Controller
+    {
+        Dbo_MvcStokEntities db = new Dbo_MvcStokEntities();
+        // GET: Satis
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult YeniSatis()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult YeniSatis( TBLSATISLAR p)
+        {
+            db.TBLSATISLAR.Add(p);
+            db.SaveChanges();
+            return View("Index");
+        }
+    }
+}
+```
 
 
 
