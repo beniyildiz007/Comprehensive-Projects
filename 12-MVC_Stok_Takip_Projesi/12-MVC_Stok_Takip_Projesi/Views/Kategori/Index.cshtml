@@ -1,0 +1,26 @@
+﻿@using _12_MVC_Stok_Takip_Projesi.Models.Entity
+@model List<TBLKATEGORI> 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>KATEGORİ ADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach(var i in Model)
+            {
+                <tr>
+                    <td>@i.ID</td>
+                    <td>@i.AD</td>
+                    <td><a href="/Kategori/KategoriSil/@i.ID" class="btn btn-danger">SİL</a></td>
+                    <td><a href="/Kategori/KategoriGetir/@i.ID" class="btn btn-success">GÜNCELLE</a></td>
+                </tr>
+            }
+</table>
+<a href="/Kategori/YeniKategori" class="btn btn-primary">Yeni Kategori</a>
+

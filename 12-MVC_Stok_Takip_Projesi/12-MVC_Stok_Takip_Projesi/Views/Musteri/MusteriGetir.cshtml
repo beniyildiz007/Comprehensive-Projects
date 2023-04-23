@@ -1,0 +1,24 @@
+﻿@model _12_MVC_Stok_Takip_Projesi.Models.Entity.TBLMUSTERI
+
+@{
+    ViewBag.Title = "MusteriGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("MusteriGuncelle", "Musteri", FormMethod.Post))
+{
+    <h2>Müşteri Güncelleme</h2>
+    @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.SEHIR, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.BAKIYE, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+
+}
+

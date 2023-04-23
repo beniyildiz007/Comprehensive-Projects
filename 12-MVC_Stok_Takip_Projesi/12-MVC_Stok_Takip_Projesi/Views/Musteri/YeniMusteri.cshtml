@@ -1,0 +1,28 @@
+﻿@model _12_MVC_Stok_Takip_Projesi.Models.Entity.TBLMUSTERI
+
+@{
+    ViewBag.Title = "YeniMusteri";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    <h2>Yeni Müşteri Ekleme</h2>
+    <br />
+    <label><b>Müşteri Adı</b></label>
+    @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red" })
+    <br />
+    <label><b>Müşteri Soyadı</b></label>
+    @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.SOYAD, "", new { @style = "color:red" })
+    <br />
+    <label><b>Şehir</b></label>
+    @Html.TextBoxFor(x => x.SEHIR, new { @class = "form-control" })
+    <br />
+    <label><b>Bakiye</b></label>
+    @Html.TextBoxFor(x => x.BAKIYE, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+</form>
+
+

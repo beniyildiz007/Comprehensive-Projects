@@ -1,0 +1,32 @@
+﻿@model _12_MVC_Stok_Takip_Projesi.Models.Entity.TBLURUNLER
+
+@{
+    ViewBag.Title = "YeniUrun";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    <h2>Yeni Ürün Ekleme</h2>
+    <br />
+    <label><b>Ürün Adı</b></label>
+    @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+    <br />
+    <label><b>Marka</b></label>
+    @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control" })
+    <br />
+    <label><b>Stok</b></label>
+    @Html.TextBoxFor(x => x.STOK, new { @class = "form-control" })
+    <br />
+    <label><b>Alış Fiyatı</b></label>
+    @Html.TextBoxFor(x => x.ALISFIYAT, new { @class = "form-control" })
+    <br />
+    <label><b>Satış Fiyatı</b></label>
+    @Html.TextBoxFor(x => x.SATISFIYAT, new { @class = "form-control" })
+    <br />
+    <label><b>Kategori</b></label>
+    @Html.DropDownListFor(x=>x.TBLKATEGORI.ID,(List<SelectListItem>)ViewBag.drop,new { @class="form-control"})
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+</form>
+
+

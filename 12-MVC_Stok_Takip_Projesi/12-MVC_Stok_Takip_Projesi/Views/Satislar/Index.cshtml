@@ -1,0 +1,32 @@
+﻿@using _12_MVC_Stok_Takip_Projesi.Models.Entity
+@model List<TBLSATISLAR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>ÜRÜN</th>
+        <th>PERSONEL</th>
+        <th>MÜŞTERİ</th>
+        <th>FİYAT</th>
+        <th>TARİH</th>
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.ID</td>
+            <td>@i.TBLURUNLER.AD</td>
+            <td>@i.TBLPERSONEL.AD @i.TBLPERSONEL.SOYAD</td>
+            <td>@i.TBLMUSTERI.AD @i.TBLMUSTERI.SOYAD</td>
+            <td>@i.FIYAT</td>
+            <td>@i.TARIH</td>
+        </tr>
+    }
+</table>
+<a href="/Satislar/YeniSatis" class="btn btn-primary">Yeni Satis</a>
+
+

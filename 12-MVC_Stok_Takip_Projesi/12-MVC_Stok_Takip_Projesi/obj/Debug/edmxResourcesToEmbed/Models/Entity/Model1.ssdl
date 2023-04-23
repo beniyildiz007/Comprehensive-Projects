@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Dbo_BonusMvcStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBLADMIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KULLANICI" Type="varchar" MaxLength="30" />
+    <Property Name="SIFRE" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="TBLKATEGORI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TBLMUSTERI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD" Type="varchar" MaxLength="30" />
+    <Property Name="SOYAD" Type="varchar" MaxLength="30" />
+    <Property Name="SEHIR" Type="varchar" MaxLength="15" />
+    <Property Name="BAKIYE" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DURUM" Type="bit" />
+  </EntityType>
+  <EntityType Name="TBLPERSONEL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD" Type="varchar" MaxLength="30" />
+    <Property Name="SOYAD" Type="varchar" MaxLength="30" />
+    <Property Name="DEPARTMAN" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="TBLSATISLAR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="URUN" Type="int" />
+    <Property Name="PERSONEL" Type="int" />
+    <Property Name="MUSTERI" Type="int" />
+    <Property Name="FIYAT" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TARIH" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="TBLURUNLER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AD" Type="varchar" MaxLength="50" />
+    <Property Name="MARKA" Type="varchar" MaxLength="50" />
+    <Property Name="STOK" Type="smallint" />
+    <Property Name="ALISFIYAT" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SATISFIYAT" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="KATEGORI" Type="int" />
+    <Property Name="DURUM" Type="bit" />
+  </EntityType>
+  <Association Name="FK_TBLSATISLAR_TBLMUSTERI">
+    <End Role="TBLMUSTERI" Type="Self.TBLMUSTERI" Multiplicity="0..1" />
+    <End Role="TBLSATISLAR" Type="Self.TBLSATISLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLMUSTERI">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLSATISLAR">
+        <PropertyRef Name="MUSTERI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSATISLAR_TBLPERSONEL">
+    <End Role="TBLPERSONEL" Type="Self.TBLPERSONEL" Multiplicity="0..1" />
+    <End Role="TBLSATISLAR" Type="Self.TBLSATISLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLPERSONEL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLSATISLAR">
+        <PropertyRef Name="PERSONEL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSATISLAR_TBLURUNLER">
+    <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1" />
+    <End Role="TBLSATISLAR" Type="Self.TBLSATISLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLURUNLER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLSATISLAR">
+        <PropertyRef Name="URUN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLURUNLER_TBLKATEGORI">
+    <End Role="TBLKATEGORI" Type="Self.TBLKATEGORI" Multiplicity="0..1" />
+    <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKATEGORI">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLURUNLER">
+        <PropertyRef Name="KATEGORI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Dbo_BonusMvcStokModelStoreContainer">
+    <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLKATEGORI" EntityType="Self.TBLKATEGORI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLMUSTERI" EntityType="Self.TBLMUSTERI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLPERSONEL" EntityType="Self.TBLPERSONEL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLSATISLAR" EntityType="Self.TBLSATISLAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLURUNLER" EntityType="Self.TBLURUNLER" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBLSATISLAR_TBLMUSTERI" Association="Self.FK_TBLSATISLAR_TBLMUSTERI">
+      <End Role="TBLMUSTERI" EntitySet="TBLMUSTERI" />
+      <End Role="TBLSATISLAR" EntitySet="TBLSATISLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSATISLAR_TBLPERSONEL" Association="Self.FK_TBLSATISLAR_TBLPERSONEL">
+      <End Role="TBLPERSONEL" EntitySet="TBLPERSONEL" />
+      <End Role="TBLSATISLAR" EntitySet="TBLSATISLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSATISLAR_TBLURUNLER" Association="Self.FK_TBLSATISLAR_TBLURUNLER">
+      <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+      <End Role="TBLSATISLAR" EntitySet="TBLSATISLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLURUNLER_TBLKATEGORI" Association="Self.FK_TBLURUNLER_TBLKATEGORI">
+      <End Role="TBLKATEGORI" EntitySet="TBLKATEGORI" />
+      <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

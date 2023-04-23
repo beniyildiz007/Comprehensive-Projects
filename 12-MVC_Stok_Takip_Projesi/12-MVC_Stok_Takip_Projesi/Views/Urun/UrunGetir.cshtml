@@ -1,0 +1,26 @@
+﻿@model _12_MVC_Stok_Takip_Projesi.Models.Entity.TBLURUNLER
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("UrunGuncelle", "Urun", FormMethod.Post))
+{
+    <h2>Ürün Güncelleme</h2>
+    @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.STOK, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.ALISFIYAT, new { @class = "form-control" })
+    <br />
+    @Html.TextBoxFor(x => x.SATISFIYAT, new { @class = "form-control" })
+    <br />
+    @Html.DropDownListFor(x => x.TBLKATEGORI.ID, (List<SelectListItem>)ViewBag.urunkat, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+
+}
