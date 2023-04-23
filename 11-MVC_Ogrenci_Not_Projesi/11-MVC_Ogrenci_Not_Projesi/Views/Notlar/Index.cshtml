@@ -1,0 +1,45 @@
+﻿@using _11_MVC_Ogrenci_Not_Projesi.Models.EntityFramework
+@model List<TBLNOTLAR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>NOT ID</th>
+        <th>ÖĞRENCİ</th>
+        <th>DERS</th>
+        <th>1. SINAV</th>
+        <th>2. SINAV</th>
+        <th>3. SINAV</th>
+        <th>PROJE</th>
+        <th>ORTALAMA</th>
+        <th>DURUM</th>
+        <th>İŞLEMLER</th>
+    </tr>
+    <tbody>
+        @foreach (var i in Model)
+        {
+        <tr>
+            <td><b>@i.NOTID</b></td>
+            <td>@i.OGRID</td>
+            <td>@i.DERSID</td>
+            <td>@i.SINAV1</td>
+            <td>@i.SINAV2</td>
+            <td>@i.SINAV3</td>
+            <td>@i.PROJE</td>
+            <td>@i.ORTALAMA</td>
+            <td>@i.DURUM</td>
+            <td>
+                <a href="/Notlar/Getir/@i.NOTID" class="btn btn-success">GÜNCELLE</a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+<a href="/Notlar/YeniNotlar" class="btn btn-primary">Yeni Not Kaydı</a>
+
+
